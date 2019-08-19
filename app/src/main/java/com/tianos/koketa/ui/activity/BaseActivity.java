@@ -22,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity
+public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
