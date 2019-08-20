@@ -27,8 +27,8 @@ import butterknife.BindView;
 
 public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+//    @BindView(R.id.recycler_view)
+//    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +68,14 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
     public void initData() {
 
-        List<Dashboard> lst = new ArrayList<>();
-
-        Dashboard a = new Dashboard(
-                Constant.DASH_AVANCE_DEL_MES,
-                getString(R.string.dummy),
-                R.drawable.ic_person_black_24dp,
-                "A0" + Constant.DASH_AVANCE_DEL_MES);
-        lst.add(a);
+//        List<Dashboard> lst = new ArrayList<>();
+//
+//        Dashboard a = new Dashboard(
+//                Constant.DASH_AVANCE_DEL_MES,
+//                getString(R.string.dummy),
+//                R.drawable.ic_person_black_24dp,
+//                "A0" + Constant.DASH_AVANCE_DEL_MES);
+//        lst.add(a);
 
         /*
         Dashboard b = new Dashboard(
@@ -110,8 +110,8 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         lst.add(j);
         */
 
-        DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
-        recyclerView.setAdapter(adapter);
+//        DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
+//        recyclerView.setAdapter(adapter);
     }
 
 

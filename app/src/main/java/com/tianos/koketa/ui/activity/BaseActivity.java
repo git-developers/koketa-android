@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.widget.FrameLayout;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,14 +42,15 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
 
-
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+//        toolbar = findViewById(R.id.toolbar);
+//
+//        initSetup();
 //        initToolBar();
 
+
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         /*
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -73,12 +75,12 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
 
     @Override
     public void initSetup() {
-
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initToolBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.dashboard));
