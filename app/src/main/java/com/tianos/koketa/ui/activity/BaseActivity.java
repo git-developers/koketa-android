@@ -82,8 +82,8 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     public void initToolBar() {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.dashboard));
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle(getString(R.string.dashboard));
     }
 
     @Override

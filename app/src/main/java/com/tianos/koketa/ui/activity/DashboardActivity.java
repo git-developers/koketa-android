@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,13 +28,17 @@ import butterknife.BindView;
 
 public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
-//    @BindView(R.id.recycler_view)
-//    RecyclerView recyclerView;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        initSetup();
+        dashboardIcons();
+
 
         /*
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -58,7 +63,10 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
     @Override
     public void initSetup() {
+        super.initSetup();
 
+        recyclerView.setLayoutManager(new GridLayoutManager(DashboardActivity.this, 2));
+        recyclerView.setHasFixedSize(true);
     }
 
     @Override
@@ -66,16 +74,16 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
     }
 
-    public void initData() {
+    public void dashboardIcons() {
 
-//        List<Dashboard> lst = new ArrayList<>();
-//
-//        Dashboard a = new Dashboard(
-//                Constant.DASH_AVANCE_DEL_MES,
-//                getString(R.string.dummy),
-//                R.drawable.ic_person_black_24dp,
-//                "A0" + Constant.DASH_AVANCE_DEL_MES);
-//        lst.add(a);
+        List<Dashboard> lst = new ArrayList<>();
+
+        Dashboard a = new Dashboard(
+                Constant.DASH_AVANCE_DEL_MES,
+                getString(R.string.dummy),
+                R.drawable.ic_person_black_24dp,
+                "A0" + Constant.DASH_AVANCE_DEL_MES);
+        lst.add(a);
 
         /*
         Dashboard b = new Dashboard(
@@ -110,8 +118,8 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         lst.add(j);
         */
 
-//        DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
-//        recyclerView.setAdapter(adapter);
+        DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
+        recyclerView.setAdapter(adapter);
     }
 
 
