@@ -1,5 +1,6 @@
 package com.tianos.koketa.ui.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.tianos.koketa.R;
+import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,16 +25,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.FrameLayout;
 
-public class BaseActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import butterknife.BindView;
+
+public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, NavigationView.OnNavigationItemSelectedListener {
+
+    @Nullable
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.setContentView(R.layout.activity_main);
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        initToolBar();
+
+
+        /*
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +59,9 @@ public class BaseActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,6 +69,26 @@ public class BaseActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void initSetup() {
+
+    }
+
+    @Override
+    public void initToolBar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.dashboard));
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        View content = getLayoutInflater().inflate(layoutResID, null);
+        FrameLayout fm = (FrameLayout) findViewById(R.id.layout_container);
+        fm.addView(content);
     }
 
     @Override
@@ -103,5 +146,39 @@ public class BaseActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public String versionName() {
+        PackageManager packageManager = BaseActivity.this.getPackageManager();
+        String packageName = BaseActivity.this.getPackageName();
+
+        String out = getString(R.string.not_available);
+
+        try {
+            out = packageManager.getPackageInfo(packageName, 0).versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return out;
+    }
+
+    public String versionCode() {
+        PackageManager packageManager = BaseActivity.this.getPackageManager();
+        String packageName = BaseActivity.this.getPackageName();
+
+        String out = getString(R.string.not_available);
+
+        try {
+            long versionCodeLong = packageManager.getPackageInfo(packageName, 0).versionCode;
+            out = Long.toString(versionCodeLong);
+        } catch (NoSuchMethodError e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return out;
     }
 }

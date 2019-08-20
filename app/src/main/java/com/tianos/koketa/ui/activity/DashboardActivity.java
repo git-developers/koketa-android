@@ -9,18 +9,31 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.Dashboard;
+import com.tianos.koketa.ui.adapter.DashboardAdapter;
+import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.Constant;
 
-public class DashboardActivity extends BaseActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+
+public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
+
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dashboard);
 
         /*
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -43,6 +56,73 @@ public class DashboardActivity extends BaseActivity {
         */
     }
 
+    @Override
+    public void initSetup() {
+
+    }
+
+    @Override
+    public void initToolBar() {
+
+    }
+
+    public void initData() {
+
+        List<Dashboard> lst = new ArrayList<>();
+
+        Dashboard a = new Dashboard(
+                Constant.DASH_AVANCE_DEL_MES,
+                getString(R.string.dummy),
+                R.drawable.ic_person_black_24dp,
+                "A0" + Constant.DASH_AVANCE_DEL_MES);
+        lst.add(a);
+
+        /*
+        Dashboard b = new Dashboard(
+                Constant.DASH_POS_SIN_VENTAS,
+                getString(R.string.pos_sin_ventas),
+                R.drawable.ic_monetization_on_black_24dp,
+                "A0" + Constant.DASH_POS_SIN_VENTAS);
+        lst.add(b);
+        Dashboard c = new Dashboard(
+                Constant.DASH_AVANCE_POR_PRODUCTO,
+                getString(R.string.avance_por_producto),
+                R.drawable.ic_insert_chart_black_24dp,
+                "A0" + Constant.DASH_AVANCE_POR_PRODUCTO);
+        lst.add(c);
+        Dashboard h = new Dashboard(
+                Constant.DASH_CAMBIAR_PASSWORD,
+                getString(R.string.change_password),
+                R.drawable.ic_vpn_key_black_24dp,
+                "A0" + Constant.DASH_CAMBIAR_PASSWORD);
+        lst.add(h);
+        Dashboard i = new Dashboard(
+                Constant.DASH_PERFIL,
+                getString(R.string.profile),
+                R.drawable.ic_face_black_24dp,
+                "A0" + Constant.DASH_PERFIL);
+        lst.add(i);
+        Dashboard j = new Dashboard(
+                Constant.DASH_CERRAR_SESION,
+                getString(R.string.cerrar_sesion),
+                R.drawable.ic_settings_power_black_24dp,
+                "A0" + Constant.DASH_CERRAR_SESION);
+        lst.add(j);
+        */
+
+        DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    public void openAvanceDelMes(View view) {
+
+    }
+
+
+
+
+    /*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -99,4 +179,9 @@ public class DashboardActivity extends BaseActivity {
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    */
+
+
+
+
 }
