@@ -15,6 +15,10 @@
     <string name="menu_send">Send</string>
 
 
+    <string name="user_type">Tipo de usuario</string>
+    <string name="warehouse">Almacen</string>
+    <string name="phone">Telefono</string>
+    <string name="email">Email</string>
     <string name="routes">Rutas</string>
     <string name="clients">Clientes</string>
     <string name="articles">Articulos</string>
