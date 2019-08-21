@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1.5dp"
+    android:layout_marginBottom="1.5dp"
+    android:background="@drawable/ripple_04"
+    android:clickable="true">
+
+    <TableRow
+        android:id="@+id/table_tr_row"
+        style="@style/tableOdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+        <TextView
+            android:id="@+id/tv_body_resumen_1"
+            style="@style/tableRowTextView" />
+
+        <TextView
+            android:id="@+id/tv_body_resumen_2"
+            style="@style/tableRowTextView" />
+
+        <TextView
+            android:id="@+id/tv_body_resumen_3"
+            style="@style/tableRowTextView" />
+
+        <TextView
+            android:id="@+id/tv_body_resumen_4"
+            style="@style/tableRowTextView" />
+    </TableRow>
+
+</LinearLayout>

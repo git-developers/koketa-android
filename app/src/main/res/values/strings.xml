@@ -16,6 +16,7 @@
 
 
     <string name="user_type">Tipo de usuario</string>
+    <string name="no_data">No hay información para mostrar.</string>
     <string name="warehouse">Almacen</string>
     <string name="phone">Telefono</string>
     <string name="email">Email</string>

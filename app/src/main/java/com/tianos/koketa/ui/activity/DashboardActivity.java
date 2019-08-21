@@ -122,10 +122,9 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
     public void openProfile(View view) {
 
-        Intent i = new Intent(DashboardActivity.class, ProfileActivity.this);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent i = new Intent(DashboardActivity.this, ProfileActivity.class);
         startActivity(i);
-        finish();
+//        finish();
 
     }
 
