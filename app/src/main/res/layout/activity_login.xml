@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="10">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:src="@mipmap/ic_launcher_round" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="85"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dim_40"
+            android:layout_marginRight="@dimen/dim_40">
+
+            <EditText
+                android:id="@+id/edt_codigo_login"
+                style="@style/edittext"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:hint="@string/username" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dim_15" />
+
+            <EditText
+                android:id="@+id/edt_pass_login"
+                style="@style/edittext"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+                android:hint="@string/password" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dim_30" />
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/mainButton"
+                android:text="@string/login" />
+
+            <TextView
+                android:id="@+id/txt_olvide_contra_login"
+                style="@style/sectionClickable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_30"
+                android:gravity="center_vertical|center"
+                android:text="@string/forgot_password_3"
+                android:textSize="@dimen/dim_20" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="5">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:src="@mipmap/ic_launcher"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

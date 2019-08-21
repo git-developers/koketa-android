@@ -79,44 +79,60 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         List<Dashboard> lst = new ArrayList<>();
 
         Dashboard a = new Dashboard(
-                Constant.DASH_AVANCE_DEL_MES,
-                getString(R.string.dummy),
-                R.drawable.ic_person_black_24dp,
-                "A0" + Constant.DASH_AVANCE_DEL_MES);
+                Constant.DASH_ROUTES,
+                getString(R.string.routes),
+                R.drawable.ic_location_on_black_24dp,
+                "A0" + Constant.DASH_ROUTES);
         lst.add(a);
 
-        /*
         Dashboard b = new Dashboard(
-                Constant.DASH_POS_SIN_VENTAS,
-                getString(R.string.pos_sin_ventas),
-                R.drawable.ic_monetization_on_black_24dp,
-                "A0" + Constant.DASH_POS_SIN_VENTAS);
+                Constant.DASH_CLIENTS,
+                getString(R.string.clients),
+                R.drawable.ic_supervisor_account_black_24dp,
+                "A1" + Constant.DASH_CLIENTS);
         lst.add(b);
+
         Dashboard c = new Dashboard(
-                Constant.DASH_AVANCE_POR_PRODUCTO,
-                getString(R.string.avance_por_producto),
-                R.drawable.ic_insert_chart_black_24dp,
-                "A0" + Constant.DASH_AVANCE_POR_PRODUCTO);
+                Constant.DASH_ARTICLES,
+                getString(R.string.articles),
+                R.drawable.ic_view_quilt_black_24dp,
+                "A2" + Constant.DASH_ARTICLES);
         lst.add(c);
-        Dashboard h = new Dashboard(
-                Constant.DASH_CAMBIAR_PASSWORD,
-                getString(R.string.change_password),
-                R.drawable.ic_vpn_key_black_24dp,
-                "A0" + Constant.DASH_CAMBIAR_PASSWORD);
-        lst.add(h);
-        Dashboard i = new Dashboard(
-                Constant.DASH_PERFIL,
+
+        Dashboard d = new Dashboard(
+                Constant.DASH_PENDIENTS,
+                getString(R.string.pendings),
+                R.drawable.ic_cloud_upload_black_24dp,
+                "A3" + Constant.DASH_PENDIENTS);
+        lst.add(d);
+
+        Dashboard e = new Dashboard(
+                Constant.DASH_SYNCHRONIZE,
+                getString(R.string.synchronize),
+                R.drawable.ic_sync_black_24dp,
+                "A4" + Constant.DASH_SYNCHRONIZE);
+        lst.add(e);
+
+        Dashboard f = new Dashboard(
+                Constant.DASH_VISITS,
+                getString(R.string.visits),
+                R.drawable.ic_my_location_black_24dp,
+                "A5" + Constant.DASH_VISITS);
+        lst.add(f);
+
+        Dashboard g = new Dashboard(
+                Constant.DASH_PENDING_STATUS,
+                getString(R.string.pending_status),
+                R.drawable.ic_assignment_black_24dp,
+                "A6" + Constant.DASH_PENDING_STATUS);
+        lst.add(g);
+
+        Dashboard k = new Dashboard(
+                Constant.DASH_PROFILE,
                 getString(R.string.profile),
                 R.drawable.ic_face_black_24dp,
-                "A0" + Constant.DASH_PERFIL);
-        lst.add(i);
-        Dashboard j = new Dashboard(
-                Constant.DASH_CERRAR_SESION,
-                getString(R.string.cerrar_sesion),
-                R.drawable.ic_settings_power_black_24dp,
-                "A0" + Constant.DASH_CERRAR_SESION);
-        lst.add(j);
-        */
+                "A7" + Constant.DASH_PROFILE);
+        lst.add(k);
 
         DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
         recyclerView.setAdapter(adapter);
@@ -189,7 +205,17 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
     }
     */
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+    }
 
 
 }

@@ -15,7 +15,23 @@
     <string name="menu_send">Send</string>
 
 
+    <string name="routes">Rutas</string>
+    <string name="clients">Clientes</string>
+    <string name="articles">Articulos</string>
+    <string name="pendings">Pendientes</string>
+    <string name="synchronize">Sincronizar</string>
+    <string name="visits">Visitas</string>
+    <string name="pending_status">Estado pedido</string>
+    <string name="profile">Perfil</string>
     <string name="dashboard">Dashboard</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
+    <string name="empty_code">Ingrese su código.</string>
+    <string name="empty_password">Ingresa tu contraseña.</string>
+    <string name="username">Username</string>
+    <string name="validating">Validando...</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Ingresar a mi cuenta</string>
+    <string name="forgot_password_3">Olvidé mi contraseña</string>
+
 </resources>

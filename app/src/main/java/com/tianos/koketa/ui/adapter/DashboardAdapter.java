@@ -57,7 +57,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
             public void onClick(View v) {
 
                 switch (d.getId()) {
-                    case Constant.DASH_AVANCE_DEL_MES:
+                    case Constant.DASH_ROUTES:
                         ((DashboardActivity) context).openAvanceDelMes(v);
                         break;
 //                    case Constant.DASH_POS_SIN_VENTAS:

@@ -47,7 +47,7 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
                 } finally {
 
                     Intent i = new Intent();
-                    i.setClass(SplashActivity.this, DashboardActivity.class);
+                    i.setClass(SplashActivity.this, LoginActivity.class);
 
 //                    if (PreferencesManager.getInstance(SplashActivity.this).isLogged()) {
 //                        i.setClass(SplashActivity.this, DashboardActivity.class);

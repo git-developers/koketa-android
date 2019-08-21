@@ -11,8 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import androidx.annotation.NonNull;
+
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.Util;
+
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,12 +49,14 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     @Override
     public void initSetup() {
         ButterKnife.bind(this);
-        userCode = PreferencesManager.getInstance(this).getUserCode();
+//        userCode = PreferencesManager.getInstance(this).getUserCode();
         edtCodigoLogin.setText(userCode);
     }
 
     @Override
     public void initToolBar() {
+
+        /*
         toolbar.setTitle(R.string.login);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
@@ -61,11 +68,13 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                 }
             }
         );
+        */
     }
 
     @OnClick(R.id.btn_login)
     public void btnLogin() {
 
+        /*
         int permission = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
@@ -82,14 +91,15 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                 });
             return;
         }
+        */
 
         login();
     }
 
     @OnClick(R.id.txt_olvide_contra_login)
     public void forgotPass(){
-        Intent i = new Intent(this, PasswordForgotActivity.class);
-        startActivity(i);
+//        Intent i = new Intent(this, PasswordForgotActivity.class);
+//        startActivity(i);
     }
 
     public void login() {
@@ -107,7 +117,18 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
         btnLogin.setEnabled(false);
         Util.progressDialogShow(LoginActivity.this, getString(R.string.validating));
 
-        JsonObject json = new JsonObject();
+        JSONObject json = new JSONObject();
+
+
+
+        Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
+
+
+
+        /*
         json.addProperty(Constant.JSON_USER_CODE, edtCodigoLogin.getText().toString());
         json.addProperty(Constant.JSON_PASSWORD, edtPassLogin.getText().toString());
         json.addProperty(Constant.JSON_ID, Util.getUniqueID(LoginActivity.this));
@@ -163,6 +184,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                 Util.progressDialogHide();
             }
         });
+        */
     }
 
     @Override
@@ -173,6 +195,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
             return;
         }
 
+        /*
         switch (requestCode) {
             case Constant.REQUEST_READ_PHONE_STATE:
                 Util.showDialog(
@@ -188,6 +211,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                     });
             break;
         }
+        */
     }
 
     @Override
