@@ -119,13 +119,14 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         recyclerView.setAdapter(adapter);
     }
 
-
     public void openProfile(View view) {
-
         Intent i = new Intent(DashboardActivity.this, ProfileActivity.class);
         startActivity(i);
-//        finish();
+    }
 
+    public void openClient(View view) {
+        Intent i = new Intent(DashboardActivity.this, ClientActivity.class);
+        startActivity(i);
     }
 
 

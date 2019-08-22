@@ -48,7 +48,7 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.ll_header_cover_image)
     LinearLayout llHeaderCoverImage;
 
-//    private User user;
+//    private Client user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

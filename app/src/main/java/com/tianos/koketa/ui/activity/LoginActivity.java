@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 
 import org.json.JSONObject;
@@ -120,7 +121,15 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
         JSONObject json = new JSONObject();
 
 
+        /**
+         * PREFERENCES SET LOGGED
+         */
+        PreferencesManager.getInstance(LoginActivity.this).setLogged();
 
+
+        /**
+         * REDIRECT
+         */
         Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
@@ -159,7 +168,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                     return;
                 }
 
-                User user = new User(
+                Client user = new Client(
                     login.getSession(),
                     edtCodigoLogin.getText().toString(),
                     login.getNombre(),

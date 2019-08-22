@@ -60,9 +60,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
                     case Constant.DASH_PROFILE:
                         ((DashboardActivity) context).openProfile(v);
                         break;
-//                    case Constant.DASH_POS_SIN_VENTAS:
-//                        ((DashboardActivity) context).openPosSinVentas(v);
-//                        break;
+                    case Constant.DASH_CLIENTS:
+                        ((DashboardActivity) context).openClient(v);
+                        break;
 //                    case Constant.DASH_AVANCE_POR_PRODUCTO:
 //                        ((DashboardActivity) context).openAvancePorProducto(v);
 //                        break;

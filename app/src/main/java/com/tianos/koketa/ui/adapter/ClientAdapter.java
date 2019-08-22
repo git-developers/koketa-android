@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.Client;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +26,11 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     private Context context;
     private LayoutInflater inflater;
+    private List<Client> lstClient;
 
-    public ClientAdapter(Context context) {
+    public ClientAdapter(Context context, List<Client> lstClient) {
         this.context = context;
+        this.lstClient = lstClient;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -47,14 +52,15 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         RealmList<RealmString> datos = procedure.getTableDB().get(position).getDatos();
         */
 
-        holder.tvBodyResumen1.setText("xxx");
-        holder.tvBodyResumen2.setText("cccc");
+        Client cliente = this.lstClient.get(position);
 
+        holder.tvBodyResumen1.setText(cliente.getId());
+        holder.tvBodyResumen2.setText(cliente.getBusinessName());
     }
 
     @Override
     public int getItemCount() {
-        return 0; // (procedure.getTableDB() != null) ? procedure.getTableDB().size() : 0;
+        return (this.lstClient != null) ? this.lstClient.size() : 0;
     }
 
     public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -62,8 +68,8 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 //        private Procedure procedure;
         private Context context;
 
-        @BindView(R.id.table_tr_row)
-        TableRow tableTrRow;
+//        @BindView(R.id.table_tr_row)
+//        TableRow tableTrRow;
 
         @BindView(R.id.tv_body_resumen_1)
         TextView tvBodyResumen1;

@@ -7,6 +7,7 @@ import android.view.View;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
+import com.tianos.koketa.util.PreferencesManager;
 
 import butterknife.ButterKnife;
 
@@ -49,9 +50,9 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
                     Intent i = new Intent();
                     i.setClass(SplashActivity.this, LoginActivity.class);
 
-//                    if (PreferencesManager.getInstance(SplashActivity.this).isLogged()) {
-//                        i.setClass(SplashActivity.this, DashboardActivity.class);
-//                    }
+                    if (PreferencesManager.getInstance(SplashActivity.this).isLogged()) {
+                        i.setClass(SplashActivity.this, DashboardActivity.class);
+                    }
 
                     startActivity(i);
                     finish();

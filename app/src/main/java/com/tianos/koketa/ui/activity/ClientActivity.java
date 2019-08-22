@@ -11,7 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.Client;
+import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +49,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
 //        breadcrumbDb = new BreadcrumbDb(Detail1Activity.this);
 //        breadcrumb = breadcrumbDb.findLast();
-        rvRows.setLayoutManager(new LinearLayoutManager(ClientActivity.this, LinearLayoutManager.VERTICAL,false));
+        rvRows.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
 //        userFactory.setAvanceDelMesWizard(ClientActivity.this, getWindow().getDecorView(), Constant.DETAIL_1);
     }
 
@@ -58,8 +63,21 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     public void initData() {
 
+        List<Client> lstClient = new ArrayList<Client>();
 
-        BodyDetail1Adapter bodyAdapter = new BodyDetail1Adapter(Detail1Activity.this, procedure);
+        Client a = new Client(1,"test 1");
+        lstClient.add(a);
+
+        Client b = new Client(2,"test 2");
+        lstClient.add(b);
+
+        Client c = new Client(3,"test 3");
+        lstClient.add(c);
+
+        Client d = new Client(4,"test 4");
+        lstClient.add(d);
+
+        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lstClient);
         rvRows.setAdapter(bodyAdapter);
 
 
@@ -67,7 +85,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         hideMainLinearLayout();
         Util.progressDialogShow(Detail1Activity.this, getString(R.string.processing));
 
-        User user = PreferencesManager.getInstance(Detail1Activity.this).realmGetUser();
+        Client user = PreferencesManager.getInstance(Detail1Activity.this).realmGetUser();
 
         JsonObject json = new JsonObject();
         json.addProperty(Constant.JSON_SESSION, user.getSession());
