@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="120dp"
-android:layout_marginLeft="@dimen/dim_10"
-android:layout_marginRight="@dimen/dim_10"
-android:layout_marginBottom="@dimen/dim_10"
-android:background="@drawable/shape_05"
-android:weightSum="1"
-android:orientation="horizontal">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_marginLeft="@dimen/dim_10"
+    android:layout_marginRight="@dimen/dim_10"
+    android:layout_marginBottom="@dimen/dim_10"
+    android:background="@drawable/shape_05"
+    android:weightSum="1"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.1"
         android:gravity="center"
-        android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -30,10 +30,11 @@ android:orientation="horizontal">
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/ll_client"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="0.7">
+        android:layout_weight="0.6">
 
         <TextView
             android:id="@+id/tv_body_resumen_1"
@@ -65,8 +66,18 @@ android:orientation="horizontal">
             android:textSize="12sp"
             android:textStyle="italic" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/iv_phone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_phone_forwarded_black_24dp"
             android:tint="@color/colorPrimary" />
@@ -76,7 +87,8 @@ android:orientation="horizontal">
             android:layout_height="@dimen/dim_10" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/iv_email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_email_black_24dp"
             android:tint="@color/colorPrimary" />

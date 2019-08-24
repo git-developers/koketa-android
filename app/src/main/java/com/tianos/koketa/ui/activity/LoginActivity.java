@@ -1,15 +1,10 @@
 package com.tianos.koketa.ui.activity;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,9 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.PreferencesManager;
@@ -30,7 +22,6 @@ import com.tianos.koketa.util.dialog.DialogFragment;
 import org.json.JSONObject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -119,14 +110,16 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     @OnClick(R.id.txt_imei)
     public void btnImei() {
 
-        DialogFragment.dialog1(LoginActivity.this);
+        DialogFragment.dialogImei(LoginActivity.this);
     }
 
+    /*
     @OnClick(R.id.txt_olvide_contra_login)
     public void forgotPass(){
-//        Intent i = new Intent(this, PasswordForgotActivity.class);
-//        startActivity(i);
+        Intent i = new Intent(this, PasswordForgotActivity.class);
+        startActivity(i);
     }
+    */
 
     public void login() {
 

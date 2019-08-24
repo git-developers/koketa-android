@@ -1,9 +1,13 @@
 package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Client;
+import com.tianos.koketa.ui.activity.ClientActivity;
+import com.tianos.koketa.ui.activity.ClientDetailActivity;
+import com.tianos.koketa.ui.activity.DashboardActivity;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
 import java.util.List;
@@ -59,23 +66,55 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 //        @BindView(R.id.table_tr_row)
 //        TableRow tableTrRow;
 
+        @BindView(R.id.ll_client)
+        LinearLayout llClient;
+
         @BindView(R.id.tv_body_resumen_1)
         TextView tvBodyResumen1;
 
         @BindView(R.id.tv_body_resumen_2)
         TextView tvBodyResumen2;
 
+        @BindView(R.id.iv_phone)
+        ImageView ivPhone;
+
+        @BindView(R.id.iv_email)
+        ImageView ivEmail;
+
         public ClientViewHolder(View view, Context context) {
             super(view);
             this.context = context;
-            view.setOnClickListener(this);
             ButterKnife.bind(this, view);
+
+            llClient.setOnClickListener(this);
+            ivPhone.setOnClickListener(this);
+            ivEmail.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
 
-            DialogFragment.dialogClientPhone(context);
+            if (v.getId() == ivPhone.getId()) {
+
+                DialogFragment.dialogClientPhone(context);
+
+            } else if (v.getId() == llClient.getId()) {
+
+                Intent i = new Intent(this.context, ClientDetailActivity.class);
+                this.context.startActivity(i);
+
+            } else if (v.getId() == ivEmail.getId()) {
+
+                Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "test@gmail.com"));
+                i.putExtra(Intent.EXTRA_SUBJECT, "Test subject");
+                i.putExtra(Intent.EXTRA_TEXT, "Test body");
+                //emailIntent.putExtra(Intent.EXTRA_HTML_TEXT, body); //If you are using HTML in your body text
+
+                this.context.startActivity(Intent.createChooser(i, "Chooser Title"));
+
+            }
+
+
 
 //            Intent i = new Intent();
 //            context.startActivity(i);

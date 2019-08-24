@@ -32,6 +32,8 @@
     <string name="dashboard">Dashboard</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
+    <string name="close">Cerrar</string>
+    <string name="clients_detail">Detalle del cliente</string>
     <string name="clients_list">Lista de clientes</string>
     <string name="empty_code">Ingrese su código.</string>
     <string name="empty_password">Ingresa tu contraseña.</string>

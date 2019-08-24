@@ -20,7 +20,7 @@ import com.tianos.koketa.util.Util;
 public class DialogFragment {
 
 
-    public static void dialog1(Context context) {
+    public static void dialogImei(Context context) {
 
         Activity activity = (Activity) context;
 
@@ -63,7 +63,7 @@ public class DialogFragment {
         }
     }
 
-    public static void dialog2(Context context) {
+    public static void dialogChangePassword(Context context) {
 
         Activity activity = (Activity) context;
 
@@ -120,7 +120,7 @@ public class DialogFragment {
 
         builder.setView(view)
             // Add action buttons
-            .setPositiveButton(R.string.dummy, new DialogInterface.OnClickListener() {
+            .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
                 @SuppressLint("MissingPermission")
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
@@ -129,17 +129,13 @@ public class DialogFragment {
                     activity.startActivity(i);
                 }
             })
-            .setNegativeButton(R.string.dummy, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-
-                    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "test@gmail.com"));
-                    i.putExtra(Intent.EXTRA_SUBJECT, "Test subject");
-                    i.putExtra(Intent.EXTRA_TEXT, "Test body");
-                    //emailIntent.putExtra(Intent.EXTRA_HTML_TEXT, body); //If you are using HTML in your body text
-
-                    activity.startActivity(Intent.createChooser(i, "Chooser Title"));
-                }
-            });
+//            .setNegativeButton(R.string.dummy, new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//
+//                    return;
+//                }
+//            })
+        ;
 
 //        return builder.create();
 

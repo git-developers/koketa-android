@@ -43,12 +43,6 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
 
-//        initToolBar();
-
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-
     }
 
     public void navigationDrawer() {
