@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -31,6 +32,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
+    <string name="clients_list">Lista de clientes</string>
     <string name="empty_code">Ingrese su código.</string>
     <string name="empty_password">Ingresa tu contraseña.</string>
     <string name="username">Username</string>
@@ -38,5 +40,6 @@
     <string name="password">Contraseña</string>
     <string name="login">Ingresar a mi cuenta</string>
     <string name="forgot_password_3">Olvidé mi contraseña</string>
+    <string name="get_imei">¿Quieres saber el Imei de tu equipo?</string>
 
 </resources>

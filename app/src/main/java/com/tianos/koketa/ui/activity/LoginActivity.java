@@ -6,17 +6,26 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.text.method.PasswordTransformationMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
+import com.tianos.koketa.util.dialog.DialogFragment;
 
 import org.json.JSONObject;
 
@@ -36,6 +45,9 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.edt_pass_login)
     EditText edtPassLogin;
 
+    @BindView(R.id.txt_imei)
+    TextView txtImei;
+
     private String userCode;
 
     @Override
@@ -45,31 +57,38 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
 
         initSetup();
         initToolBar();
+        logOut();
+
     }
 
     @Override
     public void initSetup() {
-        ButterKnife.bind(this);
+        super.initSetup();
+
 //        userCode = PreferencesManager.getInstance(this).getUserCode();
         edtCodigoLogin.setText(userCode);
     }
 
     @Override
     public void initToolBar() {
+        super.initToolBar();
 
-        /*
         toolbar.setTitle(R.string.login);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            }
-        );
-        */
+        toolbar.setNavigationIcon(R.drawable.ic_android_black_24dp);
+
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
     }
 
     @OnClick(R.id.btn_login)
@@ -95,6 +114,12 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
         */
 
         login();
+    }
+
+    @OnClick(R.id.txt_imei)
+    public void btnImei() {
+
+        DialogFragment.dialog1(LoginActivity.this);
     }
 
     @OnClick(R.id.txt_olvide_contra_login)
@@ -195,6 +220,11 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
         });
         */
     }
+
+    public void logOut() {
+        PreferencesManager.getInstance(LoginActivity.this).logOut();
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.rv_rows)
-    RecyclerView rvRows;
+    RecyclerView recyclerView;
 
 //    @BindView(R.id.tv_user_name)
 //    TextView tvUserName;
@@ -41,23 +41,33 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         initSetup();
         initToolBar();
         initData();
-//        navigationDrawer();
+        navigationDrawer();
     }
 
     @Override
     public void initSetup() {
+        super.initSetup();
 
 //        breadcrumbDb = new BreadcrumbDb(Detail1Activity.this);
 //        breadcrumb = breadcrumbDb.findLast();
-        rvRows.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
 //        userFactory.setAvanceDelMesWizard(ClientActivity.this, getWindow().getDecorView(), Constant.DETAIL_1);
     }
 
     @Override
     public void initToolBar() {
-//        toolbar.setTitle(userFactory.getDetail1().getAvanceDelMesTitle());
-//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-//        setSupportActionBar(toolbar);
+        super.initToolBar();
+
+        toolbar.setTitle(R.string.clients_list);
+        setSupportActionBar(toolbar);
+
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+
     }
 
     @Override
@@ -78,7 +88,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         lstClient.add(d);
 
         ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lstClient);
-        rvRows.setAdapter(bodyAdapter);
+        recyclerView.setAdapter(bodyAdapter);
 
 
         /*
@@ -144,7 +154,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
 
                 BodyDetail1Adapter bodyAdapter = new BodyDetail1Adapter(Detail1Activity.this, procedure);
-                rvRows.setAdapter(bodyAdapter);
+                recyclerView.setAdapter(bodyAdapter);
 
 
                 RealmList<RealmString> footer = procedure.getFooterDB();

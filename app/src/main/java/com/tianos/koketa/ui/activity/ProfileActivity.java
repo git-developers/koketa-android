@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.dialog.DialogFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +51,9 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.ll_header_cover_image)
     LinearLayout llHeaderCoverImage;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
 //    private Client user;
 
     @Override
@@ -57,6 +63,11 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
 
         initSetup();
         initToolBar();
+        navigationDrawer();
+
+
+
+
 //        initData();
 //        navigationDrawer();
 
@@ -71,14 +82,32 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
 
     @Override
     public void initSetup() {
+        super.initSetup();
+
 //        user = PreferencesManager.getInstance(this).realmGetUser();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment.dialog2(ProfileActivity.this);
+            }
+        });
     }
 
     @Override
     public void initToolBar() {
-//        toolbar.setTitle(R.string.profile);
-//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-//        setSupportActionBar(toolbar);
+        super.initToolBar();
+
+        toolbar.setTitle(R.string.profile);
+        setSupportActionBar(toolbar);
+
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+
     }
 
     /*

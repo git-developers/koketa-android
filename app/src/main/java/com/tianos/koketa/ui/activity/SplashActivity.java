@@ -25,11 +25,13 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
 
     @Override
     public void initSetup() {
-//        super.initSetup();
+
     }
 
     @Override
     public void initToolBar() {
+        super.initToolBar();
+
 //        toolbar.setVisibility(View.GONE);
     }
 

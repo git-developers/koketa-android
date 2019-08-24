@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_android_black_24dp"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_add_contact"
+                android:icon="@drawable/ic_android_black_24dp"
+                android:title="Add contact"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_settings"
+                android:icon="@drawable/ic_android_black_24dp"
+                android:title="Settings"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_logout"
+                android:icon="@drawable/ic_android_black_24dp"
+                android:title="About us"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
 </menu>
+
+

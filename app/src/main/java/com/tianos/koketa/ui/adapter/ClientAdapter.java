@@ -1,12 +1,9 @@
 package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Client;
+import com.tianos.koketa.util.dialog.DialogFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.RealmList;
 
 
 public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder> {
@@ -42,19 +39,11 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     }
 
     @Override
-    public void onBindViewHolder(ClientViewHolder holder, int position) {
-
-        /*
-        if (procedure.getTableDB().get(position) == null) {
-            return;
-        }
-
-        RealmList<RealmString> datos = procedure.getTableDB().get(position).getDatos();
-        */
+    public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
         Client cliente = this.lstClient.get(position);
 
-        holder.tvBodyResumen1.setText(cliente.getId());
+        holder.tvBodyResumen1.setText(Integer.toString(cliente.getId()));
         holder.tvBodyResumen2.setText(cliente.getBusinessName());
     }
 
@@ -65,7 +54,6 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-//        private Procedure procedure;
         private Context context;
 
 //        @BindView(R.id.table_tr_row)
@@ -79,7 +67,6 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
         public ClientViewHolder(View view, Context context) {
             super(view);
-//            this.procedure = procedure;
             this.context = context;
             view.setOnClickListener(this);
             ButterKnife.bind(this, view);
@@ -88,9 +75,10 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         @Override
         public void onClick(View v) {
 
-            Intent i = new Intent();
+            DialogFragment.dialogClientPhone(context);
 
-            context.startActivity(i);
+//            Intent i = new Intent();
+//            context.startActivity(i);
         }
     }
 }

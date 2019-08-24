@@ -1,5 +1,6 @@
 package com.tianos.koketa.ui.activity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -42,32 +43,23 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
 
-//        toolbar = findViewById(R.id.toolbar);
-//
-//        initSetup();
 //        initToolBar();
 
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    }
 
-        /*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
-
-
+    public void navigationDrawer() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this,
+            drawer,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -80,10 +72,7 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
 
     @Override
     public void initToolBar() {
-//        Toolbar toolbar = findViewById(R.id.toolbar);
 
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle(getString(R.string.dashboard));
     }
 
     @Override
@@ -96,6 +85,7 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -120,6 +110,10 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_logout) {
+            Intent i = new Intent(BaseActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
