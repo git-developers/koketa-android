@@ -6,27 +6,27 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
-import com.tianos.koketa.ui.adapter.CustomExpandableListAdapter;
+import com.tianos.koketa.ui.adapter.ClientDetailExpandableAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
+import com.tianos.koketa.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ClientDetailActivity extends BaseActivity implements InterfaceKoketa2 {
 
+    @BindView(R.id.expandableListView)
     ExpandableListView expandableListView;
-    ExpandableListAdapter expandableListAdapter;
-    List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
+
+//    @BindView(R.id.fab_shopping_cart)
+//    FloatingActionButton fabShoppingCart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +38,43 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
         initData();
         navigationDrawer();
 
+        expandableListView();
+    }
 
+    @OnClick(R.id.fab_shopping_cart)
+    public void btnFabShoppingCart() {
 
+        Util.showToast(
+            getApplicationContext(),
+            "btnFabShoppingCart");
+    }
 
+    @OnClick(R.id.fab_visits)
+    public void btnFabVisits() {
 
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListDetail = getData();
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
+        Util.showToast(
+            getApplicationContext(),
+            "btnFabVisits");
+    }
+
+    public void expandableListView() {
+
+        HashMap<String, List<String>> expandableListDetail = getData();
+        List<String> expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        ExpandableListAdapter expandableListAdapter = new ClientDetailExpandableAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
+
+                Util.showToast(
+                    getApplicationContext(),
+                    expandableListTitle.get(groupPosition) + " List Expanded.");
+
+//                Toast.makeText(getApplicationContext(),
+//                        expandableListTitle.get(groupPosition) + " List Expanded.",
+//                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -61,9 +82,14 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
+
+                Util.showToast(
+                    getApplicationContext(),
+                    expandableListTitle.get(groupPosition) + " List Collapsed.");
+
+//                Toast.makeText(getApplicationContext(),
+//                        expandableListTitle.get(groupPosition) + " List Collapsed.",
+//                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -72,68 +98,59 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        expandableListTitle.get(groupPosition)
-                                + " -> "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT
-                ).show();
+
+                Util.showToast(
+                    getApplicationContext(),
+            expandableListTitle.get(groupPosition)
+                    + " -> "
+                    + expandableListDetail.get(
+                    expandableListTitle.get(groupPosition)).get(childPosition));
+
+
+//                Toast.makeText(
+//                        getApplicationContext(),
+//                        expandableListTitle.get(groupPosition)
+//                                + " -> "
+//                                + expandableListDetail.get(
+//                                expandableListTitle.get(groupPosition)).get(
+//                                childPosition), Toast.LENGTH_SHORT
+//                ).show();
+
                 return false;
             }
         });
 
-
-
-
-
-
     }
-
-
-
 
     public static HashMap<String, List<String>> getData() {
+
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        List<String> cricket = new ArrayList<String>();
-        cricket.add("India");
-        cricket.add("Pakistan");
-        cricket.add("Australia");
-        cricket.add("England");
-        cricket.add("South Africa");
+        List<String> general = new ArrayList<String>();
+        general.add("Ruc: 111222333444");
+        general.add("Correo: test@gmail.com");
+        general.add("Telefono: 999.888.777");
+        general.add("Direccion: Ave. test 123, Lima Cercado.");
+        general.add("Comentario");
 
-        List<String> football = new ArrayList<String>();
-        football.add("Brazil");
-        football.add("Spain");
-        football.add("Germany");
-        football.add("Netherlands");
-        football.add("Italy");
+        List<String> administrative = new ArrayList<String>();
+        administrative.add("Linea de Credito: 111");
+        administrative.add("Saldo: 222");
+        administrative.add("Condicion de pago: 333");
 
-        List<String> basketball = new ArrayList<String>();
-        basketball.add("United States");
-        basketball.add("Spain");
-        basketball.add("Argentina");
-        basketball.add("France");
-        basketball.add("Russia");
+        List<String> contact = new ArrayList<String>();
+        contact.add("Ursula Ruckts");
+        contact.add("Test 11");
+        contact.add("Test 22");
+        contact.add("Test 33");
+        contact.add("Test 44");
 
-        expandableListDetail.put("CRICKET TEAMS", cricket);
-        expandableListDetail.put("FOOTBALL TEAMS", football);
-        expandableListDetail.put("BASKETBALL TEAMS", basketball);
+        expandableListDetail.put("Datos Generales", general);
+        expandableListDetail.put("Datos Administrativos", administrative);
+        expandableListDetail.put("Personas de Contacto", contact);
+
         return expandableListDetail;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void initSetup() {
@@ -151,8 +168,6 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
 
     @Override
     public void initData() {
-
-
 
 
         /*

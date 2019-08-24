@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
@@ -38,6 +39,12 @@ public class Util {
 
         return imei;
     }
+
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+
 
 //    @Override
 //    public DialogFragment onCreateDialog(Bundle savedInstanceState) {
