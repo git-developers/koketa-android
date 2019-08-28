@@ -1,10 +1,7 @@
 package com.tianos.koketa.ui.adapter.Order;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
+public class ArticleFragment extends BaseFragment implements InterfaceKoketaFragment {
 
-public class LoteriaFragment extends BaseFragment implements InterfaceKoketaFragment {
-
-    @BindView(R.id.tv_header_1)
+    @BindView(R.id.tv_ayuda)
     TextView tvHeader1;
 
     private View viewInflate;
@@ -39,7 +35,7 @@ public class LoteriaFragment extends BaseFragment implements InterfaceKoketaFrag
     @Override
     public void initSetup(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         context = viewGroup.getContext();
-        viewInflate = inflater.inflate(R.layout.tab_avancedelmes_total, viewGroup, false);
+        viewInflate = inflater.inflate(R.layout.tab_order_article, viewGroup, false);
 
         ButterKnife.bind(this, viewInflate);
 //        avanceDelMes = PreferencesManager.getInstance(context).realmGetAvanceDelMesTab();

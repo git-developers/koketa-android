@@ -23,13 +23,13 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position){
         switch (position){
             case 0:
-                TotalFragment a = new TotalFragment();
+                ArticleFragment a = new ArticleFragment();
                 return a;
             case 1:
-                ApuestaDeportivaFragment b = new ApuestaDeportivaFragment();
+                OrderFragment b = new OrderFragment();
                 return b;
             case 2:
-                LoteriaFragment c = new LoteriaFragment();
+                SummaryFragment c = new SummaryFragment();
                 return c;
             default:
                 return null;

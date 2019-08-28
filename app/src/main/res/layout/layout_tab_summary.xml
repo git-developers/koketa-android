@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:text="@string/dummy"
+        android:text="@string/summary"
         android:textColor="@color/white"
         style="@style/tabLayoutTextStyle"
         android:textAlignment="center" />

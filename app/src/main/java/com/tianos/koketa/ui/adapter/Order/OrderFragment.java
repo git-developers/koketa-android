@@ -1,9 +1,7 @@
 package com.tianos.koketa.ui.adapter.Order;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,9 @@ import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketaFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+public class OrderFragment extends BaseFragment implements InterfaceKoketaFragment {
 
-public class TotalFragment extends BaseFragment implements InterfaceKoketaFragment {
-
-    @BindView(R.id.tv_header_1)
+    @BindView(R.id.tv_ayuda)
     TextView tvHeader1;
 
     private View viewInflate;
@@ -37,7 +34,7 @@ public class TotalFragment extends BaseFragment implements InterfaceKoketaFragme
     @Override
     public void initSetup(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         context = viewGroup.getContext();
-        viewInflate = inflater.inflate(R.layout.tab_avancedelmes_total, viewGroup, false);
+        viewInflate = inflater.inflate(R.layout.tab_order_order, viewGroup, false);
 
         ButterKnife.bind(this, viewInflate);
 //        avanceDelMes = PreferencesManager.getInstance(context).realmGetAvanceDelMesTab();
@@ -51,5 +48,4 @@ public class TotalFragment extends BaseFragment implements InterfaceKoketaFragme
 
         return;
     }
-
 }

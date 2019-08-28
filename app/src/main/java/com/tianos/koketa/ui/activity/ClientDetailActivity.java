@@ -1,5 +1,6 @@
 package com.tianos.koketa.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
@@ -44,9 +45,8 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
     @OnClick(R.id.fab_shopping_cart)
     public void btnFabShoppingCart() {
 
-        Util.showToast(
-            getApplicationContext(),
-            "btnFabShoppingCart");
+        Intent i = new Intent(ClientDetailActivity.this, OrderTabsActivity.class);
+        startActivity(i);
     }
 
     @OnClick(R.id.fab_visits)

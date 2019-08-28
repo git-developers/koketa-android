@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.Dashboard;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,6 +37,10 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @Nullable
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
+
+    @Nullable
+    @BindView(R.id.drawer_layout)
+    public DrawerLayout drawer;
 
 
     @Override
@@ -120,7 +125,11 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+
+            Intent i = new Intent(BaseActivity.this, DashboardActivity.class);
+            startActivity(i);
+            finish();
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -129,11 +138,13 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            Intent i = new Intent(BaseActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
