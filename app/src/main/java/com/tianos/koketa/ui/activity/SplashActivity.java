@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
@@ -17,7 +19,7 @@ import com.tianos.koketa.util.PreferencesManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SplashActivity extends BaseActivity implements InterfaceKoketa {
+public class SplashActivity extends AppCompatActivity implements InterfaceKoketa {
 
 
     @BindView(R.id.iv_splash)
@@ -36,19 +38,12 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
 
     @Override
     public void initSetup() {
-        super.initSetup();
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initToolBar() {
-        super.initToolBar();
 
-//        toolbar.setVisibility(View.GONE);
-//        toolbar.getContext().setTheme(R.style.Base_ThemeOverlay_Toolbar_none);
-        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-
-//        toolbar.setElevation(0);
-//        setSupportActionBar(toolbar);
     }
 
     @Override

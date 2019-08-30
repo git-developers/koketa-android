@@ -7,11 +7,11 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:src="@drawable/ic_android_black_24dp"
+        android:src="@drawable/ic_screen_lock_portrait_black_24dp"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="center"
-        android:background="@color/colorPrimary"
+        android:background="@color/slider_4"
         android:contentDescription="@string/app_name" />
 
     <TextView
@@ -22,7 +22,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:text="IMEI EQUIPO"
+        android:text="IMEI de mi Equipo"
+        android:fontFamily="@"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
         android:textStyle="italic" />

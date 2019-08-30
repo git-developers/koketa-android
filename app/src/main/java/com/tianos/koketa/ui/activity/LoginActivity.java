@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -30,10 +32,11 @@ import com.tianos.koketa.util.dialog.DialogFragment;
 import org.json.JSONObject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class LoginActivity extends BaseActivity implements InterfaceKoketa {
+public class LoginActivity extends AppCompatActivity implements InterfaceKoketa {
 
     @BindView(R.id.btn_login)
     Button btnLogin;
@@ -43,9 +46,6 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
 
     @BindView(R.id.edt_pass_login)
     EditText edtPassLogin;
-
-//    @BindView(R.id.ib_imei)
-//    ImageButton ibImei;
 
     private String userCode;
 
@@ -62,30 +62,11 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
 
     @Override
     public void initSetup() {
-        super.initSetup();
-
-//        userCode = PreferencesManager.getInstance(this).getUserCode();
-        edtCodigoLogin.setText(userCode);
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initToolBar() {
-        super.initToolBar();
-
-
-//        toolbar.setVisibility(View.GONE);
-        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-
-//        toolbar.setTitle(R.string.login);
-//        setSupportActionBar(toolbar);
-//        toolbar.setNavigationIcon(R.drawable.ic_android_black_24dp);
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
 
     }
 

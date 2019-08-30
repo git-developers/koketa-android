@@ -2,6 +2,14 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_cut"
+        android:icon="@drawable/avd_cut"
+        android:title="@string/dummy"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/action_more"
         android:icon="@drawable/ic_more_vert_black_24dp"

@@ -2,6 +2,8 @@ package com.tianos.koketa.ui.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -105,48 +107,56 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Util.showToast(BaseActivity.this,"click Settings");
-        } else if (id == R.id.action_logout) {
-            Intent i = new Intent(BaseActivity.this, LoginActivity.class);
-            startActivity(i);
-            finish();
+        Drawable drawable = item.getIcon();
+
+        if (drawable instanceof Animatable) {
+            ((Animatable) drawable).start();
         }
 
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Util.showToast(BaseActivity.this,"click Settings");
+                return true;
+            case R.id.action_cut:
+                Util.showToast(BaseActivity.this,"click cut");
+                return true;
+            case R.id.action_logout:
+                Intent i = new Intent(BaseActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
 
-            Intent i = new Intent(BaseActivity.this, DashboardActivity.class);
-            startActivity(i);
-            finish();
+                Intent i = new Intent(BaseActivity.this, DashboardActivity.class);
+                startActivity(i);
+                finish();
+            case R.id.nav_gallery:
+                return true;
+            case R.id.nav_slideshow:
+                return true;
+            case R.id.nav_tools:
+                return true;
+            case R.id.nav_share:
+                return true;
+            case R.id.nav_logout:
 
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_logout) {
-            Intent i = new Intent(BaseActivity.this, LoginActivity.class);
-            startActivity(i);
-            finish();
+                Intent ii = new Intent(BaseActivity.this, LoginActivity.class);
+                startActivity(ii);
+                finish();
         }
 
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 

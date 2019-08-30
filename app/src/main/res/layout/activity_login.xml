@@ -115,7 +115,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
-                android:tint="@color/black"
+                android:tint="@color/slider_4"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_screen_lock_portrait_black_24dp" />
 
