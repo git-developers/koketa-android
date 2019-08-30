@@ -50,7 +50,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
 //        breadcrumbDb = new BreadcrumbDb(Detail1Activity.this);
 //        breadcrumb = breadcrumbDb.findLast();
-        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
 //        userFactory.setAvanceDelMesWizard(ClientActivity.this, getWindow().getDecorView(), Constant.DETAIL_1);
     }
 

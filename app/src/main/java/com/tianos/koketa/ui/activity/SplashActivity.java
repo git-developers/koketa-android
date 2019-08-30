@@ -1,17 +1,27 @@
 package com.tianos.koketa.ui.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.PreferencesManager;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends BaseActivity implements InterfaceKoketa {
+
+
+    @BindView(R.id.iv_splash)
+    ImageView ivSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +31,12 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
         initSetup();
         initToolBar();
         thread();
+        doAnimation();
     }
 
     @Override
     public void initSetup() {
-
+        super.initSetup();
     }
 
     @Override
@@ -33,6 +44,11 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
         super.initToolBar();
 
 //        toolbar.setVisibility(View.GONE);
+//        toolbar.getContext().setTheme(R.style.Base_ThemeOverlay_Toolbar_none);
+        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+
+//        toolbar.setElevation(0);
+//        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -74,5 +90,14 @@ public class SplashActivity extends BaseActivity implements InterfaceKoketa {
     protected void onDestroy() {
         super.onDestroy();
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+    }
+
+    private void doAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.blink);
+//        animation.setInterpolator(new LinearInterpolator());
+//        animation.setRepeatCount(Animation.INFINITE);
+//        animation.setDuration(400);
+
+        ivSplash.startAnimation(animation);
     }
 }

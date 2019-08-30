@@ -1,15 +1,20 @@
 package com.tianos.koketa.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Dashboard;
 import com.tianos.koketa.ui.adapter.DashboardAdapter;
+import com.tianos.koketa.ui.adapter.ImageSliderAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
 
@@ -23,6 +28,9 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.imageSlider)
+    SliderView imageSlider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +40,8 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         initToolBar();
         dashboardIcons();
         navigationDrawer();
+        imageSlider();
+
     }
 
     @Override
@@ -137,5 +147,16 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
     }
 
+    private void imageSlider() {
+
+        imageSlider.setSliderAdapter(new ImageSliderAdapter(DashboardActivity.this));
+        imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        imageSlider.setAutoCycleDirection(imageSlider.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        imageSlider.setIndicatorSelectedColor(Color.WHITE);
+        imageSlider.setIndicatorUnselectedColor(Color.GRAY);
+        imageSlider.setScrollTimeInSec(3);
+        imageSlider.startAutoCycle();
+    }
 
 }

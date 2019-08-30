@@ -134,9 +134,9 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
         general.add("Comentario");
 
         List<String> administrative = new ArrayList<String>();
-        administrative.add("Linea de Credito: 111");
-        administrative.add("Saldo: 222");
-        administrative.add("Condicion de pago: 333");
+        administrative.add("Linea de Credito: SOL 0.00");
+        administrative.add("Saldo: SOL 0.00");
+        administrative.add("Condicion de pago: Contado");
 
         List<String> contact = new ArrayList<String>();
         contact.add("Ursula Ruckts");

@@ -2,7 +2,7 @@ package com.tianos.koketa.util;
 
 public class Constant {
 
-    public static final int SPLASH_TIME = 2000;
+    public static final int SPLASH_TIME = 2500;
 
     public static final int DASH_ROUTES = 1;
     public static final int DASH_CLIENTS = 2;
