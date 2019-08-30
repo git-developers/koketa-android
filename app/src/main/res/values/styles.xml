@@ -21,9 +21,6 @@
 
 
 
-
-
-
     <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/gray_1</item>
     </style>

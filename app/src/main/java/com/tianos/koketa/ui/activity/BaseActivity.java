@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Dashboard;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.Util;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -108,7 +109,7 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Util.showToast(BaseActivity.this,"click Settings");
         } else if (id == R.id.action_logout) {
             Intent i = new Intent(BaseActivity.this, LoginActivity.class);
             startActivity(i);

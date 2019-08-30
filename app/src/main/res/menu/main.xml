@@ -6,15 +6,8 @@
         android:id="@+id/action_more"
         android:icon="@drawable/ic_more_vert_black_24dp"
         android:title=""
-        android:iconTint="@color/white"
         app:showAsAction="always">
         <menu>
-            <item
-                android:id="@+id/action_add_contact"
-                android:icon="@drawable/ic_android_black_24dp"
-                android:iconTint="@color/white"
-                android:title="Test"
-                app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/action_settings"
                 android:icon="@drawable/ic_tune_black_24dp"
