@@ -20,6 +20,47 @@ import com.tianos.koketa.util.Util;
 public class DialogFragment {
 
 
+    public static void dialogLicense(Context context) {
+
+        Activity activity = (Activity) context;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//        builder.setIcon(R.mipmap.ic_launcher);
+//        builder.setTitle(R.string.app_name);
+//        builder.setMessage(Html.fromHtml(message));
+        builder.setCancelable(true);
+
+        // Get the layout inflater
+        LayoutInflater inflater = activity.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        View view = inflater.inflate(R.layout.dialog_license, null);
+//        TextView tvImei = (TextView) view.findViewById(R.id.tv_imei);
+//        String imei = Util.getImei(activity);
+//        tvImei.setText(imei);
+
+        builder.setView(view)
+            // Add action buttons
+            .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    // sign in the user ...
+                }
+            })
+            .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+//                        LoginDialogFragment.this.getDialog().cancel();
+                }
+            });
+
+//        return builder.create();
+
+        if (!((Activity) context).isFinishing()) {
+            builder.show();
+        }
+    }
+
     public static void dialogImei(Context context) {
 
         Activity activity = (Activity) context;
@@ -44,13 +85,13 @@ public class DialogFragment {
 
         builder.setView(view)
             // Add action buttons
-            .setPositiveButton(R.string.dummy, new DialogInterface.OnClickListener() {
+            .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
                     // sign in the user ...
                 }
             })
-            .setNegativeButton(R.string.dummy, new DialogInterface.OnClickListener() {
+            .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 //                        LoginDialogFragment.this.getDialog().cancel();
                 }

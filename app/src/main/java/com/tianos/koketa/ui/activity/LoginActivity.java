@@ -100,8 +100,12 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
 
     @OnClick(R.id.ib_imei)
     public void btnImei() {
-
         DialogFragment.dialogImei(LoginActivity.this);
+    }
+
+    @OnClick(R.id.ib_license)
+    public void btnLicense() {
+        DialogFragment.dialogLicense(LoginActivity.this);
     }
 
     /*

@@ -43,7 +43,7 @@
     <string name="empty_password">Ingresa tu contraseña.</string>
     <string name="username">Username</string>
     <string name="validating">Validando...</string>
-    <string name="password">Contraseña</string>
+    <string name="password">Password</string>
     <string name="login">Ingresar a mi cuenta</string>
     <string name="order">Pedido</string>
     <string name="forgot_password_3">Olvidé mi contraseña</string>

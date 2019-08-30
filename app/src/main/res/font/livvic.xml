@@ -4,31 +4,31 @@
 
     <!-- regular -->
     <font
-        android:font="fonts/Livvic/Livvic-Regular.ttf"
+        android:font="@font/livvic_regular"
         android:fontStyle="normal"
         android:fontWeight="400"
 
-        app:font="fonts/Livvic/Livvic-Regular.ttf"
+        app:font="@font/livvic_regular"
         app:fontStyle="normal"
         app:fontWeight="400" />
 
     <!-- italic -->
     <font
-        android:font="fonts/Livvic/Livvic-RegularItalic.ttf"
+        android:font="@font/livvic_regular_italic"
         android:fontStyle="italic"
         android:fontWeight="400"
 
-        app:font="fonts/Livvic/Livvic-RegularItalic.ttf"
+        app:font="@font/livvic_regular_italic"
         app:fontStyle="italic"
         app:fontWeight="400" />
 
     <!-- bold -->
     <font
-        android:font="fonts/Livvic/Livvic-Bold.ttf"
+        android:font="@font/livvic_bold"
         android:fontStyle="normal"
         android:fontWeight="700"
 
-        app:font="fonts/Livvic/Livvic-Bold.ttf"
+        app:font="@font/livvic_bold"
         app:fontStyle="normal"
         app:fontWeight="700" />
 
