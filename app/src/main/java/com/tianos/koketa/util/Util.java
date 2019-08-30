@@ -4,12 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.Html;
+import android.view.View;
 import android.widget.Toast;
-
+import android.app.AlertDialog.Builder;
 import androidx.core.app.ActivityCompat;
+import android.content.DialogInterface;
 
 import com.tianos.koketa.R;
 
@@ -44,7 +48,29 @@ public class Util {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
+    public static void showDialog(Context context, String message, String btnMessage, DialogInterface.OnClickListener listener) {
 
+        Builder builder = new Builder(context);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage(Html.fromHtml(message));
+        builder.setCancelable(false);
+
+        btnMessage = btnMessage.isEmpty() ? context.getString(R.string.accept) : btnMessage;
+
+        if (listener == null) {
+            builder.setPositiveButton(btnMessage, new android.content.DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialoginterface, int i) {
+
+                }
+            });
+
+        }
+
+        if (!((Activity) context).isFinishing()) {
+            builder.show();
+        }
+    }
 
 //    @Override
 //    public DialogFragment onCreateDialog(Bundle savedInstanceState) {

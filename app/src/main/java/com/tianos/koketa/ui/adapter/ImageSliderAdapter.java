@@ -22,7 +22,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
 
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_slider_layout_item, null);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slider, null);
         return new SliderAdapterVH(inflate);
     }
 
@@ -33,22 +33,22 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
         switch (position) {
             case 0:
                 Glide.with(viewHolder.itemView)
-                    .load("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+                    .load(R.mipmap.slider_1)
                     .into(viewHolder.imageViewBackground);
                 break;
             case 1:
                 Glide.with(viewHolder.itemView)
-                    .load("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260")
+                    .load(R.mipmap.slider_2)
                     .into(viewHolder.imageViewBackground);
                 break;
             case 2:
                 Glide.with(viewHolder.itemView)
-                    .load("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+                    .load(R.mipmap.slider_3)
                     .into(viewHolder.imageViewBackground);
                 break;
-            default:
+            case 3:
                 Glide.with(viewHolder.itemView)
-                    .load("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+                    .load(R.mipmap.slider_4)
                     .into(viewHolder.imageViewBackground);
                 break;
 

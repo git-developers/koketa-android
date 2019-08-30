@@ -18,6 +18,19 @@
     <color name="pink_1">#ffbfbf</color>
 
     <color name="gray_1">#dbdbdb</color>
+
+    <color name="slider_1">#5F616B</color>
+    <color name="slider_2">#FBC059</color>
+    <color name="slider_3">#1DAA99</color>
+    <color name="slider_4">#E25E3E</color>
+    <color name="slider_5">#3695D3</color>
+    <color name="slider_6">#9A68AF</color>
+    <color name="slider_7">#33AAFF</color>
+    <color name="slider_8">#FF7F33</color>
+
+    <color name="fb">#3b5998</color>
+    <color name="google">#d34836</color>
+
     <!--<color name="gray_2">#A6A6A6</color>-->
     <!--<color name="gray_3">#D8D8D8</color>-->
     <!--<color name="gray_4">#EEEEEE</color>-->

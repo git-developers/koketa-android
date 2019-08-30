@@ -1,20 +1,28 @@
 package com.tianos.koketa.ui.activity;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
@@ -36,8 +44,8 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.edt_pass_login)
     EditText edtPassLogin;
 
-    @BindView(R.id.txt_imei)
-    TextView txtImei;
+//    @BindView(R.id.ib_imei)
+//    ImageButton ibImei;
 
     private String userCode;
 
@@ -64,9 +72,13 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.login);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_android_black_24dp);
+
+//        toolbar.setVisibility(View.GONE);
+        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+
+//        toolbar.setTitle(R.string.login);
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_android_black_24dp);
 
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -85,7 +97,6 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
     @OnClick(R.id.btn_login)
     public void btnLogin() {
 
-        /*
         int permission = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
@@ -102,12 +113,11 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                 });
             return;
         }
-        */
 
         login();
     }
 
-    @OnClick(R.id.txt_imei)
+    @OnClick(R.id.ib_imei)
     public void btnImei() {
 
         DialogFragment.dialogImei(LoginActivity.this);
@@ -227,7 +237,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
             return;
         }
 
-        /*
+
         switch (requestCode) {
             case Constant.REQUEST_READ_PHONE_STATE:
                 Util.showDialog(
@@ -243,7 +253,7 @@ public class LoginActivity extends BaseActivity implements InterfaceKoketa {
                     });
             break;
         }
-        */
+
     }
 
     @Override

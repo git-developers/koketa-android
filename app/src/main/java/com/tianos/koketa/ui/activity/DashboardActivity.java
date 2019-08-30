@@ -68,56 +68,64 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
             Constant.DASH_ROUTES,
             getString(R.string.routes),
             R.drawable.ic_location_on_black_24dp,
-            "A0" + Constant.DASH_ROUTES);
+            "A0" + Constant.DASH_ROUTES,
+            R.color.slider_1);
         lst.add(a);
 
         Dashboard b = new Dashboard(
             Constant.DASH_CLIENTS,
             getString(R.string.clients),
             R.drawable.ic_supervisor_account_black_24dp,
-            "A1" + Constant.DASH_CLIENTS);
+            "A1" + Constant.DASH_CLIENTS,
+            R.color.slider_2);
         lst.add(b);
 
         Dashboard c = new Dashboard(
             Constant.DASH_ARTICLES,
             getString(R.string.articles),
             R.drawable.ic_view_quilt_black_24dp,
-            "A2" + Constant.DASH_ARTICLES);
+            "A2" + Constant.DASH_ARTICLES,
+            R.color.slider_3);
         lst.add(c);
 
         Dashboard d = new Dashboard(
             Constant.DASH_PENDIENTS,
             getString(R.string.pendings),
             R.drawable.ic_cloud_upload_black_24dp,
-            "A3" + Constant.DASH_PENDIENTS);
+            "A3" + Constant.DASH_PENDIENTS,
+            R.color.slider_4);
         lst.add(d);
 
         Dashboard e = new Dashboard(
             Constant.DASH_SYNCHRONIZE,
             getString(R.string.synchronize),
             R.drawable.ic_sync_black_24dp,
-            "A4" + Constant.DASH_SYNCHRONIZE);
+            "A4" + Constant.DASH_SYNCHRONIZE,
+            R.color.slider_5);
         lst.add(e);
 
         Dashboard f = new Dashboard(
             Constant.DASH_VISITS,
             getString(R.string.visits),
             R.drawable.ic_my_location_black_24dp,
-            "A5" + Constant.DASH_VISITS);
+            "A5" + Constant.DASH_VISITS,
+            R.color.slider_6);
         lst.add(f);
 
         Dashboard g = new Dashboard(
             Constant.DASH_PENDING_STATUS,
             getString(R.string.pending_status),
             R.drawable.ic_assignment_black_24dp,
-            "A6" + Constant.DASH_PENDING_STATUS);
+            "A6" + Constant.DASH_PENDING_STATUS,
+            R.color.slider_7);
         lst.add(g);
 
         Dashboard k = new Dashboard(
             Constant.DASH_PROFILE,
             getString(R.string.profile),
             R.drawable.ic_face_black_24dp,
-            "A7" + Constant.DASH_PROFILE);
+            "A7" + Constant.DASH_PROFILE,
+            R.color.slider_8);
         lst.add(k);
 
         DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
@@ -151,11 +159,11 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
 
         imageSlider.setSliderAdapter(new ImageSliderAdapter(DashboardActivity.this));
         imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        imageSlider.setSliderTransformAnimation(SliderAnimations.ZOOMOUTTRANSFORMATION);
         imageSlider.setAutoCycleDirection(imageSlider.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         imageSlider.setIndicatorSelectedColor(Color.WHITE);
         imageSlider.setIndicatorUnselectedColor(Color.GRAY);
-        imageSlider.setScrollTimeInSec(3);
+        imageSlider.setScrollTimeInSec(4);
         imageSlider.startAutoCycle();
     }
 

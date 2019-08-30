@@ -50,7 +50,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
         holder.tvName.setText(d.getName());
         holder.ivIcon.setImageResource(d.getIcon());
-        holder.ivIcon.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
+        holder.ivIcon.setColorFilter(context.getResources().getColor(d.getTint()));
         holder.llItem.setTag(d.getTag());
         holder.llItem.setOnClickListener(new View.OnClickListener() {
             @Override
