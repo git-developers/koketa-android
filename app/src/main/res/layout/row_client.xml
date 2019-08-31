@@ -1,101 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:layout_marginLeft="@dimen/dim_10"
-    android:layout_marginRight="@dimen/dim_10"
-    android:layout_marginBottom="@dimen/dim_10"
-    android:background="@drawable/shape_05"
-    android:weightSum="1"
-    android:orientation="horizontal">
+    android:layout_height="120dp">
 
-    <LinearLayout
-        android:layout_width="65dp"
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_weight="0.1"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="3dp"
+        android:background="@color/danger"
+        app:cardElevation="4dp">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_android_black_24dp"
-            android:tint="@color/colorPrimary" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_client"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="0.6">
-
-        <TextView
-            android:id="@+id/tv_body_resumen_1"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:layout_weight="1"
-            android:text="@string/dummy" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dim_5"
+            android:layout_marginRight="@dimen/dim_5"
+            android:layout_marginBottom="@dimen/dim_5"
+            android:layout_marginTop="@dimen/dim_5"
+            android:background="@drawable/shape_05"
+            android:weightSum="1"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_body_resumen_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="@string/dummy"/>
+            <LinearLayout
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@drawable/rounded_corner"
+                android:layout_margin="@dimen/dim_5"
+                android:gravity="center">
 
-        <TextView
-            android:id="@+id/tv_fecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:text="@string/dummy"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"
-            android:textStyle="italic" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/user_139x150" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0.3"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_client"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.6">
 
-        <ImageView
-            android:id="@+id/iv_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone_forwarded_black_24dp"
-            android:tint="@color/colorPrimary" />
+                <TextView
+                    android:id="@+id/tv_business_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:text="@string/dummy" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dim_10" />
+                <TextView
+                    android:id="@+id/tv_ruc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/livvic"
+                    android:textSize="14sp"
+                    android:text="@string/dummy"/>
 
-        <ImageView
-            android:id="@+id/iv_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_email_black_24dp"
-            android:tint="@color/colorPrimary" />
+                <TextView
+                    android:id="@+id/tv_fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/dummy"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_phone_forwarded_black_24dp"
+                    android:tint="@color/colorPrimary" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dim_10" />
+
+                <ImageView
+                    android:id="@+id/iv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_email_black_24dp"
+                    android:tint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
 
 
 

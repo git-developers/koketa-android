@@ -17,15 +17,10 @@
         android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dim_10"
-        android:layout_marginLeft="@dimen/dim_10"
-        android:layout_marginRight="@dimen/dim_10"
-        android:layout_marginBottom="@dimen/dim_10"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_rows"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

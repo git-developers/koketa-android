@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.activity.ClientActivity;
 import com.tianos.koketa.ui.activity.ClientDetailActivity;
-import com.tianos.koketa.ui.activity.DashboardActivity;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
 import java.util.List;
@@ -48,10 +46,10 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        Client cliente = this.lstClient.get(position);
+        Client client = this.lstClient.get(position);
 
-        holder.tvBodyResumen1.setText(Integer.toString(cliente.getId()));
-        holder.tvBodyResumen2.setText(cliente.getBusinessName());
+        holder.tvBusinessName.setText(client.getBusinessName());
+        holder.tvRuc.setText(client.getRuc());
     }
 
     @Override
@@ -63,17 +61,14 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
         private Context context;
 
-//        @BindView(R.id.table_tr_row)
-//        TableRow tableTrRow;
-
         @BindView(R.id.ll_client)
         LinearLayout llClient;
 
-        @BindView(R.id.tv_body_resumen_1)
-        TextView tvBodyResumen1;
+        @BindView(R.id.tv_business_name)
+        TextView tvBusinessName;
 
-        @BindView(R.id.tv_body_resumen_2)
-        TextView tvBodyResumen2;
+        @BindView(R.id.tv_ruc)
+        TextView tvRuc;
 
         @BindView(R.id.iv_phone)
         ImageView ivPhone;

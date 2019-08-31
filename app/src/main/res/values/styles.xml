@@ -70,7 +70,29 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/livvic</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Button.Action.Negative" parent="Button">
+        <item name="android:textColor">@drawable/button_negative_text_drawable</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/button_01</item>
+    </style>
+
+    <style name="Button.Action.Positive" parent="Button">
+        <item name="android:textColor">@drawable/button_positive_text_drawable</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/button_01</item>
+    </style>
+
 
     <style name="edittext">
         <item name="android:background">@drawable/edittext_01</item>

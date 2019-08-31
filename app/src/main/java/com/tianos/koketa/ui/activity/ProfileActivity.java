@@ -95,7 +95,9 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
         super.initToolBar();
 
         toolbar.setTitle(R.string.profile);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
+
 
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -103,6 +105,8 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
 //                onBackPressed();
 //            }
 //        });
+
+
 
     }
 
@@ -165,26 +169,25 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @Override
     protected void onStart() {
         super.onStart();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        doAnimation();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         finish();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        finish();
+//        finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+//        finish();
     }
 }

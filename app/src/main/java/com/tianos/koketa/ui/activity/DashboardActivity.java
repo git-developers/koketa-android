@@ -117,7 +117,7 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
             getString(R.string.pending_status),
             R.drawable.ic_assignment_black_24dp,
             "A6" + Constant.DASH_PENDING_STATUS,
-            R.color.slider_7);
+            R.color.slider_8);
         lst.add(g);
 
         Dashboard k = new Dashboard(
@@ -125,7 +125,7 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
             getString(R.string.profile),
             R.drawable.ic_face_black_24dp,
             "A7" + Constant.DASH_PROFILE,
-            R.color.slider_8);
+            R.color.slider_7);
         lst.add(k);
 
         DashboardAdapter adapter = new DashboardAdapter(DashboardActivity.this, lst);
@@ -146,13 +146,13 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
     protected void onStart() {
         super.onStart();
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+//        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
     }
 
     private void imageSlider() {

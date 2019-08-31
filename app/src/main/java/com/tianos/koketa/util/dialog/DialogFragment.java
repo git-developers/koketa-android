@@ -7,10 +7,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.tianos.koketa.R;
@@ -36,12 +38,21 @@ public class DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_license, null);
-//        TextView tvImei = (TextView) view.findViewById(R.id.tv_imei);
-//        String imei = Util.getImei(activity);
-//        tvImei.setText(imei);
+        builder.setView(view);
 
+        //BUTTONS
+        Button accept = (Button) view.findViewById(R.id.accept);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("POLLO", "eeee");
+                return;
+            }
+        });
+
+        /*
         builder.setView(view)
-            // Add action buttons
             .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
@@ -53,8 +64,7 @@ public class DialogFragment {
 //                        LoginDialogFragment.this.getDialog().cancel();
                 }
             });
-
-//        return builder.create();
+        */
 
         if (!((Activity) context).isFinishing()) {
             builder.show();
@@ -77,27 +87,55 @@ public class DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_iemi, null);
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+
         TextView tvImei = (TextView) view.findViewById(R.id.tv_imei);
-
         String imei = Util.getImei(activity);
-
         tvImei.setText(imei);
 
+
+        //BUTTONS
+        Button accept = (Button) view.findViewById(R.id.accept);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("POLLO", "XXXXXXXXXXXXXX");
+
+                dialog.cancel();
+                return;
+            }
+        });
+
+        /*
         builder.setView(view)
-            // Add action buttons
             .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
-                    // sign in the user ...
+                    return;
                 }
             })
             .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-//                        LoginDialogFragment.this.getDialog().cancel();
+                    //LoginDialogFragment.this.getDialog().cancel();
                 }
-            });
+            })
+        ;
+        */
 
-//        return builder.create();
+//        final AlertDialog alertDialog = builder.create();
+//        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//            @Override
+//            public void onShow(DialogInterface dialogInterface) {
+//                Log.d("POLLO", "Doung");
+//                Button button = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+//
+//                button.setTextColor(Color.MAGENTA);
+//                button.setBackgroundColor(context.getResources().getColor(R.color.danger));
+//            }
+//        });
+
 
         if (!((Activity) context).isFinishing()) {
             builder.show();
@@ -120,22 +158,7 @@ public class DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_change_password, null);
-
-        builder.setView(view)
-            // Add action buttons
-            .setPositiveButton(R.string.dummy, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    // sign in the user ...
-                }
-            })
-            .setNegativeButton(R.string.dummy, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-//                        LoginDialogFragment.this.getDialog().cancel();
-                }
-            });
-
-//        return builder.create();
+        builder.setView(view);
 
         if (!((Activity) context).isFinishing()) {
             builder.show();

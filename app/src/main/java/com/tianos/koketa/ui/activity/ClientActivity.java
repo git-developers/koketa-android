@@ -50,8 +50,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
 //        breadcrumbDb = new BreadcrumbDb(Detail1Activity.this);
 //        breadcrumb = breadcrumbDb.findLast();
-//        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
-//        userFactory.setAvanceDelMesWizard(ClientActivity.this, getWindow().getDecorView(), Constant.DETAIL_1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
@@ -60,14 +59,6 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
         toolbar.setTitle(R.string.clients_list);
         setSupportActionBar(toolbar);
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
-
     }
 
     @Override
@@ -75,17 +66,20 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
         List<Client> lstClient = new ArrayList<Client>();
 
-        Client a = new Client(1,"test 1");
+        Client a = new Client(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
         lstClient.add(a);
 
-        Client b = new Client(2,"test 2");
+        Client b = new Client(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
         lstClient.add(b);
 
-        Client c = new Client(3,"test 3");
+        Client c = new Client(3,"ABAD CRUZADO, ROSA", "20100014395", "test-3@gmail.com");
         lstClient.add(c);
 
-        Client d = new Client(4,"test 4");
+        Client d = new Client(4,"A & E INVERSIONES QUIROZ", "20511615136", "test-4@gmail.com");
         lstClient.add(d);
+
+        Client e = new Client(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
+        lstClient.add(e);
 
         ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lstClient);
         recyclerView.setAdapter(bodyAdapter);
@@ -179,6 +173,19 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
             }
         });
         */
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        finish();
     }
 
 }

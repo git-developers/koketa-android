@@ -92,6 +92,8 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
     }
 
@@ -136,23 +138,29 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
 
         switch (item.getItemId()) {
             case R.id.nav_home:
-
-                Intent i = new Intent(BaseActivity.this, DashboardActivity.class);
-                startActivity(i);
+                Intent a = new Intent(BaseActivity.this, DashboardActivity.class);
+                startActivity(a);
                 finish();
-            case R.id.nav_gallery:
                 return true;
-            case R.id.nav_slideshow:
+            case R.id.nav_routes:
+                Intent b = new Intent(BaseActivity.this, ClientActivity.class);
+                startActivity(b);
+                finish();
+                return true;
+            case R.id.nav_clients:
+                Intent c = new Intent(BaseActivity.this, ClientActivity.class);
+                startActivity(c);
+                finish();
                 return true;
             case R.id.nav_tools:
                 return true;
             case R.id.nav_share:
                 return true;
             case R.id.nav_logout:
-
-                Intent ii = new Intent(BaseActivity.this, LoginActivity.class);
-                startActivity(ii);
+                Intent i = new Intent(BaseActivity.this, LoginActivity.class);
+                startActivity(i);
                 finish();
+                return true;
         }
 
         drawer.closeDrawer(GravityCompat.START);

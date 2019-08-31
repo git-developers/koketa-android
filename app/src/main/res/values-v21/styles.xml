@@ -13,6 +13,10 @@
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/livvic</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 
 
 </resources>

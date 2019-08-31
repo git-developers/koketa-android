@@ -6,7 +6,7 @@ public class Client extends RealmObject {
 
     private Integer id;
     private String dni;
-    private Integer ruc;
+    private String ruc;
     private String code;
     private String username;
     private Integer userCode;
@@ -23,10 +23,11 @@ public class Client extends RealmObject {
 
     }
 
-    public Client(Integer id, String businessName) {
+    public Client(Integer id, String businessName, String ruc, String email) {
         this.id = id;
         this.businessName = businessName;
         this.ruc = ruc;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -45,11 +46,11 @@ public class Client extends RealmObject {
         this.dni = dni;
     }
 
-    public Integer getRuc() {
+    public String getRuc() {
         return ruc;
     }
 
-    public void setRuc(Integer ruc) {
+    public void setRuc(String ruc) {
         this.ruc = ruc;
     }
 
