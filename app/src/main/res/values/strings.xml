@@ -11,7 +11,7 @@
     <string name="menu_home">Dashboard</string>
     <string name="menu_routes">Rutas</string>
     <string name="menu_clients">Clientes</string>
-    <string name="menu_tools">Tools</string>
+    <string name="menu_products">Articulos</string>
     <string name="menu_share">Share</string>
     <!--<string name="menu_send">Send</string>-->
 
@@ -20,6 +20,7 @@
     <string name="no_data">No hay información para mostrar.</string>
     <string name="warehouse">Almacen</string>
     <string name="accept">Ok</string>
+    <string name="call">Llamar</string>
     <string name="permission">Necesitas dar permiso para identificar el dispositivo.</string>
     <string name="phone">Telefono</string>
     <string name="email">Email</string>
@@ -37,8 +38,11 @@
     <string name="summary">Resumen</string>
     <string name="article">Articulo</string>
     <string name="close">Cerrar</string>
+    <string name="allow">Permitir</string>
     <string name="clients_detail">Detalle del cliente</string>
     <string name="clients_list">Lista de clientes</string>
+    <string name="products_list">Lista de productos</string>
+    <string name="products_detail">Detalle del articulo</string>
     <string name="empty_code">Ingrese su código.</string>
     <string name="empty_password">Ingresa tu contraseña.</string>
     <string name="username">Username</string>

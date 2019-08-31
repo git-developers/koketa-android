@@ -1,6 +1,7 @@
 package com.tianos.koketa.util.dialog;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
+
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.activity.LoginActivity;
 import com.tianos.koketa.util.Util;
@@ -22,14 +25,48 @@ import com.tianos.koketa.util.Util;
 public class DialogFragment {
 
 
+    public static void dialogPermission(Context context) {
+
+        Activity activity = (Activity) context;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setCancelable(true);
+
+
+//        AlertDialog xx = builder.create();
+
+        // Get the layout inflater
+        LayoutInflater inflater = activity.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        View view = inflater.inflate(R.layout.dialog_permission, null);
+        builder.setView(view);
+
+        //BUTTONS
+        Button allow = (Button) view.findViewById(R.id.allow);
+        allow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("POLLO", "allow");
+
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+
+                return;
+            }
+        });
+
+        if (!((Activity) context).isFinishing()) {
+            builder.show();
+        }
+    }
+
     public static void dialogLicense(Context context) {
 
         Activity activity = (Activity) context;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//        builder.setIcon(R.mipmap.ic_launcher);
-//        builder.setTitle(R.string.app_name);
-//        builder.setMessage(Html.fromHtml(message));
         builder.setCancelable(true);
 
         // Get the layout inflater
@@ -50,21 +87,6 @@ public class DialogFragment {
                 return;
             }
         });
-
-        /*
-        builder.setView(view)
-            .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    // sign in the user ...
-                }
-            })
-            .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-//                        LoginDialogFragment.this.getDialog().cancel();
-                }
-            });
-        */
 
         if (!((Activity) context).isFinishing()) {
             builder.show();
@@ -181,27 +203,21 @@ public class DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View view = inflater.inflate(R.layout.dialog_client_phone, null);
+        builder.setView(view);
 
-        builder.setView(view)
-            // Add action buttons
-            .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
-                @SuppressLint("MissingPermission")
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
+        //BUTTONS
+        Button call = (Button) view.findViewById(R.id.call);
+        call.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View view) {
 
-                    Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "999888777"));
-                    activity.startActivity(i);
-                }
-            })
-//            .setNegativeButton(R.string.dummy, new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int id) {
-//
-//                    return;
-//                }
-//            })
-        ;
+                Log.d("POLLO", "CALL");
 
-//        return builder.create();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "999888777"));
+                activity.startActivity(i);
+            }
+        });
 
         if (!((Activity) context).isFinishing()) {
             builder.show();

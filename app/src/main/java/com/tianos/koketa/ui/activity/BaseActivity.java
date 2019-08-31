@@ -152,7 +152,10 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
                 startActivity(c);
                 finish();
                 return true;
-            case R.id.nav_tools:
+            case R.id.nav_products:
+                Intent v = new Intent(BaseActivity.this, ProductActivity.class);
+                startActivity(v);
+                finish();
                 return true;
             case R.id.nav_share:
                 return true;

@@ -28,11 +28,11 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     private Context context;
     private LayoutInflater inflater;
-    private List<Client> lstClient;
+    private List<Client> lst;
 
-    public ClientAdapter(Context context, List<Client> lstClient) {
+    public ClientAdapter(Context context, List<Client> lst) {
         this.context = context;
-        this.lstClient = lstClient;
+        this.lst = lst;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -46,29 +46,36 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        Client client = this.lstClient.get(position);
+        Client client = this.lst.get(position);
 
         holder.tvBusinessName.setText(client.getBusinessName());
         holder.tvRuc.setText(client.getRuc());
+        holder.tvEmail.setText(client.getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return (this.lstClient != null) ? this.lstClient.size() : 0;
+        return (this.lst != null) ? this.lst.size() : 0;
     }
 
     public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Context context;
 
-        @BindView(R.id.ll_client)
-        LinearLayout llClient;
+        @BindView(R.id.ll_body)
+        LinearLayout llBody;
+
+        @BindView(R.id.ll_body_image)
+        LinearLayout llBodyImage;
 
         @BindView(R.id.tv_business_name)
         TextView tvBusinessName;
 
         @BindView(R.id.tv_ruc)
         TextView tvRuc;
+
+        @BindView(R.id.tv_email)
+        TextView tvEmail;
 
         @BindView(R.id.iv_phone)
         ImageView ivPhone;
@@ -81,7 +88,8 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             this.context = context;
             ButterKnife.bind(this, view);
 
-            llClient.setOnClickListener(this);
+            llBody.setOnClickListener(this);
+            llBodyImage.setOnClickListener(this);
             ivPhone.setOnClickListener(this);
             ivEmail.setOnClickListener(this);
         }
@@ -93,7 +101,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
                 DialogFragment.dialogClientPhone(context);
 
-            } else if (v.getId() == llClient.getId()) {
+            } else if (v.getId() == llBody.getId() || v.getId() == llBodyImage.getId()) {
 
                 Intent i = new Intent(this.context, ClientDetailActivity.class);
                 this.context.startActivity(i);
@@ -106,13 +114,8 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                 //emailIntent.putExtra(Intent.EXTRA_HTML_TEXT, body); //If you are using HTML in your body text
 
                 this.context.startActivity(Intent.createChooser(i, "Chooser Title"));
-
             }
 
-
-
-//            Intent i = new Intent();
-//            context.startActivity(i);
         }
     }
 }

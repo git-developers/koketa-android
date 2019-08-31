@@ -81,17 +81,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
         int permission = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            Util.showDialog(
-                LoginActivity.this,
-                getString(R.string.permission),
-                getString(R.string.close),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(LoginActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-                        return;
-                    }
-                });
+            DialogFragment.dialogPermission(LoginActivity.this);
             return;
         }
 

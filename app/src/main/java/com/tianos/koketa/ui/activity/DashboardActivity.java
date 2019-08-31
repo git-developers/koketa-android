@@ -81,10 +81,10 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         lst.add(b);
 
         Dashboard c = new Dashboard(
-            Constant.DASH_ARTICLES,
+            Constant.DASH_PRODUCTS,
             getString(R.string.articles),
             R.drawable.ic_view_quilt_black_24dp,
-            "A2" + Constant.DASH_ARTICLES,
+            "A2" + Constant.DASH_PRODUCTS,
             R.color.slider_3);
         lst.add(c);
 
@@ -142,17 +142,22 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         startActivity(i);
     }
 
+    public void openProduct(View view) {
+        Intent i = new Intent(DashboardActivity.this, ProductActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-
-//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        finish();
     }
 
     private void imageSlider() {

@@ -78,13 +78,14 @@ public class SplashActivity extends AppCompatActivity implements InterfaceKoketa
     @Override
     protected void onStart() {
         super.onStart();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+//        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+//        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        finish();
     }
 
     private void doAnimation() {

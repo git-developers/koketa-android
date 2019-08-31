@@ -25,10 +25,6 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
     @BindView(R.id.expandableListView)
     ExpandableListView expandableListView;
 
-//    @BindView(R.id.fab_shopping_cart)
-//    FloatingActionButton fabShoppingCart;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

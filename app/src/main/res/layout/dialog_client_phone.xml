@@ -7,50 +7,103 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:src="@drawable/ic_phone_forwarded_black_24dp"
+        android:src="@drawable/ic_phone_forwarded_black_48dp"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="center"
-        android:background="@color/colorPrimary"
+        android:tint="@color/white"
+        android:background="@color/slider_4"
         android:contentDescription="@string/app_name" />
 
-    <TextView
-        android:id="@+id/xx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Cliente"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/ccc"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="0dp"
-        android:text="999.999.999"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic" />
+        android:layout_marginLeft="@dimen/dim_10"
+        android:layout_marginRight="@dimen/dim_10">
 
-    <TextView
-        android:id="@+id/ttt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="999.888.888"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/xx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/livvic"
+            android:gravity="center"
+            android:text="Telefonos"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ccc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Para llamar presiona el numero deseado"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_15"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/ccfc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="999.888.777"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_15"
+            android:textStyle="italic|bold" />
+
+        <TextView
+            android:id="@+id/xxx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="999.444.555"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_15"
+            android:textStyle="italic|bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/accept"
+                style="@style/Button.Action.Negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/close" />
+
+            <Button
+                android:id="@+id/call"
+                style="@style/Button.Action.Positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/call" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

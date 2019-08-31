@@ -64,24 +64,24 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     public void initData() {
 
-        List<Client> lstClient = new ArrayList<Client>();
+        List<Client> lst = new ArrayList<Client>();
 
         Client a = new Client(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
-        lstClient.add(a);
+        lst.add(a);
 
         Client b = new Client(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
-        lstClient.add(b);
+        lst.add(b);
 
         Client c = new Client(3,"ABAD CRUZADO, ROSA", "20100014395", "test-3@gmail.com");
-        lstClient.add(c);
+        lst.add(c);
 
         Client d = new Client(4,"A & E INVERSIONES QUIROZ", "20511615136", "test-4@gmail.com");
-        lstClient.add(d);
+        lst.add(d);
 
         Client e = new Client(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
-        lstClient.add(e);
+        lst.add(e);
 
-        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lstClient);
+        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
 
 

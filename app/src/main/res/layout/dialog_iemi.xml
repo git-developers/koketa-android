@@ -48,7 +48,7 @@
             android:layout_marginBottom="4dp"
             android:text="Manten presionado el codigo para copiar"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
+            android:textSize="@dimen/dim_15"
             android:textStyle="italic" />
 
         <TextView
@@ -60,9 +60,10 @@
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
             android:text="@string/dummy"
+            android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            android:textStyle="italic" />
+            android:textSize="@dimen/dim_18"
+            android:textStyle="italic|bold" />
 
         <RelativeLayout
             android:layout_width="match_parent"

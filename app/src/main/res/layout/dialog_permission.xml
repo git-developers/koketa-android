@@ -7,12 +7,12 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:src="@drawable/ic_assignment_ind_black_24dp"
+        android:src="@drawable/ic_phonelink_lock_black_24dp"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="center"
         android:tint="@color/white"
-        android:background="@color/slider_3"
+        android:background="@color/colorAccent"
         android:contentDescription="@string/app_name" />
 
     <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Licencia B1Sales"
+            android:text="Permisos"
             android:fontFamily="@font/livvic"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
@@ -44,22 +44,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Ingrese el ID de la empresa"
+            android:text="@string/permission"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/dim_15"
-            android:textStyle="italic" />
-
-        <EditText
-            android:id="@+id/et_license"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text=""
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
             android:textStyle="italic" />
 
         <RelativeLayout
@@ -69,14 +56,14 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/accept"
+                android:id="@+id/allow"
                 style="@style/Button.Action.Negative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text="@string/accept" />
+                android:text="@string/allow" />
 
             <Button
                 android:id="@+id/close"
