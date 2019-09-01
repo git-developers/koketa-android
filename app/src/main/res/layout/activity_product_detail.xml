@@ -1,30 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activity.ClientActivity">
+    android:layout_height="match_parent">
 
-    <include
-        android:visibility="gone"
-        layout="@layout/layout_no_data" />
-
-    <LinearLayout
-        android:id="@+id/ll_main"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp"
+        android:layout_margin="8dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_rows"
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/product_533x300" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/thumbnail"
+                android:maxLines="3"
+                android:padding="8dp"
+                android:text="KOKETA B SILUET FAJA COMPLETA LATEX M NEGRO"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16dp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/title"
+                android:background="@color/gray_2" />
+
+            <LinearLayout
+                android:layout_below="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:weightSum="1"
+                android:background="@color/gray_5"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:tint="@color/slider_8"
+                    android:src="@drawable/ic_view_quilt_black_20dp" />
+
+                <TextView
+                    android:id="@+id/tv_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:gravity="center_vertical"
+                    android:text="23 Unidades"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:tint="@color/slider_3"
+                    android:src="@drawable/ic_monetization_on_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:text="SOL 24.66"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/livvic_bold"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <View
+        android:id="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/card_view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/dim_15"
+        android:background="@color/gray_2" />
+
+    <TableLayout
+        android:id="@+id/tl_product"
+        android:layout_below="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/dim_7"
+        android:layout_marginBottom="@dimen/dim_7"
+        android:stretchColumns="*">
+        <TableRow>
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/right_line"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:tint="@color/gray_3"
+                    android:src="@drawable/ic_share_black_24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Compartir"
+                    android:textColor="@color/gray_3"
+                    android:padding="3dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/right_line"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:tint="@color/gray_3"
+                    android:src="@drawable/ic_developer_board_black_24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Similar"
+                    android:textColor="@color/gray_3"
+                    android:padding="3dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:tint="@color/gray_3"
+                    android:src="@drawable/ic_filter_9_plus_black_24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Tallas"
+                    android:textColor="@color/gray_3"
+                    android:padding="3dip" />
+            </LinearLayout>
+
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/divider_3"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tl_product"
+        android:background="@color/gray_2" />
+
+    <Space
+        android:id="@+id/space_1"
+        android:layout_below="@+id/divider_3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_10" />
+
+    <TextView
+        android:id="@+id/textview_1"
+        android:layout_below="@+id/space_1"
+        android:fontFamily="@font/livvic_light_italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textStyle="normal"
+        tools:text="Codigo" />
+
+    <TextView
+        android:id="@+id/textview_2"
+        style="@style/TextStyle.Heading"
+        android:layout_below="@+id/textview_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:text="10BS00-94200LL0-SC005" />
+
+    <View
+        android:id="@+id/divider_4"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/textview_2"
+        android:background="@color/gray_2" />
+
+    <TextView
+        android:id="@+id/textview_3"
+        android:layout_below="@+id/divider_4"
+        android:fontFamily="@font/livvic_light_italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textStyle="normal"
+        tools:text="Familia" />
+
+    <TextView
+        android:id="@+id/textview_4"
+        style="@style/TextStyle.Heading"
+        android:layout_below="@+id/textview_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:text="Texto" />
+
+
+    <TextView
+        android:id="@+id/textview_5"
+        android:layout_below="@+id/textview_4"
+        android:fontFamily="@font/livvic_light_italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textStyle="normal"
+        tools:text="Marca" />
+
+    <TextView
+        android:id="@+id/textview_6"
+        style="@style/TextStyle.Heading"
+        android:layout_below="@+id/textview_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:text="Koketa" />
+
+    <Space
+        android:id="@+id/space_2"
+        android:layout_below="@+id/textview_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_10" />
+
+    <TextView
+        android:id="@+id/textview_7"
+        style="@style/TextStyle.Heading"
+        android:layout_below="@+id/space_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:text="* Precio unitario (No incluye impuesto)" />
+
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+

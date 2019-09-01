@@ -11,8 +11,8 @@ import butterknife.BindView;
 
 public class ProductDetailActivity extends BaseActivity implements InterfaceKoketa2 {
 
-    @BindView(R.id.rv_rows)
-    RecyclerView recyclerView;
+//    @BindView(R.id.rv_rows)
+//    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

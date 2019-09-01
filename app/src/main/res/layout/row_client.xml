@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="120dp">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +14,8 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         app:cardCornerRadius="3dp"
-        android:background="@color/danger"
+        android:focusable="true"
+        android:clickable="true"
         app:cardElevation="4dp">
 
         <LinearLayout
@@ -114,8 +114,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </androidx.cardview.widget.CardView>
 
