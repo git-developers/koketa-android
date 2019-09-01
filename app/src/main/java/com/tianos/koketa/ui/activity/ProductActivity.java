@@ -1,6 +1,7 @@
 package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.adapter.ProductAdapter;
+import com.tianos.koketa.ui.fragment.ProductDetailFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ProductActivity extends BaseActivity implements InterfaceKoketa2 {
+public class ProductActivity extends BaseActivity implements InterfaceKoketa2, ProductDetailFragment.DialogListener {
 
     @BindView(R.id.rv_rows)
     RecyclerView recyclerView;
@@ -83,5 +85,16 @@ public class ProductActivity extends BaseActivity implements InterfaceKoketa2 {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         finish();
     }
+
+    @Override
+    public void onFinishEditDialog(String inputText) {
+
+        if (TextUtils.isEmpty(inputText)) {
+//            textView.setText("Email was not entered");
+        } else {
+//            textView.setText("Email entered: " + inputText);
+        }
+    }
+
 
 }

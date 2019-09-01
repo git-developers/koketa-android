@@ -40,10 +40,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ProductDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.ClientDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />

@@ -1,23 +1,23 @@
 package com.tianos.koketa.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
-import com.tianos.koketa.ui.activity.ClientDetailActivity;
-import com.tianos.koketa.ui.activity.ProductDetailActivity;
-import com.tianos.koketa.util.dialog.DialogFragment;
+import com.tianos.koketa.ui.fragment.ProductDetailFragment;
 
 import java.util.List;
 
@@ -92,8 +92,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
         public void onClick(View v) {
 
             if (v.getId() == llBody.getId()) {
-                Intent i = new Intent(this.context, ProductDetailActivity.class);
-                this.context.startActivity(i);
+
+                ProductDetailFragment dialogFragment = new ProductDetailFragment();
+                FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                dialogFragment.show(ft, "dialog");
             }
 
         }

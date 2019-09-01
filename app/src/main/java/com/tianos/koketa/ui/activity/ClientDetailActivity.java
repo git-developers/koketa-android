@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.adapter.ClientDetailExpandableAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
