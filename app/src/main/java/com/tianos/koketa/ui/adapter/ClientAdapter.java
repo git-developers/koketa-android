@@ -46,11 +46,11 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        Client client = this.lst.get(position);
+        Client o = this.lst.get(position);
 
-        holder.tvBusinessName.setText(client.getBusinessName());
-        holder.tvRuc.setText(client.getRuc());
-        holder.tvEmail.setText(client.getEmail());
+        holder.tvBusinessName.setText(o.getBusinessName());
+        holder.tvRuc.setText(o.getRuc());
+        holder.tvEmail.setText(o.getEmail());
     }
 
     @Override

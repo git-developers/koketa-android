@@ -40,6 +40,14 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.RouteActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.VisitActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ClientDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />

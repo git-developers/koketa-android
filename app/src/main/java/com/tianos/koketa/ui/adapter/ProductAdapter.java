@@ -1,9 +1,6 @@
 package com.tianos.koketa.ui.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
@@ -39,20 +36,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
 
     @NonNull
     @Override
-    public ClientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.row_product, parent, false);
-        return new ClientViewHolder(view, context);
+        return new ProductViewHolder(view, context);
     }
 
     @Override
-    public void onBindViewHolder(ProductAdapter.ClientViewHolder holder, int position) {
+    public void onBindViewHolder(ProductViewHolder holder, int position) {
 
-        Product client = this.lst.get(position);
+        Product o = this.lst.get(position);
 
-        holder.tvName.setText(client.getName());
-        holder.tvFamily.setText(client.getFamily());
-        holder.tvStock.setText(Integer.toString(client.getStock()) + " Unidades");
-        holder.tvPrice.setText("SOL " + Double.toString(client.getPrice()));
+        holder.tvName.setText(o.getName());
+        holder.tvFamily.setText(o.getFamily());
+        holder.tvStock.setText(Integer.toString(o.getStock()) + " Unidades");
+        holder.tvPrice.setText("SOL " + Double.toString(o.getPrice()));
     }
 
     @Override
@@ -60,7 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
         return (this.lst != null) ? this.lst.size() : 0;
     }
 
-    public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Context context;
 
@@ -80,7 +77,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
         TextView tvPrice;
 
 
-        public ClientViewHolder(View view, Context context) {
+        public ProductViewHolder(View view, Context context) {
             super(view);
             this.context = context;
             ButterKnife.bind(this, view);

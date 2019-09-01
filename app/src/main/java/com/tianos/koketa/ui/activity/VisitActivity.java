@@ -1,27 +1,23 @@
 package com.tianos.koketa.ui.activity;
 
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.TextView;
-
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
+import com.tianos.koketa.entity.Route;
+import com.tianos.koketa.entity.Visit;
+import com.tianos.koketa.ui.adapter.RouteAdapter;
+import com.tianos.koketa.ui.adapter.VisitAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
+public class VisitActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.rv_rows)
     RecyclerView recyclerView;
@@ -29,7 +25,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
+        setContentView(R.layout.activity_visit);
 
         initSetup();
         initToolBar();
@@ -41,38 +37,38 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initSetup() {
         super.initSetup();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(VisitActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.clients_list);
+        toolbar.setTitle(R.string.visits_list);
         setSupportActionBar(toolbar);
     }
 
     @Override
     public void initData() {
 
-        List<Client> lst = new ArrayList<Client>();
+        List<Visit> lst = new ArrayList<Visit>();
 
-        Client a = new Client(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
+        Visit a = new Visit(1,"Visita 1");
         lst.add(a);
 
-        Client b = new Client(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
+        Visit b = new Visit(2,"Visita 2");
         lst.add(b);
 
-        Client c = new Client(3,"ABAD CRUZADO, ROSA", "20100014395", "test-3@gmail.com");
+        Visit c = new Visit(3,"Visita 3");
         lst.add(c);
 
-        Client d = new Client(4,"A & E INVERSIONES QUIROZ", "20511615136", "test-4@gmail.com");
+        Visit d = new Visit(4,"Visita 4");
         lst.add(d);
 
-        Client e = new Client(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
+        Visit e = new Visit(5,"Visita 5");
         lst.add(e);
 
-        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
+        VisitAdapter bodyAdapter = new VisitAdapter(VisitActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

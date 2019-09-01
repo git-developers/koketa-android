@@ -41,6 +41,8 @@
     <string name="allow">Permitir</string>
     <string name="clients_detail">Detalle del cliente</string>
     <string name="clients_list">Lista de clientes</string>
+    <string name="routes_list">Lista de rutas</string>
+    <string name="visits_list">Lista de visitas</string>
     <string name="products_list">Lista de productos</string>
     <string name="products_detail">Detalle del articulo</string>
     <string name="empty_code">Ingrese su código.</string>

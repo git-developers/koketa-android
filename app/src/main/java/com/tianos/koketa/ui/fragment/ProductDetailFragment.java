@@ -20,44 +20,19 @@ public class ProductDetailFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
         return super.onCreateDialog(savedInstanceState);
-
-
-/*
-        if (getArguments() != null) {
-            if (getArguments().getBoolean("notAlertDialog")) {
-                return super.onCreateDialog(savedInstanceState);
-            }
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Alert Dialog");
-        builder.setMessage("Alert Dialog inside DialogFragment");
-
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                dismiss();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                dismiss();
-            }
-        });
-
-        return builder.create();
-        */
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_product_detail, container, false);
+
+//        return inflater.inflate(R.layout.fragment_product_detail, container, false);
+
+        getDialog().setTitle("Detalle del producto");
+        View v = inflater.inflate(R.layout.fragment_product_detail, container, false);
+
+        return v;
     }
 
     @Override
@@ -95,14 +70,6 @@ public class ProductDetailFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
 
         Log.d("API123", "onCreate");
-
-//        boolean setFullScreen = false;
-//        if (getArguments() != null) {
-//            setFullScreen = getArguments().getBoolean("fullScreen");
-//        }
-//
-//        if (setFullScreen)
-//            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
 
     @Override
@@ -113,6 +80,5 @@ public class ProductDetailFragment extends DialogFragment {
     public interface DialogListener {
         void onFinishEditDialog(String inputText);
     }
-
 
 }

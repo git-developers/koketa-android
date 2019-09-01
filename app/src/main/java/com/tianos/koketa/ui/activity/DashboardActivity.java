@@ -142,8 +142,18 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         startActivity(i);
     }
 
+    public void openRoute(View view) {
+        Intent i = new Intent(DashboardActivity.this, RouteActivity.class);
+        startActivity(i);
+    }
+
     public void openProduct(View view) {
         Intent i = new Intent(DashboardActivity.this, ProductActivity.class);
+        startActivity(i);
+    }
+
+    public void openVisit(View view) {
+        Intent i = new Intent(DashboardActivity.this, VisitActivity.class);
         startActivity(i);
     }
 
@@ -161,7 +171,6 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
     }
 
     private void imageSlider() {
-
         imageSlider.setSliderAdapter(new ImageSliderAdapter(DashboardActivity.this));
         imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         imageSlider.setSliderTransformAnimation(SliderAnimations.ZOOMOUTTRANSFORMATION);
