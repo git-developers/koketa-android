@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Route;
 import com.tianos.koketa.entity.Visit;
-import com.tianos.koketa.ui.adapter.RouteAdapter;
 import com.tianos.koketa.ui.adapter.VisitAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
@@ -44,7 +42,7 @@ public class VisitActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.visits_list);
+        toolbar.setTitle(R.string.visit_list);
         setSupportActionBar(toolbar);
     }
 

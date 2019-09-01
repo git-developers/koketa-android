@@ -2,13 +2,12 @@ package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
 
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
+import com.tianos.koketa.entity.Pendient;
+import com.tianos.koketa.ui.adapter.PendientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
+public class PendientActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.rv_rows)
     RecyclerView recyclerView;
@@ -24,7 +23,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
+        setContentView(R.layout.activity_pendient);
 
         initSetup();
         initToolBar();
@@ -36,38 +35,38 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initSetup() {
         super.initSetup();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(ClientActivity.this, RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(PendientActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.client_list);
+        toolbar.setTitle(R.string.pendient_list);
         setSupportActionBar(toolbar);
     }
 
     @Override
     public void initData() {
 
-        List<Client> lst = new ArrayList<Client>();
+        List<Pendient> lst = new ArrayList<Pendient>();
 
-        Client a = new Client(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
+        Pendient a = new Pendient(1,"4EVER UNIFORMS S.A.C", "Pendiente", "2019-08-27 21:49", "2019-08-31");
         lst.add(a);
 
-        Client b = new Client(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
+        Pendient b = new Pendient(2,"A TUS PIES E.I.R.L", "Pendiente", "2019-08-27 21:49", "2019-08-31");
         lst.add(b);
 
-        Client c = new Client(3,"ABAD CRUZADO, ROSA", "20100014395", "test-3@gmail.com");
+        Pendient c = new Pendient(3,"ABAD CRUZADO, ROSA", "Pendiente", "2019-08-27 21:49", "2019-08-31");
         lst.add(c);
 
-        Client d = new Client(4,"A & E INVERSIONES QUIROZ", "20511615136", "test-4@gmail.com");
+        Pendient d = new Pendient(4,"A & E INVERSIONES QUIROZ", "Pendiente", "2019-08-27 21:49", "2019-08-31");
         lst.add(d);
 
-        Client e = new Client(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
+        Pendient e = new Pendient(5,"ASCATE ALAYO, MERCADO PILAR", "Pendiente", "2019-08-27 21:49", "2019-08-31");
         lst.add(e);
 
-        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
+        PendientAdapter bodyAdapter = new PendientAdapter(PendientActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

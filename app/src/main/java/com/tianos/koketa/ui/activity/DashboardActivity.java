@@ -157,6 +157,11 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         startActivity(i);
     }
 
+    public void openPendient(View view) {
+        Intent i = new Intent(DashboardActivity.this, PendientActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

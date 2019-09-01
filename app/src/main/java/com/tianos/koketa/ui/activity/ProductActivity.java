@@ -44,7 +44,7 @@ public class ProductActivity extends BaseActivity implements InterfaceKoketa2, P
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.products_list);
+        toolbar.setTitle(R.string.product_list);
         setSupportActionBar(toolbar);
     }
 

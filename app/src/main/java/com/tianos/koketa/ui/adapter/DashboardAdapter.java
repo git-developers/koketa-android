@@ -72,6 +72,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
                     case Constant.DASH_VISITS:
                         ((DashboardActivity) context).openVisit(v);
                         break;
+                    case Constant.DASH_PENDIENTS:
+                        ((DashboardActivity) context).openPendient(v);
+                        break;
                 }
             }
         });

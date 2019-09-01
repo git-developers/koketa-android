@@ -156,7 +156,7 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.clients_detail);
+        toolbar.setTitle(R.string.client_detail);
         setSupportActionBar(toolbar);
     }
 

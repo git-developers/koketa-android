@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
 import com.tianos.koketa.entity.Route;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.adapter.RouteAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
@@ -44,7 +42,7 @@ public class RouteActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.routes_list);
+        toolbar.setTitle(R.string.route_list);
         setSupportActionBar(toolbar);
     }
 

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="3dp"
+        android:background="@color/danger"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_body"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dim_5"
+            android:layout_marginRight="@dimen/dim_5"
+            android:layout_marginBottom="@dimen/dim_5"
+            android:layout_marginTop="@dimen/dim_5"
+            android:background="@drawable/shape_09"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_body_image"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@drawable/rounded_corner"
+                android:layout_margin="@dimen/dim_5"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/order_74x80" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.9">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:text="@string/dummy" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginBottom="@dimen/dim_10"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:tint="@color/warning"
+                        android:src="@drawable/ic_brightness_1_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dim_5"
+                        android:gravity="center_vertical"
+                        android:text="@string/dummy"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/livvic_bold"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:background="@color/gray_5"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:tint="@color/slider_8"
+                        android:src="@drawable/ic_date_range_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:text="Fecha de registro"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/livvic_regular_italic"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:tint="@color/slider_3"
+                        android:src="@drawable/ic_date_range_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:text="Fecha de envio"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/livvic_regular_italic"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_fecha_registro"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center|center_vertical"
+                        android:text="@string/dummy"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/livvic_regular_italic"/>
+
+                    <TextView
+                        android:id="@+id/tv_fecha_envio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center|center_vertical"
+                        android:text="@string/dummy"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/livvic_regular_italic"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
