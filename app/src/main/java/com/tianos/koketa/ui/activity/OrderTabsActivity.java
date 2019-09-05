@@ -1,5 +1,6 @@
 package com.tianos.koketa.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +8,12 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.adapter.Order.MainAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
+import com.tianos.koketa.util.dialog.DialogFragment;
 
 import butterknife.BindView;
 
@@ -23,6 +26,8 @@ public class OrderTabsActivity extends BaseActivity implements InterfaceKoketa2 
     @BindView(R.id.view_pager_main)
     ViewPager viewPagerMain;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,14 @@ public class OrderTabsActivity extends BaseActivity implements InterfaceKoketa2 
     public void initSetup() {
         super.initSetup();
 
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.setClass(OrderTabsActivity.this, CategoryActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -89,12 +101,13 @@ public class OrderTabsActivity extends BaseActivity implements InterfaceKoketa2 
     @Override
     protected void onStart() {
         super.onStart();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        finish();
     }
 }

@@ -2,12 +2,15 @@ package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Pendient;
-import com.tianos.koketa.ui.adapter.PendientAdapter;
+import com.tianos.koketa.entity.Category;
+import com.tianos.koketa.entity.Client;
+import com.tianos.koketa.ui.adapter.CategoryAdapter;
+import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -15,15 +18,15 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class PendientActivity extends BaseActivity implements InterfaceKoketa2 {
+public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
 
-    @BindView(R.id.rv_rows)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pendient);
+        setContentView(R.layout.activity_category);
 
         initSetup();
         initToolBar();
@@ -35,38 +38,48 @@ public class PendientActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initSetup() {
         super.initSetup();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(PendientActivity.this, RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new GridLayoutManager(CategoryActivity.this, 2));
+        recyclerView.setHasFixedSize(true);
     }
 
     @Override
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.pendient_list);
+        toolbar.setTitle(R.string.category_list);
         setSupportActionBar(toolbar);
     }
 
     @Override
     public void initData() {
 
-        List<Pendient> lst = new ArrayList<Pendient>();
+        List<Category> lst = new ArrayList<Category>();
 
-        Pendient a = new Pendient(1,"4EVER UNIFORMS S.A.C", "Pendiente", "2019-08-27 21:49", "2019-08-31");
+        Category a = new Category(1,"L01", "Calcetines", 56);
         lst.add(a);
 
-        Pendient b = new Pendient(2,"A TUS PIES E.I.R.L", "Pendiente", "2019-08-27 21:49", "2019-08-31");
+        Category b = new Category(2,"L02", "Fajas Latex", 92);
         lst.add(b);
 
-        Pendient c = new Pendient(3,"ABAD CRUZADO, ROSA", "Pendiente", "2019-08-27 21:49", "2019-08-31");
+        Category c = new Category(3,"L03", "Fajas Lin Intel", 60);
         lst.add(c);
 
-        Pendient d = new Pendient(4,"A & E INVERSIONES QUIROZ", "Pendiente", "2019-08-27 21:49", "2019-08-31");
+        Category d = new Category(4,"L04", "Lingerie", 240);
         lst.add(d);
 
-        Pendient e = new Pendient(5,"ASCATE ALAYO, MERCADO PILAR", "Pendiente", "2019-08-27 21:49", "2019-08-31");
+        Category e = new Category(5,"L05", "Ropa de Baño PV19", 32);
         lst.add(e);
 
-        PendientAdapter bodyAdapter = new PendientAdapter(PendientActivity.this, lst);
+        Category f = new Category(5,"L06", "Media Pantalon", 20);
+        lst.add(f);
+
+        Category g = new Category(5,"L07", "SeamLess Maternal", 56);
+        lst.add(g);
+
+        Category h = new Category(5,"L08", "Sport", 62);
+        lst.add(h);
+
+        CategoryAdapter bodyAdapter = new CategoryAdapter(CategoryActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

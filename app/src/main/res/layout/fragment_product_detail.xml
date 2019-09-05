@@ -281,6 +281,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp" />
 
+
+
         <View
             android:id="@+id/divider_6"
             android:layout_margin="8dp"
@@ -290,8 +292,69 @@
             android:background="@color/gray_2" />
 
         <TextView
-            android:id="@+id/textview_8"
+            android:id="@+id/textview_7"
             android:layout_below="@+id/divider_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/livvic_regular_italic"
+            android:text="Texto del producto 1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textview_8"
+            android:layout_below="@+id/textview_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextStyle.Heading"
+            android:text="Producto info"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+
+        <View
+            android:id="@+id/divider_7"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/textview_8"
+            android:background="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/textview_9"
+            android:layout_below="@+id/divider_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/livvic_regular_italic"
+            android:text="Texto del producto 2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textview_10"
+            android:layout_below="@+id/textview_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextStyle.Heading"
+            android:text="Producto info 2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <View
+            android:id="@+id/divider_8"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/textview_10"
+            android:background="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/textview_11"
+            android:layout_below="@+id/divider_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/livvic_regular_italic"
@@ -303,7 +366,7 @@
 
         <Space
             android:id="@+id/space_2"
-            android:layout_below="@+id/textview_8"
+            android:layout_below="@+id/textview_11"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dim_30" />
 

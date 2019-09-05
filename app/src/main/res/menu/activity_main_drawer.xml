@@ -22,14 +22,31 @@
             android:id="@+id/nav_products"
             android:icon="@drawable/ic_view_quilt_black_24dp"
             android:title="@string/menu_products" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_face_black_24dp"
+            android:title="@string/menu_profile" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Comunicar">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/menu_share" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="@string/menu_about" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_headset_mic_black_24dp"
+                android:title="@string/menu_help" />
+        </menu>
+    </item>
+
+    <item android:title="Acción">
+        <menu>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"

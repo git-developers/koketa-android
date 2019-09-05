@@ -35,7 +35,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
     @Override
     public DashboardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_dashboard, parent, false);
+        View view = inflater.inflate(R.layout.row_dashboard, parent, false);
         return new DashboardViewHolder(view);
     }
 
@@ -74,6 +74,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
                         break;
                     case Constant.DASH_PENDIENTS:
                         ((DashboardActivity) context).openPendient(v);
+                        break;
+                    case Constant.DASH_SYNCHRONIZE:
+                        ((DashboardActivity) context).openSynchronize(v);
                         break;
                 }
             }

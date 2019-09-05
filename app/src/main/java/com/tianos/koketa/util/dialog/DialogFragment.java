@@ -25,6 +25,41 @@ import com.tianos.koketa.util.Util;
 public class DialogFragment {
 
 
+    public static void dialogAbout(Context context) {
+
+        Activity activity = (Activity) context;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setCancelable(true);
+
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_about, null);
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+
+        TextView tvVersionCode = (TextView) view.findViewById(R.id.tv_version_code);
+        TextView tvVersionName = (TextView) view.findViewById(R.id.tv_version_name);
+        tvVersionCode.setText("Version code: " + Util.versionCode(activity));
+        tvVersionName.setText("Version name: " + Util.versionName(activity));
+
+        //BUTTONS
+        Button accept = (Button) view.findViewById(R.id.close);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("POLLO", "dialogAbout");
+
+                dialog.cancel();
+                return;
+            }
+        });
+
+        if (!((Activity) context).isFinishing()) {
+            builder.show();
+        }
+    }
+
     public static void dialogPermission(Context context) {
 
         Activity activity = (Activity) context;
@@ -113,8 +148,7 @@ public class DialogFragment {
         final AlertDialog dialog = builder.create();
 
         TextView tvImei = (TextView) view.findViewById(R.id.tv_imei);
-        String imei = Util.getImei(activity);
-        tvImei.setText(imei);
+        tvImei.setText(Util.getImei(activity));
 
 
         //BUTTONS
@@ -169,9 +203,6 @@ public class DialogFragment {
         Activity activity = (Activity) context;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//        builder.setIcon(R.mipmap.ic_launcher);
-//        builder.setTitle(R.string.app_name);
-//        builder.setMessage(Html.fromHtml(message));
         builder.setCancelable(true);
 
         // Get the layout inflater
@@ -192,9 +223,6 @@ public class DialogFragment {
         Activity activity = (Activity) context;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//        builder.setIcon(R.mipmap.ic_launcher);
-//        builder.setTitle(R.string.app_name);
-//        builder.setMessage(Html.fromHtml(message));
         builder.setCancelable(true);
 
         // Get the layout inflater
@@ -223,7 +251,5 @@ public class DialogFragment {
             builder.show();
         }
     }
-
-
 
 }

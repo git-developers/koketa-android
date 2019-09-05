@@ -1,15 +1,21 @@
 package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.adapter.ProductAdapter;
-import com.tianos.koketa.ui.fragment.ProductDetailFragment;
+import com.tianos.koketa.ui.adapter.ProductPendingAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -17,34 +23,36 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ProductActivity extends BaseActivity implements InterfaceKoketa2, ProductDetailFragment.DialogListener {
+public class PendingDetailActivity extends BaseActivity implements InterfaceKoketa2, OnMapReadyCallback {
 
-    @BindView(R.id.rv_rows)
-    RecyclerView recyclerView;
+    @BindView(R.id.rv_rows_products)
+    RecyclerView rvRowsProducts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_pending_detail);
 
         initSetup();
         initToolBar();
         initData();
         navigationDrawer();
+        map();
     }
 
     @Override
     public void initSetup() {
         super.initSetup();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(ProductActivity.this, RecyclerView.VERTICAL,false));
+        rvRowsProducts.setLayoutManager(new LinearLayoutManager(PendingDetailActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.product_list);
+        toolbar.setTitle(R.string.pending_detail);
         setSupportActionBar(toolbar);
     }
 
@@ -68,8 +76,8 @@ public class ProductActivity extends BaseActivity implements InterfaceKoketa2, P
         Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
         lst.add(e);
 
-        ProductAdapter bodyAdapter = new ProductAdapter(ProductActivity.this, lst);
-        recyclerView.setAdapter(bodyAdapter);
+        ProductPendingAdapter bodyAdapter = new ProductPendingAdapter(PendingDetailActivity.this, lst);
+        rvRowsProducts.setAdapter(bodyAdapter);
     }
 
     @Override
@@ -85,15 +93,19 @@ public class ProductActivity extends BaseActivity implements InterfaceKoketa2, P
         finish();
     }
 
-    @Override
-    public void onFinishEditDialog(String inputText) {
-
-        if (TextUtils.isEmpty(inputText)) {
-//            textView.setText("Email was not entered");
-        } else {
-//            textView.setText("Email entered: " + inputText);
-        }
+    private void map() {
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(PendingDetailActivity.this);
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
 
+        GoogleMap mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng latLng = new LatLng(-12.0673161,-77.033729);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Ubicacion del pedido Koketa"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+    }
 }

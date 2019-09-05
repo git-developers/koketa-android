@@ -41,7 +41,6 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         dashboardIcons();
         navigationDrawer();
         imageSlider();
-
     }
 
     @Override
@@ -158,7 +157,12 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
     }
 
     public void openPendient(View view) {
-        Intent i = new Intent(DashboardActivity.this, PendientActivity.class);
+        Intent i = new Intent(DashboardActivity.this, PendingActivity.class);
+        startActivity(i);
+    }
+
+    public void openSynchronize(View view) {
+        Intent i = new Intent(DashboardActivity.this, SynchronizeActivity.class);
         startActivity(i);
     }
 

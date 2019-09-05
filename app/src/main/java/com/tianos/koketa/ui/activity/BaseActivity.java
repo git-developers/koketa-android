@@ -23,6 +23,7 @@ import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Dashboard;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Util;
+import com.tianos.koketa.util.dialog.DialogFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -136,41 +137,45 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+        Intent i = new Intent();
+
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent a = new Intent(BaseActivity.this, DashboardActivity.class);
-                startActivity(a);
-                finish();
-                return true;
+                i.setClass(BaseActivity.this, DashboardActivity.class);
+                break;
             case R.id.nav_routes:
-                Intent b = new Intent(BaseActivity.this, ClientActivity.class);
-                startActivity(b);
-                finish();
-                return true;
+                i.setClass(BaseActivity.this, ClientActivity.class);
+                break;
             case R.id.nav_clients:
-                Intent c = new Intent(BaseActivity.this, ClientActivity.class);
-                startActivity(c);
-                finish();
-                return true;
+                i.setClass(BaseActivity.this, ClientActivity.class);
+                break;
             case R.id.nav_products:
-                Intent v = new Intent(BaseActivity.this, ProductActivity.class);
-                startActivity(v);
-                finish();
-                return true;
+                i.setClass(BaseActivity.this, ProductActivity.class);
+                break;
+            case R.id.nav_profile:
+                i.setClass(BaseActivity.this, ProfileActivity.class);
+                break;
             case R.id.nav_share:
+                Util.showToast(BaseActivity.this, "Share koketa");
+                return true;
+            case R.id.nav_help:
+                Util.showToast(BaseActivity.this, "Help Center");
+                return true;
+            case R.id.nav_about:
+                DialogFragment.dialogAbout(BaseActivity.this);
                 return true;
             case R.id.nav_logout:
-                Intent i = new Intent(BaseActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
-                return true;
+                i.setClass(BaseActivity.this, LoginActivity.class);
+                break;
         }
+
+        startActivity(i);
+        finish();
 
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
-
 
     public String versionName() {
         PackageManager packageManager = BaseActivity.this.getPackageManager();

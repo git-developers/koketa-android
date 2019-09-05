@@ -1,6 +1,7 @@
 package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Pendient;
+import com.tianos.koketa.ui.activity.PendingDetailActivity;
 
 
 import java.util.List;
@@ -20,13 +22,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class PendientAdapter extends RecyclerView.Adapter<PendientAdapter.PendientViewHolder> {
+public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.PendientViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
     private List<Pendient> lst;
 
-    public PendientAdapter(Context context, List<Pendient> lst) {
+    public PendingAdapter(Context context, List<Pendient> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -89,8 +91,8 @@ public class PendientAdapter extends RecyclerView.Adapter<PendientAdapter.Pendie
         @Override
         public void onClick(View v) {
 
-
-
+            Intent i = new Intent(this.context, PendingDetailActivity.class);
+            this.context.startActivity(i);
         }
     }
 }
