@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">koketa</string>
-    <string name="google_maps_key">AIzaSyAu_nw2RE0JIExx0pzILYDpiMqS6dqLRQs</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Enmanuel Studio</string>

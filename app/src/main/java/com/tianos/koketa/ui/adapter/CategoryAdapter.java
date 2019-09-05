@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +45,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         Category o = this.lst.get(position);
 
-        holder.tvName.setText(o.getBusinessName());
+        holder.tvName.setText(o.getName());
+        holder.tvStock.setText(o.getStock());
+        holder.tvCode.setText(o.getCode());
     }
 
     @Override
@@ -57,24 +59,30 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         private Context context;
 
-        @BindView(R.id.ll_body)
-        LinearLayout llBody;
+        @BindView(R.id.rl_body)
+        RelativeLayout rlBody;
 
         @BindView(R.id.tv_name)
         TextView tvName;
+
+        @BindView(R.id.tv_stock)
+        TextView tvStock;
+
+        @BindView(R.id.tv_code)
+        TextView tvCode;
 
         public CategoryViewHolder(View view, Context context) {
             super(view);
             this.context = context;
             ButterKnife.bind(this, view);
 
-            llBody.setOnClickListener(this);
+            rlBody.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
 
-            if (v.getId() == llBody.getId()) {
+            if (v.getId() == rlBody.getId()) {
 
                 Intent i = new Intent(this.context, ClientDetailActivity.class);
                 this.context.startActivity(i);
