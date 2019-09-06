@@ -23,7 +23,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position){
         switch (position){
             case 0:
-                ArticleFragment a = new ArticleFragment();
+                ProductFragment a = new ProductFragment();
                 return a;
             case 1:
                 OrderFragment b = new OrderFragment();

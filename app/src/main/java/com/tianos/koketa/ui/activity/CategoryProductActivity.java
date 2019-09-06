@@ -2,12 +2,14 @@ package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Category;
-import com.tianos.koketa.ui.adapter.CategoryAdapter;
+import com.tianos.koketa.entity.Client;
+import com.tianos.koketa.entity.Product;
+import com.tianos.koketa.ui.adapter.CategoryProductAdapter;
+import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
+public class CategoryProductActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -23,7 +25,7 @@ public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_category_product);
 
         initSetup();
         initToolBar();
@@ -35,48 +37,38 @@ public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
     public void initSetup() {
         super.initSetup();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(CategoryActivity.this, 2));
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(CategoryProductActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
     public void initToolBar() {
         super.initToolBar();
 
-        toolbar.setTitle(R.string.category_list);
+        toolbar.setTitle(R.string.category_product_list);
         setSupportActionBar(toolbar);
     }
 
     @Override
     public void initData() {
 
-        List<Category> lst = new ArrayList<Category>();
+        List<Product> lst = new ArrayList<Product>();
 
-        Category a = new Category(1,"L01", "Calcetines", 56);
+        Product a = new Product(1,"KOKETA B SILUET OI18 CHALECO LATEX L NEGRO", "Koketa", 45, 4.01);
         lst.add(a);
 
-        Category b = new Category(2,"L02", "Fajas Latex", 92);
+        Product b = new Product(2,"KOKETA B SILUET BODY TRE LATEX M MTE BEIGE", "Koketa", 89, 24.66);
         lst.add(b);
 
-        Category c = new Category(3,"L03", "Fajas Lin Intel", 60);
+        Product c = new Product(3,"KOKETA B SILUET CAMISETA TA LATEX L MTE NEGRO", "Koketa", 150, 58.88);
         lst.add(c);
 
-        Category d = new Category(4,"L04", "Lingerie", 240);
+        Product d = new Product(4,"KOKETA B SILUET FAJA COMPLETA LATEX M BEIGE", "Koketa", 78, 5.19);
         lst.add(d);
 
-        Category e = new Category(5,"L05", "Ropa de Baño PV19", 32);
+        Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
         lst.add(e);
 
-        Category f = new Category(6,"L06", "Media Pantalon", 20);
-        lst.add(f);
-
-        Category g = new Category(7,"L07", "SeamLess Maternal", 56);
-        lst.add(g);
-
-        Category h = new Category(8,"L08", "Sport", 62);
-        lst.add(h);
-
-        CategoryAdapter bodyAdapter = new CategoryAdapter(CategoryActivity.this, lst);
+        CategoryProductAdapter bodyAdapter = new CategoryProductAdapter(CategoryProductActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

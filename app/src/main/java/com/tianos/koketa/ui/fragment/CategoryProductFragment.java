@@ -1,8 +1,6 @@
 package com.tianos.koketa.ui.fragment;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.tianos.koketa.R;
 
-public class ProductDetailFragment extends DialogFragment {
+public class CategoryProductFragment extends DialogFragment {
 
     @NonNull
     @Override
@@ -27,10 +25,8 @@ public class ProductDetailFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-//        return inflater.inflate(R.layout.fragment_product_detail, container, false);
-
-        getDialog().setTitle("Detalle del articulo");
-        View v = inflater.inflate(R.layout.fragment_product_detail, container, false);
+        getDialog().setTitle("Agregar articulos");
+        View v = inflater.inflate(R.layout.fragment_category_product, container, false);
 
         return v;
     }

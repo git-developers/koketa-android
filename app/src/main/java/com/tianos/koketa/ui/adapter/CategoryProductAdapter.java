@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
+import com.tianos.koketa.ui.fragment.CategoryProductFragment;
 import com.tianos.koketa.ui.fragment.ProductDetailFragment;
 
 import java.util.List;
@@ -22,13 +23,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ProductViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
     private List<Product> lst;
 
-    public ProductAdapter(Context context, List<Product> lst) {
+    public CategoryProductAdapter(Context context, List<Product> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -37,7 +38,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.row_product, parent, false);
+        View view = inflater.inflate(R.layout.row_category_product, parent, false);
         return new ProductViewHolder(view, context);
     }
 
@@ -90,7 +91,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             if (v.getId() == llBody.getId()) {
 
-                ProductDetailFragment fragment = new ProductDetailFragment();
+                CategoryProductFragment fragment = new CategoryProductFragment();
                 FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
                 fragment.show(ft, "dialog");
             }

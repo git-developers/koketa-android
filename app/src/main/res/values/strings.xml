@@ -43,6 +43,7 @@
     <string name="allow">Permitir</string>
     <string name="client_detail">Detalle del cliente</string>
     <string name="client_list">Lista de clientes</string>
+    <string name="category_product_list">Articulos por categoría</string>
     <string name="category_list">Categorías</string>
     <string name="pending_list">Lista de pendientes</string>
     <string name="pending_detail">Detalle del pedido</string>

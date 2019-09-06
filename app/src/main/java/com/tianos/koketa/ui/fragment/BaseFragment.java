@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.tianos.koketa.R;
@@ -13,6 +14,7 @@ import butterknife.BindView;
 
 public class BaseFragment extends Fragment {
 
+    @Nullable
     @BindView(R.id.ll_main)
     public LinearLayout llMain;
 

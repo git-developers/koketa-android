@@ -22,13 +22,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class TabProductAdapter extends RecyclerView.Adapter<TabProductAdapter.ProductViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
     private List<Product> lst;
 
-    public ProductAdapter(Context context, List<Product> lst) {
+    public TabProductAdapter(Context context, List<Product> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -37,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.row_product, parent, false);
+        View view = inflater.inflate(R.layout.row_tab_product, parent, false);
         return new ProductViewHolder(view, context);
     }
 

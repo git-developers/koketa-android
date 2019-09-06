@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Category;
-import com.tianos.koketa.ui.activity.ClientDetailActivity;
+import com.tianos.koketa.ui.activity.CategoryProductActivity;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category o = this.lst.get(position);
 
         holder.tvName.setText(o.getName());
-        holder.tvStock.setText(o.getStock());
+        holder.tvStock.setText(String.valueOf(o.getStock()) + " stock");
         holder.tvCode.setText(o.getCode());
     }
 
@@ -84,7 +84,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
             if (v.getId() == rlBody.getId()) {
 
-                Intent i = new Intent(this.context, ClientDetailActivity.class);
+                Intent i = new Intent(this.context, CategoryProductActivity.class);
                 this.context.startActivity(i);
             }
 

@@ -32,11 +32,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, NavigationView.OnNavigationItemSelectedListener {
+
+    @Nullable
+    @BindView(R.id.ll_main)
+    public LinearLayout llMain;
 
     @Nullable
     @BindView(R.id.toolbar)
