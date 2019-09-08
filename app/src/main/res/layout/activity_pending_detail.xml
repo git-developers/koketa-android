@@ -2,6 +2,8 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/buttonPanel"
     style="?attr/buttonBarStyle"
     android:layout_width="match_parent"
@@ -9,13 +11,7 @@
     android:fillViewport="true"
     android:scrollIndicators="top|bottom">
 
-
-
-
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -646,7 +642,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/divider_31"
-                    tools:context=".MapsActivity" />
+                    tools:context=".ui.activity.PendingDetailActivity" />
 
             </RelativeLayout>
 
@@ -656,7 +652,6 @@
 
 
     </RelativeLayout>
-
 
 </ScrollView>
 

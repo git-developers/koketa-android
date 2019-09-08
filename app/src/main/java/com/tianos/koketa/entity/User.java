@@ -1,16 +1,23 @@
 package com.tianos.koketa.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 
-public class Client extends RealmObject {
+public class User extends RealmObject {
 
+    @SerializedName("id")
     private Integer id;
     private String dni;
     private String ruc;
     private String code;
     private String username;
     private Integer userCode;
-    private String name;
+
+
+    @SerializedName("name")
+    public String name;
+
     private String email;
     private String phone;
     private String comment;
@@ -19,11 +26,11 @@ public class Client extends RealmObject {
     private String paymentCondition;
     private String businessName;
 
-    public Client() {
+    public User() {
 
     }
 
-    public Client(Integer id, String businessName, String ruc, String email) {
+    public User(Integer id, String businessName, String ruc, String email) {
         this.id = id;
         this.businessName = businessName;
         this.ruc = ruc;

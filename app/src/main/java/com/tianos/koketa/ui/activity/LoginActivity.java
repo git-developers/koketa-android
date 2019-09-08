@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -23,17 +25,25 @@ import androidx.core.content.ContextCompat;
 
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.ResponseWeb;
+import com.tianos.koketa.entity.User;
+import com.tianos.koketa.retrofit.APIClient;
+import com.tianos.koketa.retrofit.APIInterface;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity implements InterfaceKoketa {
@@ -121,82 +131,38 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
         btnLogin.setEnabled(false);
         Util.progressDialogShow(LoginActivity.this, getString(R.string.validating));
 
-        JSONObject json = new JSONObject();
+//        JSONObject json = new JSONObject();
+//
+//        try {
+//            json.put(Constant.JSON_USERNAME, edtCodigoLogin.getText().toString());
+//            json.put(Constant.JSON_PASSWORD, edtPassLogin.getText().toString());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
-        /**
-         * PREFERENCES SET LOGGED
-         */
-        PreferencesManager.getInstance(LoginActivity.this).setLogged();
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
-
-        /**
-         * REDIRECT
-         */
-        Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
-        finish();
-
-
-
-        /*
-        json.addProperty(Constant.JSON_USER_CODE, edtCodigoLogin.getText().toString());
-        json.addProperty(Constant.JSON_PASSWORD, edtPassLogin.getText().toString());
-        json.addProperty(Constant.JSON_ID, Util.getUniqueID(LoginActivity.this));
-
-        IntralotApplication.getInstance().getServices().login(json).
-        enqueue(new CustomCallback<ResponseWeb>(LoginActivity.this){
+        User user = new User(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
+        apiInterface.logIn(user).enqueue(new Callback<ResponseWeb>() {
             @Override
             public void onResponse(Call<ResponseWeb> call, Response<ResponseWeb> response) {
-                super.onResponse(call, response);
-
-                btnLogin.setEnabled(true);
-                Util.progressDialogHide();
                 ResponseWeb responseWeb = response.body();
 
-                if (response.code() != 200 || !responseWeb.getStatus()) {
-                    Util.showSnackbar(LoginActivity.this, getString(R.string.no_data_5));
-                    return;
-                }
+                Log.d("POLLO", "DATAdddd::::: " + responseWeb.getMessage());
 
-                Login login = responseWeb.getLogin();
-
-                if (login.getEstado().equalsIgnoreCase(Constant.ERROR)) {
-                    Util.showDialog(
-                        LoginActivity.this,
-                        login.getMensaje(),
-                        getString(R.string.close),
-                        null);
-                    return;
-                }
-
-                Client user = new Client(
-                    login.getSession(),
-                    edtCodigoLogin.getText().toString(),
-                    login.getNombre(),
-                    login.getNivel(),
-                    login.getOrigen(),
-                    login.getMensaje()
-                );
-
-                PreferencesManager.getInstance(LoginActivity.this).realmSetUser(user);
-                PreferencesManager.getInstance(LoginActivity.this).setLoggedToken();
-
-                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-                finish();
+                Util.progressDialogHide();
+                btnLogin.setEnabled(true);
             }
 
             @Override
             public void onFailure(Call<ResponseWeb> call, Throwable t) {
-                super.onFailure(call, t);
+                call.cancel();
                 btnLogin.setEnabled(true);
                 Util.progressDialogHide();
+                Util.showSnackbar(LoginActivity.this, getString(R.string.error));
             }
         });
-        */
     }
 
     public void logOut() {

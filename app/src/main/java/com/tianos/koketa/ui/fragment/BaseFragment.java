@@ -18,6 +18,7 @@ public class BaseFragment extends Fragment {
     @BindView(R.id.ll_main)
     public LinearLayout llMain;
 
+    @Nullable
     @BindView(R.id.layout_no_data)
     public RelativeLayout layoutNoData;
 

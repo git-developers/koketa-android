@@ -37,6 +37,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
+    <string name="error">Ups! Volver a intentar</string>
     <string name="summary">Resumen</string>
     <string name="article">Articulo</string>
     <string name="close">Cerrar</string>
@@ -60,5 +61,14 @@
     <string name="order">Pedido</string>
     <string name="forgot_password_3">Olvidé mi contraseña</string>
     <string name="get_imei">¿Quieres saber el Imei de tu equipo?</string>
+
+    <string-array name="array_payment">
+        <item>Letra 30, 45, 60 días</item>
+        <item>Letras 30 días</item>
+        <item>Contado</item>
+        <item>Previo deposito (3% Dscto)</item>
+        <item>Letra 30, 40, 50, 60 días</item>
+        <item>Letra 30, 60 días</item>
+    </string-array>
 
 </resources>

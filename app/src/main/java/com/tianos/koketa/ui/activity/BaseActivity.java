@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Dashboard;
+import com.tianos.koketa.retrofit.APIClient;
+import com.tianos.koketa.retrofit.APIInterface;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
@@ -51,6 +53,7 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @BindView(R.id.drawer_layout)
     public DrawerLayout drawer;
 
+    public APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,8 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @Override
     public void initSetup() {
         ButterKnife.bind(this);
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
     @Override

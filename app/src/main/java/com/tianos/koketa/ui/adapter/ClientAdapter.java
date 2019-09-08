@@ -14,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.activity.ClientDetail2Activity;
+import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.activity.ClientDetailActivity;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
@@ -29,9 +28,9 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     private Context context;
     private LayoutInflater inflater;
-    private List<Client> lst;
+    private List<User> lst;
 
-    public ClientAdapter(Context context, List<Client> lst) {
+    public ClientAdapter(Context context, List<User> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -47,7 +46,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        Client o = this.lst.get(position);
+        User o = this.lst.get(position);
 
         holder.tvBusinessName.setText(o.getBusinessName());
         holder.tvRuc.setText(o.getRuc());

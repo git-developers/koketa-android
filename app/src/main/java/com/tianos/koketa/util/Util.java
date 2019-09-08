@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Html;
@@ -15,6 +16,7 @@ import android.app.AlertDialog.Builder;
 import androidx.core.app.ActivityCompat;
 import android.content.DialogInterface;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.tianos.koketa.R;
 import com.tianos.koketa.ui.activity.BaseActivity;
 
@@ -29,6 +31,31 @@ public class Util {
         progressRetrofit.setCancelable(false);
         progressRetrofit.setMessage(substring);
         progressRetrofit.show();
+    }
+
+    public final static void progressDialogHide() {
+        progressRetrofit.dismiss();
+    }
+
+    public static void showSnackbar(Context context, String text) {
+
+        View parentLayout = ((Activity) context).findViewById(android.R.id.content);
+
+        Snackbar snackbar = Snackbar.make(parentLayout, text, Snackbar.LENGTH_LONG);
+
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+
+        snackbar.setAction(R.string.close, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            })
+            .setActionTextColor(context.getResources().getColor(R.color.colorPrimaryDark))
+        ;
+
+        snackbar.show();
     }
 
     public static String getImei(Activity activity) {

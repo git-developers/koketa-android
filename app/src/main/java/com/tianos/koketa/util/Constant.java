@@ -14,4 +14,6 @@ public class Constant {
     public static final int DASH_PENDING_STATUS = 7;
     public static final int DASH_PROFILE = 8;
 
+    public static final String JSON_USERNAME = "username";
+    public static final String JSON_PASSWORD = "password";
 }

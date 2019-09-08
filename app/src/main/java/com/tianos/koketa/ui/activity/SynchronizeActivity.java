@@ -2,18 +2,8 @@ package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
 
 public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa2 {
 

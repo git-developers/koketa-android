@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
+import com.tianos.koketa.entity.User;
+
 import io.realm.Realm;
 
 public class PreferencesManager {
@@ -50,5 +52,51 @@ public class PreferencesManager {
         editor.putString(PREFERENCE_LOGGED, null);
         editor.commit();
     }
+
+
+
+
+
+    /**
+     * Preference User - START
+     *
+     * @param object
+     */
+    public void realmSetUser(final User object) {
+//        Realm realm = IntralotApplication.getInstance().getRealm();
+//        realm.executeTransaction(new Realm.Transaction() {
+//            @Override
+//            public void execute(Realm realm) {
+//                realm.copyToRealm(object);
+//            }
+//        });
+    }
+
+    public User realmGetUser() {
+//        Realm realm = IntralotApplication.getInstance().getRealm();
+//        return realm.where(User.class).findFirst();
+
+        return new User();
+    }
+
+    public void realmDeleteUser() {
+//        Realm realm = IntralotApplication.getInstance().getRealm();
+//        final User response = realm.where(User.class).findFirst();
+//        realm.executeTransaction(new Realm.Transaction() {
+//            @Override
+//            public void execute(Realm realm) {
+//
+//                if (response == null) {
+//                    return;
+//                }
+//
+//                response.deleteFromRealm();
+//            }
+//        });
+    }
+    /**
+     * Preference User - END
+     *
+     */
 
 }

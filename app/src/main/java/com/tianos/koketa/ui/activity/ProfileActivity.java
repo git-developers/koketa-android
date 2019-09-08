@@ -50,7 +50,7 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-//    private Client user;
+//    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,53 +1,491 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonPanel"
+    style="?attr/buttonBarStyle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activity.OrderTabsActivity">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollIndicators="top|bottom">
 
-    <include
-        android:visibility="gone"
-        layout="@layout/layout_no_data" />
-
-    <LinearLayout
-        android:id="@+id/ll_main"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dim_10"
-        android:layout_marginLeft="@dimen/dim_10"
-        android:layout_marginRight="@dimen/dim_10"
-        android:layout_marginBottom="@dimen/dim_10">
+        android:layout_height="match_parent">
 
-        <!--<include-->
-        <!--layout="@layout/layout_wizard" />-->
 
-        <LinearLayout
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_02"
-            android:layout_marginBottom="@dimen/dim_15"
-            android:orientation="horizontal">
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            android:layout_margin="8dp">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_android_black_24dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_ayuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pedido"/>
+                <LinearLayout
+                    android:id="@+id/ll_header_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="1"
+                    android:background="@color/gray_5"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:tint="@color/slider_4" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:fontFamily="@font/livvic_bold"
+                        android:gravity="center_vertical"
+                        android:text="DATOS GENERALES"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
 
 
-    </LinearLayout>
+                <View
+                    android:id="@+id/divider_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/ll_header_1"
+                    android:layout_marginBottom="@dimen/dim_10"
+                    android:background="@color/gray_2" />
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/textview_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_11"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Cliente"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_12"
+                    android:layout_below="@+id/textview_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="4EVER UNIFORMS S.A.C"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+
+                <View
+                    android:id="@+id/divider_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_12"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_12"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Ruc"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_14"
+                    android:layout_below="@+id/textview_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="20537704528"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_14"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_13"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Email"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_16"
+                    android:layout_below="@+id/textview_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="test-client@gmail.com"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_16"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_14"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Teléfono"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_18"
+                    android:layout_below="@+id/textview_17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="999.888.777"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_18"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_15"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Dirección"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_110"
+                    android:layout_below="@+id/textview_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="Ave. La Molina Nro 123, La Molina, Lima, PE."
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_110"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_111"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_16"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Comentario"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_112"
+                    android:layout_below="@+id/textview_111"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="test test test"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <Space
+            android:id="@+id/space_1"
+            android:layout_below="@+id/card_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_30" />
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_2"
+            android:layout_below="@+id/space_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_header_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="1"
+                    android:background="@color/gray_5"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:tint="@color/slider_4" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:fontFamily="@font/livvic_bold"
+                        android:gravity="center_vertical"
+                        android:text="DATOS ADMINISTRATIVOS"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/divider_21"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/ll_header_2"
+                    android:layout_marginBottom="@dimen/dim_10"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_21"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Linea de crédito"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_22"
+                    android:layout_below="@+id/textview_21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="SOL 234.00"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_22"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_22"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_22"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Saldo"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_24"
+                    android:layout_below="@+id/textview_23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="SOL 0.00"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <View
+                    android:id="@+id/divider_23"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="8dp"
+                    android:layout_below="@+id/textview_24"
+                    android:background="@color/gray_2" />
+
+                <TextView
+                    android:id="@+id/textview_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_23"
+                    android:fontFamily="@font/livvic_regular_italic"
+                    android:layout_marginLeft="15dp"
+                    android:text="Condición de pago"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textview_26"
+                    android:layout_below="@+id/textview_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:text="Contado"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <Space
+            android:id="@+id/space_2"
+            android:layout_below="@+id/card_view_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_30" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_3"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@+id/space_2"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="4dp"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_header_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="1"
+                    android:background="@color/gray_5"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:src="@drawable/ic_explore_black_24dp"
+                        android:tint="@color/slider_4" />
+
+                    <TextView
+                        android:id="@+id/dfss"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:fontFamily="@font/livvic_bold"
+                        android:gravity="center_vertical"
+                        android:text="UBICACIÓN DEL PEDIDO"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/divider_31"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/ll_header_3"
+                    android:background="@color/gray_2" />
+
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:map="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    map:cameraZoom="14"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/divider_31"
+                    tools:context=".ui.activity.OrderTabsActivity" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

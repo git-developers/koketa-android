@@ -28,7 +28,7 @@
             android:layout_marginRight="@dimen/dim_5"
             android:layout_marginBottom="@dimen/dim_5"
             android:layout_marginTop="@dimen/dim_5"
-            android:background="@drawable/shape_06"
+            android:background="@drawable/shape_05"
             android:weightSum="1"
             android:orientation="horizontal">
 

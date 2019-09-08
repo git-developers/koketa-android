@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Client;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.adapter.CategoryProductAdapter;
-import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
