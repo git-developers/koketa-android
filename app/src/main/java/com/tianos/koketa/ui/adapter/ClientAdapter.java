@@ -3,9 +3,12 @@ package com.tianos.koketa.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,21 +21,24 @@ import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.activity.ClientDetailActivity;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder> {
+public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder> implements Filterable {
 
     private Context context;
     private LayoutInflater inflater;
-    private List<User> lst;
+    final private List<User> lst;
+    private List<User> contactListFiltered;
 
     public ClientAdapter(Context context, List<User> lst) {
         this.context = context;
         this.lst = lst;
+        this.contactListFiltered = lst;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -46,7 +52,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        User o = this.lst.get(position);
+        User o = this.contactListFiltered.get(position);
 
         holder.tvBusinessName.setText(o.getBusinessName());
         holder.tvRuc.setText(o.getRuc());
@@ -55,7 +61,46 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     @Override
     public int getItemCount() {
-        return (this.lst != null) ? this.lst.size() : 0;
+        return (this.contactListFiltered != null) ? this.contactListFiltered.size() : 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    contactListFiltered = lst;
+                } else {
+
+                    List<User> filteredList = new ArrayList<>();
+
+                    for (User row : lst) {
+                        if (row.getBusinessName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    contactListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = contactListFiltered;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                contactListFiltered = (ArrayList<User>) filterResults.values;
+
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

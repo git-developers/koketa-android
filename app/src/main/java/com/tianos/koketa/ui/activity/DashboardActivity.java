@@ -3,6 +3,8 @@ package com.tianos.koketa.ui.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -177,6 +179,16 @@ public class DashboardActivity extends BaseActivity implements InterfaceKoketa {
         super.onDestroy();
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.action_cut);
+        menuItem.setVisible(true);
+
+        return true;
     }
 
     private void imageSlider() {

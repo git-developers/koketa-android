@@ -153,6 +153,21 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
 
                 Util.progressDialogHide();
                 btnLogin.setEnabled(true);
+
+
+                /**
+                 * PREFERENCES SET LOGGED
+                 */
+                PreferencesManager.getInstance(LoginActivity.this).setLogged();
+
+
+                /**
+                 * REDIRECT
+                 */
+                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                finish();
             }
 
             @Override

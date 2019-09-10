@@ -1,6 +1,9 @@
 package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
+import android.view.Menu;
+
+import androidx.appcompat.widget.SearchView;
 
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +23,8 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    private ClientAdapter bodyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         User e = new User(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
         lst.add(e);
 
-        ClientAdapter bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
+        bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 
@@ -83,5 +88,30 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         finish();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        SearchView searchView = super.searchViewConfig(menu);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                bodyAdapter.getFilter().filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                bodyAdapter.getFilter().filter(query);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
 
 }

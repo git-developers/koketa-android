@@ -38,10 +38,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ClientActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.PendingActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
@@ -61,6 +57,14 @@
             android:name=".ui.activity.VisitActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ClientActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".ui.activity.ClientDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"

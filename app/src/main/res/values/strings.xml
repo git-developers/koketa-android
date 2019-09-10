@@ -37,6 +37,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
+    <string name="search">Buscar</string>
     <string name="error">Ups! Volver a intentar</string>
     <string name="summary">Resumen</string>
     <string name="article">Articulo</string>

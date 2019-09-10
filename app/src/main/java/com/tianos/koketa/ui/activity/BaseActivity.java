@@ -1,7 +1,10 @@
 package com.tianos.koketa.ui.activity;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.view.View;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -31,8 +35,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -112,7 +118,33 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
+    }
+
+    protected SearchView searchViewConfig(Menu menu) {
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        menuItem.setVisible(true);
+
+        SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("Buscar...");
+        searchView.setSoundEffectsEnabled(true);
+//        searchView.setBackgroundColor(this.getResources().getColor(R.color.colorAccent));
+
+        EditText searchEditText = searchView.findViewById(R.id.search_src_text);
+        searchEditText.setTextColor(Color.WHITE);
+        searchEditText.setTextSize(16);
+        searchEditText.setHintTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
+
+        Drawable d = getResources().getDrawable(R.drawable.search_widget_background);
+        searchView.setBackground(d);
+
+        return searchView;
     }
 
     @Override
