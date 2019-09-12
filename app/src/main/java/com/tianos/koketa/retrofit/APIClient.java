@@ -1,5 +1,8 @@
 package com.tianos.koketa.retrofit;
 
+import android.util.Log;
+
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.tianos.koketa.BuildConfig;
 
 import java.security.cert.CertificateException;
@@ -24,8 +27,14 @@ public class APIClient {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        OkHttpClient client = getUnsafeOkHttpClient();
+        OkHttpClient client = new OkHttpClient.Builder()
+                                    .addNetworkInterceptor(new StethoInterceptor())
+                                    .addInterceptor(interceptor)
+                                    .build();
+//        OkHttpClient client = getUnsafeOkHttpClient();
+
+
+        Log.d("GATO", "API:::: " + BuildConfig.BASE_URL);
 
         retrofit = new Retrofit.Builder()
 //            .baseUrl("https://www.mocky.io/v2/")
@@ -37,8 +46,6 @@ public class APIClient {
 
         return retrofit;
     }
-
-
 
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {

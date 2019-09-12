@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        User user = new User(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
+        User user = new User("5d79860d17d6a", "123");
         apiInterface.logIn(user).enqueue(new Callback<ResponseWeb>() {
             @Override
             public void onResponse(Call<ResponseWeb> call, Response<ResponseWeb> response) {

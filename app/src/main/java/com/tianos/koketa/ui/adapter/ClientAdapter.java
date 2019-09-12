@@ -54,7 +54,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
         User o = this.lstFiltered.get(position);
 
-        holder.tvBusinessName.setText(o.getBusinessName());
+        holder.tvBusinessName.setText(o.getName());
         holder.tvRuc.setText(o.getRuc());
         holder.tvEmail.setText(o.getEmail());
     }
@@ -77,7 +77,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                     List<User> filteredList = new ArrayList<>();
 
                     for (User row : lst) {
-                        if (Util.charContains(row.getBusinessName(), charSequence)) {
+                        if (Util.charContains(row.getName(), charSequence)) {
                             filteredList.add(row);
                         }
                     }

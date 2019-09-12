@@ -8,33 +8,41 @@ public class User extends RealmObject {
 
     @SerializedName("id")
     private Integer id;
-    private String dni;
-    private String ruc;
-    private String code;
-    private String username;
-    private Integer userCode;
-
 
     @SerializedName("name")
     public String name;
 
+    @SerializedName("username")
+    private String username;
+
+    @SerializedName("password")
+    private String password;
+
+
+    private String dni;
+    private String ruc;
+    private String code;
     private String email;
     private String phone;
     private String comment;
     private float creditLine;
     private float balance;
     private String paymentCondition;
-    private String businessName;
 
     public User() {
 
     }
 
-    public User(Integer id, String businessName, String ruc, String email) {
+    public User(Integer id, String name, String ruc, String email) {
         this.id = id;
-        this.businessName = businessName;
+        this.name = name;
         this.ruc = ruc;
         this.email = email;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -43,6 +51,30 @@ public class User extends RealmObject {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDni() {
@@ -67,30 +99,6 @@ public class User extends RealmObject {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Integer getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(Integer userCode) {
-        this.userCode = userCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
@@ -139,13 +147,5 @@ public class User extends RealmObject {
 
     public void setPaymentCondition(String paymentCondition) {
         this.paymentCondition = paymentCondition;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
     }
 }
