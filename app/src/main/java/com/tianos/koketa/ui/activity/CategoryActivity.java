@@ -1,7 +1,9 @@
 package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
+import android.view.Menu;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,8 @@ public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    private CategoryAdapter bodyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
         Category h = new Category(8,"L08", "Sport", 62);
         lst.add(h);
 
-        CategoryAdapter bodyAdapter = new CategoryAdapter(CategoryActivity.this, lst);
+        bodyAdapter = new CategoryAdapter(CategoryActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 
@@ -93,4 +97,27 @@ public class CategoryActivity extends BaseActivity implements InterfaceKoketa2 {
         finish();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        SearchView searchView = super.searchViewConfig(menu);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                bodyAdapter.getFilter().filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                bodyAdapter.getFilter().filter(query);
+                return false;
+            }
+        });
+
+        return true;
+    }
 }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.BreadcrumbDb;
+import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
@@ -25,6 +27,7 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     RecyclerView recyclerView;
 
     private ClientAdapter bodyAdapter;
+    private BreadcrumbDb breadcrumbDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,12 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         initToolBar();
         initData();
         navigationDrawer();
+
+
+        breadcrumbDb = new BreadcrumbDb(ClientActivity.this);
+        Breadcrumb breadcrumb = new Breadcrumb(5, "GATAZO");
+        breadcrumbDb.insert(breadcrumb);
+
     }
 
     @Override

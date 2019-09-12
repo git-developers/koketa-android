@@ -3,7 +3,6 @@ package com.tianos.koketa.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.activity.ClientDetailActivity;
+import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
 import java.util.ArrayList;
@@ -32,13 +32,13 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     private Context context;
     private LayoutInflater inflater;
-    final private List<User> lst;
-    private List<User> contactListFiltered;
+    private List<User> lst;
+    private List<User> lstFiltered;
 
     public ClientAdapter(Context context, List<User> lst) {
         this.context = context;
         this.lst = lst;
-        this.contactListFiltered = lst;
+        this.lstFiltered = lst;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -52,7 +52,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     public void onBindViewHolder(ClientAdapter.ClientViewHolder holder, int position) {
 
-        User o = this.contactListFiltered.get(position);
+        User o = this.lstFiltered.get(position);
 
         holder.tvBusinessName.setText(o.getBusinessName());
         holder.tvRuc.setText(o.getRuc());
@@ -61,7 +61,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     @Override
     public int getItemCount() {
-        return (this.contactListFiltered != null) ? this.contactListFiltered.size() : 0;
+        return (this.lstFiltered != null) ? this.lstFiltered.size() : 0;
     }
 
     @Override
@@ -70,25 +70,23 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
 
-                String charString = charSequence.toString();
-
-                if (charString.isEmpty()) {
-                    contactListFiltered = lst;
+                if (Util.charIsEmpty(charSequence)) {
+                    lstFiltered = lst;
                 } else {
 
                     List<User> filteredList = new ArrayList<>();
 
                     for (User row : lst) {
-                        if (row.getBusinessName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (Util.charContains(row.getBusinessName(), charSequence)) {
                             filteredList.add(row);
                         }
                     }
 
-                    contactListFiltered = filteredList;
+                    lstFiltered = filteredList;
                 }
 
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = contactListFiltered;
+                filterResults.values = lstFiltered;
 
                 return filterResults;
             }
@@ -96,9 +94,13 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-                contactListFiltered = (ArrayList<User>) filterResults.values;
+                lstFiltered = (ArrayList<User>) filterResults.values;
 
                 notifyDataSetChanged();
+
+                if (lstFiltered.size() == 0) {
+                    Util.showToast(context, "No se encontraron resultados.");
+                }
             }
         };
     }

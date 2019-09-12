@@ -1,5 +1,7 @@
 package com.tianos.koketa.retrofit;
 
+import com.tianos.koketa.BuildConfig;
+
 import java.security.cert.CertificateException;
 
 import javax.net.ssl.HostnameVerifier;
@@ -26,7 +28,8 @@ public class APIClient {
         OkHttpClient client = getUnsafeOkHttpClient();
 
         retrofit = new Retrofit.Builder()
-            .baseUrl("https://www.mocky.io/v2/")
+//            .baseUrl("https://www.mocky.io/v2/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

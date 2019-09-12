@@ -3,6 +3,7 @@ package com.tianos.koketa;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 
@@ -33,12 +34,15 @@ public class KoketaApplication extends Application {
         super.onLowMemory();
     }
 
-    public void initializeStetho() {
+    private void initializeStetho() {
+
+        Log.d("GATO", "initializeStetho DEV");
+
         Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build()
+            Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build()
         );
     }
 }

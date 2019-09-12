@@ -139,4 +139,11 @@ public class Util {
         return out;
     }
 
+    public static boolean charContains(String string, CharSequence charSequence) {
+        return string.toLowerCase().contains(charSequence.toString().toLowerCase());
+    }
+
+    public static boolean charIsEmpty(CharSequence charSequence) {
+        return charSequence.toString().isEmpty();
+    }
 }

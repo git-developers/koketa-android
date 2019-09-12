@@ -3,6 +3,14 @@ apply plugin: 'realm-android'
 //apply plugin: 'com.jakewharton.butterknife'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/pollo/Documents/JAFETH/PROJECTS/KEY-STORE/jafeth-key.jks')
+            storePassword 'jafeth-key'
+            keyAlias = 'jafeth-key'
+            keyPassword 'jafeth-key'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
@@ -18,6 +26,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
         debug {
             minifyEnabled true
@@ -29,13 +38,13 @@ android {
         def baseUrl
 
         development {
-            baseUrl = "http://xxxx:8080/cccc/ws/"
+            baseUrl = "http://grupocazaperu.com/koketa/web/api/v1/"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"$baseUrl\""
         }
 
         production {
-            baseUrl = "http://xxxx:8080/cccc/ws/"
+            baseUrl = "http://grupocazaperu.com/koketa/web/api/v1/"
             buildConfigField "String", "BASE_URL", "\"$baseUrl\""
         }
     }
