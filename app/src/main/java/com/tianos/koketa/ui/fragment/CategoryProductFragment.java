@@ -39,8 +39,8 @@ public class CategoryProductFragment extends DialogFragment {
         /*
         final EditText editText = view.findViewById(R.id.inEmail);
 
-        if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
-            editText.setText(getArguments().getString("email"));
+        if (getArguments() != null && !TextUtils.isEmpty(getArguments().getEtString("email")))
+            editText.setText(getArguments().getEtString("email"));
 
         Button btnDone = view.findViewById(R.id.btnDone);
         btnDone.setOnClickListener(new View.OnClickListener() {

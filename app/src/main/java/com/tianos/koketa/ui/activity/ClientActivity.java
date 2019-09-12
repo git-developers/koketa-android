@@ -38,12 +38,6 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
         initToolBar();
         initData();
         navigationDrawer();
-
-
-        breadcrumbDb = new BreadcrumbDb(ClientActivity.this);
-        Breadcrumb breadcrumb = new Breadcrumb(5, "GATAZO");
-        breadcrumbDb.insert(breadcrumb);
-
     }
 
     @Override

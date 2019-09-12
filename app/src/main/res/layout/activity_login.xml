@@ -46,7 +46,7 @@
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_codigo_login"
+                    android:id="@+id/edt_username_login"
                     style="@style/TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_pass_login"
+                    android:id="@+id/edt_password_login"
                     style="@style/TextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

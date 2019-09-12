@@ -27,7 +27,7 @@ public class BreadcrumbDb {
 
     public Breadcrumb findLast() {
 
-        Breadcrumb breadcrumb = new Breadcrumb();
+        Breadcrumb object = new Breadcrumb();
 
         Cursor cursor = db.query(
             Breadcrumb.TABLE_NAME,
@@ -40,13 +40,13 @@ public class BreadcrumbDb {
             new String[]{}, null, null, Breadcrumb.COLUMN_ID + " DESC", "1");
 
         if (cursor == null || cursor.getCount() <= 0) {
-            return breadcrumb;
+            return object;
         }
 
         cursor.moveToFirst();
 
         // prepare object
-        breadcrumb = new Breadcrumb(
+        object = new Breadcrumb(
             cursor.getInt(cursor.getColumnIndex(Breadcrumb.COLUMN_ID)),
             cursor.getString(cursor.getColumnIndex(Breadcrumb.COLUMN_USERNAME))
         );
@@ -54,7 +54,7 @@ public class BreadcrumbDb {
         // close the db connection
         cursor.close();
 
-        return breadcrumb;
+        return object;
     }
 
     public void delete() {

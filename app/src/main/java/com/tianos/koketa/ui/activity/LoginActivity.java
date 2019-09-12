@@ -4,18 +4,11 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -25,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
@@ -34,9 +28,6 @@ import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,13 +42,11 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
     @BindView(R.id.btn_login)
     Button btnLogin;
 
-    @BindView(R.id.edt_codigo_login)
-    EditText edtCodigoLogin;
+    @BindView(R.id.edt_username_login)
+    EditText edtUsernameLogin;
 
-    @BindView(R.id.edt_pass_login)
-    EditText edtPassLogin;
-
-    private String userCode;
+    @BindView(R.id.edt_password_login)
+    EditText edtPasswordLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +56,6 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
         initSetup();
         initToolBar();
         logOut();
-
     }
 
     @Override
@@ -108,66 +96,68 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
         DialogFragment.dialogLicense(LoginActivity.this);
     }
 
-    /*
-    @OnClick(R.id.txt_olvide_contra_login)
-    public void forgotPass(){
-        Intent i = new Intent(this, PasswordForgotActivity.class);
-        startActivity(i);
-    }
-    */
-
     public void login() {
 
-        if (edtCodigoLogin.getText().toString().isEmpty()) {
-            edtCodigoLogin.setError(getString(R.string.empty_code));
+        if (Util.isEmpty(edtUsernameLogin)) {
+            edtUsernameLogin.setError(getString(R.string.empty_code));
             return;
         }
 
-        if (edtPassLogin.getText().toString().isEmpty()) {
-            edtPassLogin.setError(getString(R.string.empty_password));
+        if (Util.isEmpty(edtPasswordLogin)) {
+            edtPasswordLogin.setError(getString(R.string.empty_password));
             return;
         }
 
         btnLogin.setEnabled(false);
         Util.progressDialogShow(LoginActivity.this, getString(R.string.validating));
 
-//        JSONObject json = new JSONObject();
-//
-//        try {
-//            json.put(Constant.JSON_USERNAME, edtCodigoLogin.getText().toString());
-//            json.put(Constant.JSON_PASSWORD, edtPassLogin.getText().toString());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
+        User user = new User(Util.getEtString(edtUsernameLogin), Util.getEtString(edtPasswordLogin));
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        User user = new User("5d79860d17d6a", "123");
         apiInterface.logIn(user).enqueue(new Callback<ResponseWeb>() {
             @Override
             public void onResponse(Call<ResponseWeb> call, Response<ResponseWeb> response) {
-                ResponseWeb responseWeb = response.body();
 
-                Log.d("POLLO", "DATAdddd::::: " + responseWeb.getMessage());
+                try {
 
-                Util.progressDialogHide();
-                btnLogin.setEnabled(true);
+                    ResponseWeb responseWeb = response.body();
+
+                    Util.progressDialogHide();
+                    btnLogin.setEnabled(true);
+
+                    if (response.code() != 200) {
+                        throw new Exception(getString(R.string.error));
+                    }
+
+                    if (!responseWeb.getStatus()) {
+                        throw new Exception(responseWeb.getMessage());
+                    }
+
+                    /**
+                     * USER SAVE
+                     */
+                    UserDb userDb = new UserDb(LoginActivity.this);
+                    userDb.insert(responseWeb.getUser());
 
 
-                /**
-                 * PREFERENCES SET LOGGED
-                 */
-                PreferencesManager.getInstance(LoginActivity.this).setLogged();
+                    /**
+                     * PREFERENCES SET LOGGED
+                     */
+                    PreferencesManager.getInstance(LoginActivity.this).setLogged();
 
 
-                /**
-                 * REDIRECT
-                 */
-                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-                finish();
+                    /**
+                     * REDIRECT
+                     */
+                    Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                    finish();
+
+                } catch (Exception e) {
+                    Util.showSnackbar(LoginActivity.this, e.getMessage());
+                    return;
+                }
             }
 
             @Override

@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.app.AlertDialog.Builder;
 import androidx.core.app.ActivityCompat;
@@ -18,7 +19,10 @@ import android.content.DialogInterface;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.ui.activity.BaseActivity;
+
+import retrofit2.Response;
 
 public class Util {
 
@@ -146,4 +150,23 @@ public class Util {
     public static boolean charIsEmpty(CharSequence charSequence) {
         return charSequence.toString().isEmpty();
     }
+
+    public final static String getEtString(EditText editText) {
+
+        if (editText == null) {
+            return new String();
+        }
+
+        return editText.getText().toString();
+    }
+
+    public final static boolean isEmpty(EditText editText) {
+
+        if (editText == null) {
+            return false;
+        }
+
+        return editText.getText().toString().isEmpty();
+    }
+
 }

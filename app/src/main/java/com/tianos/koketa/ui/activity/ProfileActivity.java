@@ -120,8 +120,8 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
 
             Util.showDialog(
             ProfileActivity.this,
-                    getString(R.string.no_data_3),
-                    getString(R.string.close),
+                    getEtString(R.string.no_data_3),
+                    getEtString(R.string.close),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
