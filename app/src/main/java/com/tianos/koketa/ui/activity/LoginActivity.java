@@ -18,7 +18,11 @@ import androidx.core.content.ContextCompat;
 
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.BreadcrumbDb;
+import com.tianos.koketa.database.ProfileDb;
 import com.tianos.koketa.database.UserDb;
+import com.tianos.koketa.entity.Breadcrumb;
+import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
@@ -48,6 +52,8 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
     @BindView(R.id.edt_password_login)
     EditText edtPasswordLogin;
 
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,9 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
     @Override
     public void initSetup() {
         ButterKnife.bind(this);
+
+        username = PreferencesManager.getInstance(this).getUsername();
+        edtUsernameLogin.setText(username);
     }
 
     @Override
@@ -129,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                         throw new Exception(getString(R.string.error));
                     }
 
-                    if (!responseWeb.getStatus()) {
+                    if (responseWeb.getStatus() != ResponseWeb.STATUS_SUCCESS) {
                         throw new Exception(responseWeb.getMessage());
                     }
 
@@ -139,10 +148,21 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                     UserDb userDb = new UserDb(LoginActivity.this);
                     userDb.insert(responseWeb.getUser());
 
+                    BreadcrumbDb breadcrumbDb = new BreadcrumbDb(LoginActivity.this);
+                    breadcrumbDb.insert(new Breadcrumb(responseWeb.getUser().getUsername()));
+
+                    ProfileDb profileDb = new ProfileDb(LoginActivity.this);
+                    profileDb.insert(
+                        new Profile(
+                            responseWeb.getUser().getProfile().getId(),
+                            responseWeb.getUser().getProfile().getSlug(),
+                            responseWeb.getUser().getUsername()
+                    ));
 
                     /**
-                     * PREFERENCES SET LOGGED
+                     * PREFERENCES
                      */
+                    PreferencesManager.getInstance(LoginActivity.this).setUsername(responseWeb.getUser());
                     PreferencesManager.getInstance(LoginActivity.this).setLogged();
 
 

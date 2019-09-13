@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.tianos.koketa.entity.User;
 
 
@@ -20,9 +22,9 @@ public class UserDb {
 
         ContentValues values = new ContentValues();
         values.put(User.COLUMN_ID, object.getId());
-        values.put(User.COLUMN_NAME, object.getName());
         values.put(User.COLUMN_RUC, object.getRuc());
         values.put(User.COLUMN_EMAIL, object.getEmail());
+        values.put(User.COLUMN_NAME, object.getName());
         values.put(User.COLUMN_USERNAME, object.getUsername());
 
         db.insert(User.TABLE_NAME, null, values);

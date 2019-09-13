@@ -7,6 +7,11 @@ import io.realm.RealmObject;
 
 public class ResponseWeb extends RealmObject {
 
+    public static final int STATUS_SUCCESS = 1;
+    public static final int STATUS_WARNING = 2;
+    public static final int STATUS_ERROR = 3;
+
+
     @SerializedName("errorCode")
     @Expose
     private Integer errorCode;
@@ -17,7 +22,7 @@ public class ResponseWeb extends RealmObject {
 
     @SerializedName("status")
     @Expose
-    private Boolean status;
+    private Integer status;
 
     @SerializedName("user")
     @Expose
@@ -39,11 +44,11 @@ public class ResponseWeb extends RealmObject {
         this.message = message;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

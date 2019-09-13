@@ -32,12 +32,12 @@ public class BreadcrumbDb {
         Cursor cursor = db.query(
             Breadcrumb.TABLE_NAME,
             new String[] {
-                Breadcrumb.COLUMN_ID,
+                Breadcrumb.COLUMN_ID_INCR,
                 Breadcrumb.COLUMN_USERNAME,
                 Breadcrumb.COLUMN_TIMESTAMP
             },
             null,
-            new String[]{}, null, null, Breadcrumb.COLUMN_ID + " DESC", "1");
+            new String[]{}, null, null, Breadcrumb.COLUMN_ID_INCR + " DESC", "1");
 
         if (cursor == null || cursor.getCount() <= 0) {
             return object;
@@ -47,7 +47,6 @@ public class BreadcrumbDb {
 
         // prepare object
         object = new Breadcrumb(
-            cursor.getInt(cursor.getColumnIndex(Breadcrumb.COLUMN_ID)),
             cursor.getString(cursor.getColumnIndex(Breadcrumb.COLUMN_USERNAME))
         );
 

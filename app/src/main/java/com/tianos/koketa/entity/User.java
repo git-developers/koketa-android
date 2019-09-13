@@ -25,14 +25,18 @@ public class User extends RealmObject implements Serializable {
             + COLUMN_ID_INCR + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ID + " INTEGER(11),"
             + COLUMN_USERNAME + " VARCHAR(45),"
-            + COLUMN_EMAIL + " VARCHAR(45),"
-            + COLUMN_NAME + " VARCHAR(45),"
-            + COLUMN_LAST_NAME + " VARCHAR(45),"
+            + COLUMN_RUC + " VARCHAR(11) DEFAULT NULL,"
+            + COLUMN_EMAIL + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_LAST_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
 
     @SerializedName("id")
     private Integer id;
+
+    @SerializedName("code")
+    private String code;
 
     @SerializedName("password")
     private String password;
@@ -52,9 +56,10 @@ public class User extends RealmObject implements Serializable {
     @SerializedName("profile")
     private Profile profile;
 
-    private String dni;
+    @SerializedName("ruc")
     private String ruc;
-    private String code;
+
+    private String dni;
     private String phone;
     private String comment;
     private float creditLine;
@@ -75,6 +80,18 @@ public class User extends RealmObject implements Serializable {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username) {
+        this.username = username;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPassword() {

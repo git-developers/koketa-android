@@ -157,7 +157,7 @@ public class Util {
             return new String();
         }
 
-        return editText.getText().toString();
+        return editText.getText().toString().trim();
     }
 
     public final static boolean isEmpty(EditText editText) {

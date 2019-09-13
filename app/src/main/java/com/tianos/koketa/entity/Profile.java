@@ -12,16 +12,19 @@ public class Profile extends RealmObject implements Serializable {
 
     public static final String COLUMN_ID_INCR = "ID_INCR";
     public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_SLUG = "SLUG";
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_CODE = "CODE";
+    public static final String COLUMN_USERNAME = "USERNAME";
     public static final String COLUMN_TIMESTAMP = "TIMESTAMP";
 
     public static final String CREATE_TABLE =
         "CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_ID_INCR + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ID + " INTEGER(11),"
-            + COLUMN_CODE + " VARCHAR(45),"
-            + COLUMN_NAME + " VARCHAR(45),"
+            + COLUMN_CODE + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_SLUG + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
 
@@ -31,17 +34,23 @@ public class Profile extends RealmObject implements Serializable {
     @SerializedName("code")
     private String code;
 
+    @SerializedName("slug")
+    private String slug;
+
     @SerializedName("name")
     public String name;
 
+    @SerializedName("username")
+    private String username;
 
     public Profile() {
 
     }
 
-    public Profile(Integer id, String name) {
+    public Profile(Integer id, String slug, String username) {
         this.id = id;
-        this.name = name;
+        this.slug = slug;
+        this.username = username;
     }
 
     public Integer getId() {
@@ -66,5 +75,21 @@ public class Profile extends RealmObject implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

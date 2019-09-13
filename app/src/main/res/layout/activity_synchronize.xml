@@ -230,7 +230,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_synchronize"
             android:layout_below="@+id/card_view_2"
             style="@style/Button.Primary"
             android:layout_width="match_parent"
