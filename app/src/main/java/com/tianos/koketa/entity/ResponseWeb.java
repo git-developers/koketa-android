@@ -3,6 +3,7 @@ package com.tianos.koketa.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class ResponseWeb extends RealmObject {
@@ -27,6 +28,14 @@ public class ResponseWeb extends RealmObject {
     @SerializedName("user")
     @Expose
     private User user;
+
+    @SerializedName("clients")
+    @Expose
+    private RealmList<User> clients;
+
+    @SerializedName("category")
+    @Expose
+    private RealmList<Category> category;
 
     public Integer getErrorCode() {
         return errorCode;
@@ -58,5 +67,21 @@ public class ResponseWeb extends RealmObject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public RealmList<User> getClients() {
+        return clients;
+    }
+
+    public void setClients(RealmList<User> clients) {
+        this.clients = clients;
+    }
+
+    public RealmList<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(RealmList<Category> category) {
+        this.category = category;
     }
 }

@@ -3,18 +3,14 @@ package com.tianos.koketa.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.tianos.koketa.entity.Breadcrumb;
 
 
-public class BreadcrumbDb {
-
-    private SQLiteDatabase db;
+public class BreadcrumbDb extends BaseDb {
 
     public BreadcrumbDb(Context context) {
-        DatabaseHelper helper = new DatabaseHelper(context);
-        db = helper.getWritableDatabase();
+        super.databaseHelper(context);
     }
 
     public void insert(Breadcrumb breadcrumb) {
@@ -58,7 +54,7 @@ public class BreadcrumbDb {
 
     public void delete() {
         db.delete(Breadcrumb.TABLE_NAME,null, new String[]{});
-        db.close();
+//        db.close();
     }
 
 }

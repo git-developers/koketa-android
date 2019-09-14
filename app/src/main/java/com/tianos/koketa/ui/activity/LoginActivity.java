@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,8 @@ import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity implements InterfaceKoketa {
+
+    private static final String TAG = LoginActivity.class.getName();
 
     @BindView(R.id.btn_login)
     Button btnLogin;
@@ -143,7 +146,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                     }
 
                     /**
-                     * USER SAVE
+                     * DATABASE INSERT
                      */
                     UserDb userDb = new UserDb(LoginActivity.this);
                     userDb.insert(responseWeb.getUser());
@@ -162,20 +165,23 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                     /**
                      * PREFERENCES
                      */
-                    PreferencesManager.getInstance(LoginActivity.this).setUsername(responseWeb.getUser());
                     PreferencesManager.getInstance(LoginActivity.this).setLogged();
+                    PreferencesManager.getInstance(LoginActivity.this).setUsername(responseWeb.getUser());
+                    PreferencesManager.getInstance(LoginActivity.this).realmSetUser(responseWeb.getUser());
 
 
                     /**
                      * REDIRECT
                      */
-                    Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+//                    Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                    Intent i = new Intent(LoginActivity.this, SynchronizeActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                     finish();
 
                 } catch (Exception e) {
                     Util.showSnackbar(LoginActivity.this, e.getMessage());
+                    Log.d(TAG, "EXCEPTION::: " + e.getMessage());
                     return;
                 }
             }
@@ -193,7 +199,6 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
     public void logOut() {
         PreferencesManager.getInstance(LoginActivity.this).logOut();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

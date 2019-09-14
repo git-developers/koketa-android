@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.BreadcrumbDb;
+import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.adapter.ClientAdapter;
@@ -58,6 +59,9 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     public void initData() {
 
+
+
+        /*
         List<User> lst = new ArrayList<User>();
 
         User a = new User(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
@@ -74,8 +78,11 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
         User e = new User(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
         lst.add(e);
+        */
 
-        bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
+        UserDb userDb = new UserDb(ClientActivity.this);
+
+        bodyAdapter = new ClientAdapter(ClientActivity.this, userDb.findAll());
         recyclerView.setAdapter(bodyAdapter);
     }
 

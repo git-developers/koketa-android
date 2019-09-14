@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
+import com.tianos.koketa.KoketaApplication;
 import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.ProfileDb;
 import com.tianos.koketa.database.UserDb;
@@ -38,6 +39,7 @@ public class PreferencesManager {
     public void logOut() {
         deleteLogged();
         deleteDatabase();
+        realmDeleteUser();
     }
 
 
@@ -106,10 +108,8 @@ public class PreferencesManager {
      *
      * @param object
      */
-
-    /*
     public void realmSetUser(final User object) {
-        Realm realm = IntralotApplication.getInstance().getRealm();
+        Realm realm = KoketaApplication.getInstance().getRealm();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -119,13 +119,15 @@ public class PreferencesManager {
     }
 
     public User realmGetUser() {
-        Realm realm = IntralotApplication.getInstance().getRealm();
+        Realm realm = KoketaApplication.getInstance().getRealm();
         return realm.where(User.class).findFirst();
     }
 
     public void realmDeleteUser() {
-        Realm realm = IntralotApplication.getInstance().getRealm();
+
+        Realm realm = KoketaApplication.getInstance().getRealm();
         final User response = realm.where(User.class).findFirst();
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -138,8 +140,5 @@ public class PreferencesManager {
             }
         });
     }
-
-*/
-
 
 }

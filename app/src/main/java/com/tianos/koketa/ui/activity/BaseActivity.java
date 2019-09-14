@@ -25,9 +25,11 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Dashboard;
+import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
 import com.tianos.koketa.retrofit.APIInterface;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
@@ -41,6 +43,7 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +83,23 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        /**
+         * SET TEXT
+         */
+        User user = PreferencesManager.getInstance(BaseActivity.this).realmGetUser();
+
+        if (user == null) {
+            return;
+        }
+
+        View v = navigationView.getHeaderView(0);
+
+        TextView tvNav1 = (TextView ) v.findViewById(R.id.tv_nav_1);
+        tvNav1.setText(user.getName() + " " + user.getLastName());
+
+        TextView tvNav2 = (TextView ) v.findViewById(R.id.tv_nav_2);
+        tvNav2.setText(user.getEmail());
     }
 
     @Override
@@ -207,6 +227,7 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
                 DialogFragment.dialogAbout(BaseActivity.this);
                 return true;
             case R.id.nav_logout:
+                Util.progressDialogShow(BaseActivity.this, getString(R.string.in_progress));
                 i.setClass(BaseActivity.this, LoginActivity.class);
                 break;
         }

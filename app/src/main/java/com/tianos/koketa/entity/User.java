@@ -29,6 +29,7 @@ public class User extends RealmObject implements Serializable {
             + COLUMN_EMAIL + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_LAST_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_PROFILE_ID + " INTEGER(11),"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
 

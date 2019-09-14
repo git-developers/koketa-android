@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
-//apply plugin: 'com.jakewharton.butterknife'
 
 android {
     signingConfigs {
@@ -85,4 +84,5 @@ dependencies {
 
     debugImplementation  'com.facebook.stetho:stetho:1.5.1'
     debugImplementation  'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
 }

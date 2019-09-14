@@ -11,14 +11,19 @@ import retrofit2.http.PUT;
 
 public interface APIInterface {
 
-
     @POST("log")
     Call<ResponseWeb> sendLog(@Body Object object);
 
-//    @PUT("5d748ced330000de69081975")
     @POST("user/login")
     Call<ResponseWeb> logIn(@Body User user);
 
-    @PUT("5d748ced330000de69081975")
-    Call<ResponseWeb> logIn2(@Body Object object);
+    @POST("user/clients")
+    Call<ResponseWeb> clients(@Body User user);
+
+    @POST("category/list")
+    Call<ResponseWeb> category(@Body User user);
+
+    @POST("product/list")
+    Call<ResponseWeb> product(@Body User user);
+
 }

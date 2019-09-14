@@ -3,19 +3,21 @@ package com.tianos.koketa.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserDb {
 
-    private SQLiteDatabase db;
+public class UserDb extends BaseDb {
+
+    private static final String TAG = ProfileDb.class.getName();
 
     public UserDb(Context context) {
-        DatabaseHelper helper = new DatabaseHelper(context);
-        db = helper.getWritableDatabase();
+        super.databaseHelper(context);
     }
 
     public void insert(User object) {
@@ -26,47 +28,54 @@ public class UserDb {
         values.put(User.COLUMN_EMAIL, object.getEmail());
         values.put(User.COLUMN_NAME, object.getName());
         values.put(User.COLUMN_USERNAME, object.getUsername());
+        values.put(User.COLUMN_PROFILE_ID, object.getProfile().getId());
 
         db.insert(User.TABLE_NAME, null, values);
     }
 
-    public User findOneByUsername(String username) {
+    public List<User> findAll() {
 
-        User object = new User();
+        Cursor cursor = null;
+        List<User> lst = new ArrayList<User>();
 
-        Cursor cursor = db.query(
-            User.TABLE_NAME,
-            new String[] {
-                User.COLUMN_ID,
-                User.COLUMN_USERNAME,
-                User.COLUMN_TIMESTAMP
-            },
-            null,
-            new String[]{}, null, null, User.COLUMN_ID + " DESC", "1");
+        try {
 
-        if (cursor == null || cursor.getCount() <= 0) {
-            return object;
+            cursor = db.rawQuery("SELECT t1.* FROM " + User.TABLE_NAME + " AS t1 " +
+                    "INNER JOIN " + Profile.TABLE_NAME + " AS t2 ON t2." + Profile.COLUMN_ID + " = t1." + User.COLUMN_PROFILE_ID +
+                    " WHERE t2." + Profile.COLUMN_SLUG + " = ?", new String[]{Profile.SLUG_CLIENT});
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    User user = new User(
+                        cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(User.COLUMN_RUC)),
+                        cursor.getString(cursor.getColumnIndex(User.COLUMN_EMAIL))
+                    );
+
+                    lst.add(user);
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+//            db.close();
         }
 
-        cursor.moveToFirst();
-
-        // prepare object
-        object = new User(
-            cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)),
-            cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)),
-            cursor.getString(cursor.getColumnIndex(User.COLUMN_RUC)),
-            cursor.getString(cursor.getColumnIndex(User.COLUMN_EMAIL))
-        );
-
-        // close the db connection
-        cursor.close();
-
-        return object;
+        return lst;
     }
 
     public void delete() {
         db.delete(User.TABLE_NAME,null, new String[]{});
-        db.close();
+//        db.close();
+    }
+
+    public void deleteClients() {
+        db.delete(User.TABLE_NAME,User.COLUMN_PROFILE_ID + " = ?", new String[]{"4"});
     }
 
 }

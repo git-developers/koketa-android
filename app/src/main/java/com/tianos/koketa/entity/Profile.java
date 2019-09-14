@@ -8,6 +8,10 @@ import io.realm.RealmObject;
 
 public class Profile extends RealmObject implements Serializable {
 
+    public static final String SLUG_PDV_ADMIN = "pdv-administrator";
+    public static final String SLUG_SELLER = "seller";
+    public static final String SLUG_CLIENT = "client";
+
     public static final String TABLE_NAME = "t_profile";
 
     public static final String COLUMN_ID_INCR = "ID_INCR";
@@ -22,6 +26,7 @@ public class Profile extends RealmObject implements Serializable {
         "CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_ID_INCR + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ID + " INTEGER(11),"
+            + COLUMN_USERNAME + " VARCHAR(45),"
             + COLUMN_CODE + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_SLUG + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
@@ -51,6 +56,11 @@ public class Profile extends RealmObject implements Serializable {
         this.id = id;
         this.slug = slug;
         this.username = username;
+    }
+
+    public Profile(Integer id, String slug) {
+        this.id = id;
+        this.slug = slug;
     }
 
     public Integer getId() {
