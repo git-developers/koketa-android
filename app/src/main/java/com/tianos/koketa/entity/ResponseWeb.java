@@ -37,6 +37,10 @@ public class ResponseWeb extends RealmObject {
     @Expose
     private RealmList<Category> category;
 
+    @SerializedName("products")
+    @Expose
+    private RealmList<Product> product;
+
     public Integer getErrorCode() {
         return errorCode;
     }
@@ -83,5 +87,13 @@ public class ResponseWeb extends RealmObject {
 
     public void setCategory(RealmList<Category> category) {
         this.category = category;
+    }
+
+    public RealmList<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(RealmList<Product> product) {
+        this.product = product;
     }
 }

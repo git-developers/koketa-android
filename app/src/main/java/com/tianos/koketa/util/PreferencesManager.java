@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 import com.tianos.koketa.KoketaApplication;
 import com.tianos.koketa.database.BreadcrumbDb;
+import com.tianos.koketa.database.CategoryDb;
 import com.tianos.koketa.database.ProfileDb;
 import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.User;
@@ -96,6 +97,9 @@ public class PreferencesManager {
 
         ProfileDb profileDb = new ProfileDb(this.context);
         profileDb.delete();
+
+        CategoryDb categoryDb = new CategoryDb(this.context);
+        categoryDb.delete();
     }
 
 

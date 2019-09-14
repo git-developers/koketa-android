@@ -1,23 +1,71 @@
 package com.tianos.koketa.entity;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 
-public class Product extends RealmObject {
+public class Product extends RealmObject implements Serializable {
 
+    public static final String TABLE_NAME = "t_product";
+
+    public static final String COLUMN_ID_INCR = "ID_INCR";
+    public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_CODE = "CODE";
+    public static final String COLUMN_NAME = "NAME";
+    public static final String COLUMN_STOCK = "STOCK";
+    public static final String COLUMN_FAMILY = "FAMILY";
+    public static final String COLUMN_PRICE = "PRICE";
+    public static final String COLUMN_CATEGORY_ID = "CATEGORY_ID";
+    public static final String COLUMN_USERNAME = "USERNAME";
+    public static final String COLUMN_TIMESTAMP = "TIMESTAMP";
+
+    public static final String CREATE_TABLE =
+        "CREATE TABLE " + TABLE_NAME + "("
+            + COLUMN_ID_INCR + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_ID + " INTEGER(11),"
+            + COLUMN_CODE + " VARCHAR(45),"
+            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_FAMILY + " VARCHAR(11) DEFAULT NULL,"
+            + COLUMN_STOCK + " INTEGER(11) DEFAULT NULL,"
+            + COLUMN_PRICE + " REAL(8,2) DEFAULT NULL,"
+            + COLUMN_USERNAME + " VARCHAR(45),"
+            + COLUMN_CATEGORY_ID + " INTEGER(11) DEFAULT NULL,"
+            + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
+            + ")";
+
+    @SerializedName("id")
     private Integer id;
+
+    @SerializedName("code")
     private String code;
+
+    @SerializedName("username")
     private String username;
+
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("family")
     private String family;
+
+    @SerializedName("stock")
     private Integer stock;
-    private double price;
+
+    @SerializedName("price")
+    private float price;
+
+    @SerializedName("category")
+    private Category category;
 
     public Product() {
 
     }
 
-    public Product(Integer id, String name, String family, Integer stock, double price) {
+    public Product(Integer id, String code,  String name, String family, Integer stock, float price) {
         this.id = id;
+        this.code = code;
         this.name = name;
         this.family = family;
         this.stock = stock;
@@ -72,11 +120,19 @@ public class Product extends RealmObject {
         this.stock = stock;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

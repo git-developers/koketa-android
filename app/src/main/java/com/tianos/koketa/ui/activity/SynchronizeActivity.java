@@ -8,9 +8,11 @@ import android.widget.ProgressBar;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.CategoryDb;
+import com.tianos.koketa.database.ProductDb;
 import com.tianos.koketa.database.ProfileDb;
 import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.Category;
+import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
@@ -19,6 +21,8 @@ import com.tianos.koketa.retrofit.APIInterface;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,7 +57,6 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
     @Override
     public void initSetup() {
         super.initSetup();
-
     }
 
     @Override
@@ -77,7 +80,6 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
 
     @Override
     public void initData() {
-
 
     }
 
@@ -150,7 +152,7 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
     }
 
     public void apiCategory(User user) {
-        pb1.setVisibility(View.VISIBLE);
+        pb2.setVisibility(View.VISIBLE);
 
         apiInterface.category(user).enqueue(new Callback<ResponseWeb>() {
             @Override
@@ -160,7 +162,7 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
 
                     ResponseWeb responseWeb = response.body();
                     btnSynchronize.setEnabled(true);
-                    pb1.setVisibility(View.GONE);
+                    pb2.setVisibility(View.GONE);
 
                     if (response.code() != 200) {
                         throw new Exception(getString(R.string.error));
@@ -171,12 +173,76 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     }
 
                     CategoryDb categoryDb = new CategoryDb(SynchronizeActivity.this);
+                    categoryDb.delete();
 
                     /**
                      * DATABASE SAVE
                      */
+                    Random r = new Random();
+                    int low = 10;
+                    int high = 100;
+
                     for (Category category : responseWeb.getCategory()) {
-                        categoryDb.insert(category.getParent());
+
+                        int stock = r.nextInt(high-low) + low;
+
+                        Category xx = category.getParent();
+                        xx.setStock(stock);
+                        categoryDb.insert(xx);
+                    }
+
+
+                    /**
+                     * REDIRECT
+                     */
+                    apiProduct(user);
+
+                } catch (Exception e) {
+                    pb2.setVisibility(View.GONE);
+                    Util.showSnackbar(SynchronizeActivity.this, e.getMessage());
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseWeb> call, Throwable t) {
+                call.cancel();
+                btnSynchronize.setEnabled(true);
+                pb2.setVisibility(View.GONE);
+                Util.showSnackbar(SynchronizeActivity.this, getString(R.string.error));
+            }
+        });
+    }
+
+    public void apiProduct(User user) {
+        pb3.setVisibility(View.VISIBLE);
+
+        apiInterface.product(user).enqueue(new Callback<ResponseWeb>() {
+            @Override
+            public void onResponse(Call<ResponseWeb> call, Response<ResponseWeb> response) {
+
+                try {
+
+                    ResponseWeb responseWeb = response.body();
+                    btnSynchronize.setEnabled(true);
+                    pb3.setVisibility(View.GONE);
+
+                    if (response.code() != 200) {
+                        throw new Exception(getString(R.string.error));
+                    }
+
+                    if (responseWeb.getStatus() != ResponseWeb.STATUS_SUCCESS) {
+                        throw new Exception(responseWeb.getMessage());
+                    }
+
+                    ProductDb productDb = new ProductDb(SynchronizeActivity.this);
+                    productDb.delete();
+
+                    /**
+                     * DATABASE SAVE
+                     */
+                    for (Product product : responseWeb.getProduct()) {
+                        productDb.insert(product);
                     }
 
 
@@ -189,7 +255,7 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     finish();
 
                 } catch (Exception e) {
-                    pb1.setVisibility(View.GONE);
+                    pb3.setVisibility(View.GONE);
                     Util.showSnackbar(SynchronizeActivity.this, e.getMessage());
                     return;
                 }
@@ -199,7 +265,7 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
             public void onFailure(Call<ResponseWeb> call, Throwable t) {
                 call.cancel();
                 btnSynchronize.setEnabled(true);
-                pb1.setVisibility(View.GONE);
+                pb3.setVisibility(View.GONE);
                 Util.showSnackbar(SynchronizeActivity.this, getString(R.string.error));
             }
         });

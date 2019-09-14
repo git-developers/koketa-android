@@ -67,7 +67,6 @@ public class CategoryDb extends BaseDb {
 
     public void delete() {
         db.delete(Category.TABLE_NAME,null, new String[]{});
-//        db.close();
     }
 
 }
