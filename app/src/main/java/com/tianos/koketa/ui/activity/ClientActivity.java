@@ -17,6 +17,7 @@ import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.adapter.ClientAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
+import com.tianos.koketa.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,12 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
 
         bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Util.progressDialogHide();
     }
 
     @Override

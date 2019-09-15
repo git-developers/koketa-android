@@ -42,6 +42,11 @@ public class Util {
     }
 
     public final static void progressDialogHide() {
+
+        if (progressRetrofit == null) {
+            return;
+        }
+
         progressRetrofit.dismiss();
     }
 
@@ -173,14 +178,9 @@ public class Util {
         return editText.getText().toString().isEmpty();
     }
 
-    public final static Float price(float f) {
+    public final static Float money(float f) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return Float.valueOf(decimalFormat.format(f));
-
-
-//        BigDecimal bd = new BigDecimal(f);
-//        bd.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-//        return bd.floatValue();
     }
 
 }

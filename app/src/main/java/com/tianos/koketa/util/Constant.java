@@ -16,4 +16,7 @@ public class Constant {
 
     public static final String JSON_USERNAME = "username";
     public static final String JSON_PASSWORD = "password";
+
+    public static final String USER_ID = "id";
+    public static final String PRODUCT_ID = "id";
 }

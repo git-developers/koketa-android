@@ -1,8 +1,6 @@
 package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Contact;
-import com.tianos.koketa.ui.activity.ClientDetail2Activity;
+import com.tianos.koketa.entity.User;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
 import java.util.List;
@@ -28,9 +25,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     private Context context;
     private LayoutInflater inflater;
-    private List<Contact> lst;
+    private List<User> lst;
 
-    public ContactAdapter(Context context, List<Contact> lst) {
+    public ContactAdapter(Context context, List<User> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -46,9 +43,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
 
-        Contact o = this.lst.get(position);
+        User o = this.lst.get(position);
 
-        holder.tvBusinessName.setText(o.getBusinessName());
+        holder.tvBusinessName.setText(o.getName());
         holder.tvRuc.setText(o.getRuc());
         holder.tvEmail.setText(o.getEmail());
     }

@@ -3,6 +3,7 @@ package com.tianos.koketa.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.activity.ClientDetailActivity;
+import com.tianos.koketa.ui.fragment.ClientDetailFragment;
+import com.tianos.koketa.ui.fragment.ProductDetailFragment;
+import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
@@ -150,8 +157,19 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
             } else if (v.getId() == llBody.getId() || v.getId() == llBodyImage.getId()) {
 
-                Intent i = new Intent(this.context, ClientDetailActivity.class);
-                this.context.startActivity(i);
+//                Intent i = new Intent(this.context, ClientDetailActivity.class);
+//                this.context.startActivity(i);
+
+                int position = getAdapterPosition();
+                User user = lst.get(position);
+
+                Bundle args = new Bundle();
+                args.putString(Constant.USER_ID, String.valueOf(user.getId()));
+
+                ClientDetailFragment fragment = new ClientDetailFragment();
+                fragment.setArguments(args);
+                FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                fragment.show(ft, "dialog");
 
             } else if (v.getId() == ivEmail.getId()) {
 

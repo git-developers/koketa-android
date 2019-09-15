@@ -12,13 +12,18 @@ public class User extends RealmObject implements Serializable {
 
     public static final String COLUMN_ID_INCR = "ID_INCR";
     public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_CODE = "CODE";
     public static final String COLUMN_NAME = "NAME";
+    public static final String COLUMN_LAST_NAME = "LAST_NAME";
+    public static final String COLUMN_ABOUT_ME = "ABOUT_ME";
+    public static final String COLUMN_ADDRESS = "ADDRESS";
     public static final String COLUMN_USERNAME = "USERNAME";
     public static final String COLUMN_TIMESTAMP = "TIMESTAMP";
     public static final String COLUMN_EMAIL = "EMAIL";
     public static final String COLUMN_RUC = "RUC";
     public static final String COLUMN_PHONE = "PHONE";
-    public static final String COLUMN_LAST_NAME = "LAST_NAME";
+    public static final String COLUMN_CREDIT_LINE = "CREDIT_LINE";
+    public static final String COLUMN_BALANCE = "BALANCE";
     public static final String COLUMN_PROFILE_ID = "PROFILE_ID";
 
     public static final String CREATE_TABLE =
@@ -26,11 +31,16 @@ public class User extends RealmObject implements Serializable {
             + COLUMN_ID_INCR + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ID + " INTEGER(11),"
             + COLUMN_USERNAME + " VARCHAR(45),"
+            + COLUMN_CODE + " VARCHAR(11) DEFAULT NULL,"
+            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_ABOUT_ME + " VARCHAR(200) DEFAULT NULL,"
+            + COLUMN_ADDRESS + " VARCHAR(200) DEFAULT NULL,"
             + COLUMN_RUC + " VARCHAR(11) DEFAULT NULL,"
             + COLUMN_EMAIL + " VARCHAR(45) DEFAULT NULL,"
-            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_LAST_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_PHONE + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_CREDIT_LINE + " DECIMAL(8,2) DEFAULT NULL,"
+            + COLUMN_BALANCE + " DECIMAL(8,2) DEFAULT NULL,"
             + COLUMN_PROFILE_ID + " INTEGER(11),"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
@@ -68,9 +78,19 @@ public class User extends RealmObject implements Serializable {
     @SerializedName("phone")
     private String phone;
 
+    @SerializedName("about_me")
+    private String aboutMe;
+
+    @SerializedName("address")
+    private String address;
+
+    @SerializedName("credit_line")
+    private Float creditLine;
+
+    @SerializedName("balance")
+    private Float balance;
+
     private String comment;
-    private float creditLine;
-    private float balance;
     private String paymentCondition;
 
     public User() {
@@ -190,6 +210,11 @@ public class User extends RealmObject implements Serializable {
     }
 
     public float getCreditLine() {
+
+        if (creditLine == null) {
+            return new Float(0);
+        }
+
         return creditLine;
     }
 
@@ -198,6 +223,11 @@ public class User extends RealmObject implements Serializable {
     }
 
     public float getBalance() {
+
+        if (balance == null) {
+            return new Float(0);
+        }
+
         return balance;
     }
 
@@ -211,5 +241,29 @@ public class User extends RealmObject implements Serializable {
 
     public void setPaymentCondition(String paymentCondition) {
         this.paymentCondition = paymentCondition;
+    }
+
+    public void setCreditLine(Float creditLine) {
+        this.creditLine = creditLine;
+    }
+
+    public void setBalance(Float balance) {
+        this.balance = balance;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

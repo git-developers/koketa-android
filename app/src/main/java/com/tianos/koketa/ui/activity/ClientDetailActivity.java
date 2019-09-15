@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
-import com.tianos.koketa.entity.Contact;
-import com.tianos.koketa.entity.Product;
+import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.adapter.ContactAdapter;
-import com.tianos.koketa.ui.adapter.ProductPendingAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 
 import java.util.ArrayList;
@@ -60,12 +58,12 @@ public class ClientDetailActivity extends BaseActivity implements InterfaceKoket
     @Override
     public void initData() {
 
-        List<Contact> lst = new ArrayList<Contact>();
+        List<User> lst = new ArrayList<User>();
 
-        Contact a = new Contact(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
+        User a = new User(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
         lst.add(a);
 
-        Contact b = new Contact(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
+        User b = new User(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
         lst.add(b);
 
         ContactAdapter bodyAdapter = new ContactAdapter(ClientDetailActivity.this, lst);

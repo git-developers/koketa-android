@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.ProductDb;
 import com.tianos.koketa.entity.Product;
+import com.tianos.koketa.util.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +63,7 @@ public class ProductDetailFragment extends DialogFragment {
         ButterKnife.bind(this, view);
 
         ProductDb productDb = new ProductDb(getActivity());
-        Product product = productDb.findOneById(getArguments().getString("product_id"));
+        Product product = productDb.findOneById(getArguments().getString(Constant.PRODUCT_ID));
 
         tvTitle.setText(product.getName());
         tvStock.setText(product.getStock() + " Unidades");
@@ -94,8 +95,6 @@ public class ProductDetailFragment extends DialogFragment {
         super.onResume();
 
     }
-
-
 
     @Override
     public void onDestroyView() {
