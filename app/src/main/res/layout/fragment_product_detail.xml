@@ -37,13 +37,13 @@
                     android:src="@mipmap/product_533x300" />
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/thumbnail"
                     android:maxLines="3"
                     android:padding="8dp"
-                    android:text="KOKETA B SILUET FAJA COMPLETA LATEX M NEGRO"
+                    android:text="@string/dummy"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="13dp" />
@@ -52,7 +52,7 @@
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_below="@+id/title"
+                    android:layout_below="@+id/tv_title"
                     android:background="@color/gray_2" />
 
                 <LinearLayout
@@ -77,7 +77,7 @@
                         android:layout_weight="0.5"
                         android:fontFamily="@font/livvic_regular_italic"
                         android:gravity="center_vertical"
-                        android:text="23 Unidades"
+                        android:text="@string/dummy"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp" />
 
@@ -94,7 +94,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="center_vertical"
-                        android:text="SOL 24.66"
+                        android:text="@string/dummy"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"
                         android:fontFamily="@font/livvic_bold"/>
@@ -217,8 +217,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextStyle.Heading"
-            android:text="10BS00-94200LL0-SC005"
-            android:layout_marginLeft="20dp"
+            android:text="@string/dummy"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp" />
 
         <View
@@ -247,8 +247,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextStyle.Heading"
-            android:text="Texto"
-            android:layout_marginLeft="20dp"
+            android:text="@string/dummy"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp" />
 
         <View
@@ -278,10 +278,8 @@
             android:layout_height="wrap_content"
             style="@style/TextStyle.Heading"
             android:text="Koketa"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp" />
-
-
 
         <View
             android:id="@+id/divider_6"
@@ -310,7 +308,7 @@
             android:layout_height="wrap_content"
             style="@style/TextStyle.Heading"
             android:text="Producto info"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp" />
 
 
@@ -341,7 +339,7 @@
             android:layout_height="wrap_content"
             style="@style/TextStyle.Heading"
             android:text="Producto info 2"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp" />
 
         <View
@@ -359,7 +357,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/livvic_regular_italic"
             android:text="* Precio unitario (No incluye impuesto)"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />

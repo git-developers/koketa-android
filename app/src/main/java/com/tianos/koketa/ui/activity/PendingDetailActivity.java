@@ -62,6 +62,7 @@ public class PendingDetailActivity extends BaseActivity implements InterfaceKoke
 
         List<Product> lst = new ArrayList<Product>();
 
+        /*
         Product a = new Product(1,"KOKETA B SILUET OI18 CHALECO LATEX L NEGRO", "Koketa", 45, 4.01);
         lst.add(a);
 
@@ -76,6 +77,7 @@ public class PendingDetailActivity extends BaseActivity implements InterfaceKoke
 
         Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
         lst.add(e);
+        */
 
         ProductPendingAdapter bodyAdapter = new ProductPendingAdapter(PendingDetailActivity.this, lst);
         rvRowsProducts.setAdapter(bodyAdapter);

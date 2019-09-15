@@ -73,12 +73,13 @@
                         android:text="Clientes" />
 
                     <TextView
+                        android:id="@+id/tv_status_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/livvic"
                         android:textSize="14sp"
-                        android:text="@string/in_progress"/>
+                        android:text="@string/in_line"/>
 
                 </LinearLayout>
 
@@ -161,12 +162,13 @@
                         android:text="Categorías" />
 
                     <TextView
+                        android:id="@+id/tv_status_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/livvic"
                         android:textSize="14sp"
-                        android:text="@string/in_progress"/>
+                        android:text="@string/in_line"/>
 
                 </LinearLayout>
 
@@ -249,12 +251,13 @@
                         android:text="Artículos" />
 
                     <TextView
+                        android:id="@+id/tv_status_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/livvic"
                         android:textSize="14sp"
-                        android:text="@string/in_progress"/>
+                        android:text="@string/in_line"/>
 
                 </LinearLayout>
 

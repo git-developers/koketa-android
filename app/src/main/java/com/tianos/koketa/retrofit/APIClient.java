@@ -33,11 +33,7 @@ public class APIClient {
                                     .build();
 //        OkHttpClient client = getUnsafeOkHttpClient();
 
-
-        Log.d("GATO", "API:::: " + BuildConfig.BASE_URL);
-
         retrofit = new Retrofit.Builder()
-//            .baseUrl("https://www.mocky.io/v2/")
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)

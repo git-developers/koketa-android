@@ -29,7 +29,7 @@ public class Product extends RealmObject implements Serializable {
             + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_FAMILY + " VARCHAR(11) DEFAULT NULL,"
             + COLUMN_STOCK + " INTEGER(11) DEFAULT NULL,"
-            + COLUMN_PRICE + " REAL(8,2) DEFAULT NULL,"
+            + COLUMN_PRICE + " DECIMAL(8,2) DEFAULT NULL,"
             + COLUMN_USERNAME + " VARCHAR(45),"
             + COLUMN_CATEGORY_ID + " INTEGER(11) DEFAULT NULL,"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"

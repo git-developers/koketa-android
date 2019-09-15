@@ -132,7 +132,7 @@
                 android:layout_below="@+id/user_profile_name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="@string/dummy"
+                android:text="Bienvenido"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -207,7 +207,7 @@
                         android:minWidth="20dip"
                         android:maxWidth="20dip"
                         android:tint="@android:color/tab_indicator_text"
-                        android:src="@drawable/ic_android_black_24dp" />
+                        android:src="@drawable/ic_face_black_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -250,7 +250,7 @@
                         android:minWidth="20dip"
                         android:maxWidth="20dip"
                         android:tint="@android:color/tab_indicator_text"
-                        android:src="@drawable/ic_android_black_24dp" />
+                        android:src="@drawable/ic_email_black_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -293,7 +293,7 @@
                         android:minWidth="20dip"
                         android:maxWidth="20dip"
                         android:tint="@android:color/tab_indicator_text"
-                        android:src="@drawable/ic_android_black_24dp" />
+                        android:src="@drawable/ic_phone_forwarded_black_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -317,6 +317,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
@@ -358,6 +359,7 @@
                         android:text="@string/dummy" />
 
                 </LinearLayout>
+                -->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"

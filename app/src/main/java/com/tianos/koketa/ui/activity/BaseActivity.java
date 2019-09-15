@@ -43,6 +43,7 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -53,6 +54,10 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
     @Nullable
     @BindView(R.id.ll_main)
     public LinearLayout llMain;
+
+    @Nullable
+    @BindView(R.id.layout_no_data)
+    public RelativeLayout layoutNoData;
 
     @Nullable
     @BindView(R.id.toolbar)

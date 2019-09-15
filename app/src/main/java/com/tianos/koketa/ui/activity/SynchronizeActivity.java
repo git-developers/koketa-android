@@ -2,9 +2,11 @@ package com.tianos.koketa.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.CategoryDb;
@@ -32,6 +34,8 @@ import retrofit2.Response;
 
 public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa2 {
 
+    private static final String TAG = SynchronizeActivity.class.getName();
+
     @BindView(R.id.btn_synchronize)
     Button btnSynchronize;
 
@@ -43,6 +47,15 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
 
     @BindView(R.id.pb_3)
     ProgressBar pb3;
+
+    @BindView(R.id.tv_status_1)
+    TextView tvStatus1;
+
+    @BindView(R.id.tv_status_2)
+    TextView tvStatus2;
+
+    @BindView(R.id.tv_status_3)
+    TextView tvStatus3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +108,9 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
     }
 
     public void apiClients(User user) {
+
         pb1.setVisibility(View.VISIBLE);
+        tvStatus1.setText(getString(R.string.in_progress));
 
         apiInterface.clients(user).enqueue(new Callback<ResponseWeb>() {
             @Override
@@ -132,9 +147,13 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     /**
                      * REDIRECT
                      */
+                    tvStatus1.setText(getString(R.string.done) + " " + responseWeb.getClients().size() + " Items.");
                     apiCategory(user);
 
                 } catch (Exception e) {
+                    Log.d(TAG, "apiClients::: " + e.getMessage());
+
+                    tvStatus1.setText(getString(R.string.error));
                     pb1.setVisibility(View.GONE);
                     Util.showSnackbar(SynchronizeActivity.this, e.getMessage());
                     return;
@@ -146,13 +165,16 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                 call.cancel();
                 btnSynchronize.setEnabled(true);
                 pb1.setVisibility(View.GONE);
+                tvStatus1.setText(getString(R.string.error));
                 Util.showSnackbar(SynchronizeActivity.this, getString(R.string.error));
             }
         });
     }
 
     public void apiCategory(User user) {
+
         pb2.setVisibility(View.VISIBLE);
+        tvStatus2.setText(getString(R.string.in_progress));
 
         apiInterface.category(user).enqueue(new Callback<ResponseWeb>() {
             @Override
@@ -195,10 +217,13 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     /**
                      * REDIRECT
                      */
+                    tvStatus2.setText(getString(R.string.done) + " " + responseWeb.getCategory().size() + " Items.");
                     apiProduct(user);
 
                 } catch (Exception e) {
+                    Log.d(TAG, "apiCategory::: " + e.getMessage());
                     pb2.setVisibility(View.GONE);
+                    tvStatus2.setText(getString(R.string.error));
                     Util.showSnackbar(SynchronizeActivity.this, e.getMessage());
                     return;
                 }
@@ -209,13 +234,16 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                 call.cancel();
                 btnSynchronize.setEnabled(true);
                 pb2.setVisibility(View.GONE);
+                tvStatus2.setText(getString(R.string.error));
                 Util.showSnackbar(SynchronizeActivity.this, getString(R.string.error));
             }
         });
     }
 
     public void apiProduct(User user) {
+
         pb3.setVisibility(View.VISIBLE);
+        tvStatus3.setText(getString(R.string.in_progress));
 
         apiInterface.product(user).enqueue(new Callback<ResponseWeb>() {
             @Override
@@ -241,10 +269,18 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     /**
                      * DATABASE SAVE
                      */
+                    Random r = new Random();
+                    int low = 10;
+                    int high = 100;
+
                     for (Product product : responseWeb.getProduct()) {
+                        int stock = r.nextInt(high-low) + low;
+                        product.setStock(stock);
+                        product.setFamily("Koketa");
                         productDb.insert(product);
                     }
 
+                    tvStatus3.setText(getString(R.string.done) + " " + responseWeb.getProduct().size() + " Items.");
 
                     /**
                      * REDIRECT
@@ -255,7 +291,9 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                     finish();
 
                 } catch (Exception e) {
+                    Log.d(TAG, "apiProduct::: " + e.getMessage());
                     pb3.setVisibility(View.GONE);
+                    tvStatus3.setText(getString(R.string.error));
                     Util.showSnackbar(SynchronizeActivity.this, e.getMessage());
                     return;
                 }
@@ -266,6 +304,7 @@ public class SynchronizeActivity extends BaseActivity implements InterfaceKoketa
                 call.cancel();
                 btnSynchronize.setEnabled(true);
                 pb3.setVisibility(View.GONE);
+                tvStatus3.setText(getString(R.string.error));
                 Util.showSnackbar(SynchronizeActivity.this, getString(R.string.error));
             }
         });

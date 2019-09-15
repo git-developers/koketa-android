@@ -24,7 +24,7 @@
     <string name="accept">Ok</string>
     <string name="call">Llamar</string>
     <string name="permission">Necesitas dar permiso para identificar el dispositivo.</string>
-    <string name="phone">Telefono</string>
+    <string name="phone">Teléfono</string>
     <string name="email">Email</string>
     <string name="routes">Rutas</string>
     <string name="clients">Clientes</string>
@@ -58,6 +58,8 @@
     <string name="username">Username</string>
     <string name="validating">Validando...</string>
     <string name="in_progress">En progreso...</string>
+    <string name="in_line">En cola...</string>
+    <string name="done">Finalizado!.</string>
     <string name="password">Password</string>
     <string name="login">Ingresar a mi cuenta</string>
     <string name="order">Pedido</string>

@@ -29,7 +29,7 @@ public class Profile extends RealmObject implements Serializable {
             + COLUMN_USERNAME + " VARCHAR(45),"
             + COLUMN_CODE + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_SLUG + " VARCHAR(45) DEFAULT NULL,"
-            + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_NAME + " VARCHAR(100) DEFAULT NULL,"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
 
@@ -52,9 +52,10 @@ public class Profile extends RealmObject implements Serializable {
 
     }
 
-    public Profile(Integer id, String slug, String username) {
+    public Profile(Integer id, String slug, String name, String username) {
         this.id = id;
         this.slug = slug;
+        this.name = name;
         this.username = username;
     }
 

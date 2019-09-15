@@ -17,6 +17,7 @@ public class User extends RealmObject implements Serializable {
     public static final String COLUMN_TIMESTAMP = "TIMESTAMP";
     public static final String COLUMN_EMAIL = "EMAIL";
     public static final String COLUMN_RUC = "RUC";
+    public static final String COLUMN_PHONE = "PHONE";
     public static final String COLUMN_LAST_NAME = "LAST_NAME";
     public static final String COLUMN_PROFILE_ID = "PROFILE_ID";
 
@@ -29,6 +30,7 @@ public class User extends RealmObject implements Serializable {
             + COLUMN_EMAIL + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_NAME + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_LAST_NAME + " VARCHAR(45) DEFAULT NULL,"
+            + COLUMN_PHONE + " VARCHAR(45) DEFAULT NULL,"
             + COLUMN_PROFILE_ID + " INTEGER(11),"
             + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
             + ")";
@@ -60,8 +62,12 @@ public class User extends RealmObject implements Serializable {
     @SerializedName("ruc")
     private String ruc;
 
+    @SerializedName("dni")
     private String dni;
+
+    @SerializedName("phone")
     private String phone;
+
     private String comment;
     private float creditLine;
     private float balance;

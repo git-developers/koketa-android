@@ -34,6 +34,40 @@ public class ProductDb extends BaseDb {
         db.insert(Product.TABLE_NAME, null, values);
     }
 
+    public Product findOneById(String id) {
+
+        Cursor cursor = null;
+        Product product = new Product();
+
+        try {
+
+            cursor = db.rawQuery("SELECT t1.* " +
+                                    "FROM " + Product.TABLE_NAME + " AS t1 " +
+                                    "WHERE t1." + Product.COLUMN_ID + " = ?", new String[]{id});
+
+            if (cursor.moveToFirst()) {
+                do {
+                    product = new Product(
+                        cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_CODE)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)),
+                        cursor.getInt(cursor.getColumnIndex(Product.COLUMN_STOCK)),
+                        cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE))
+                    );
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return product;
+    }
+
     public List<Product> findAll() {
 
         Cursor cursor = null;
@@ -45,7 +79,7 @@ public class ProductDb extends BaseDb {
 
             if (cursor.moveToFirst()) {
                 do {
-                    Product category = new Product(
+                    Product product = new Product(
                         cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
                         cursor.getString(cursor.getColumnIndex(Product.COLUMN_CODE)),
                         cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
@@ -54,7 +88,7 @@ public class ProductDb extends BaseDb {
                         cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE))
                     );
 
-                    lst.add(category);
+                    lst.add(product);
 
                 } while(cursor.moveToNext());
             }

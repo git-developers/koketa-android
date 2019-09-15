@@ -22,6 +22,10 @@ import com.tianos.koketa.R;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.ui.activity.BaseActivity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import retrofit2.Response;
 
 public class Util {
@@ -167,6 +171,16 @@ public class Util {
         }
 
         return editText.getText().toString().isEmpty();
+    }
+
+    public final static Float price(float f) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Float.valueOf(decimalFormat.format(f));
+
+
+//        BigDecimal bd = new BigDecimal(f);
+//        bd.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+//        return bd.floatValue();
     }
 
 }

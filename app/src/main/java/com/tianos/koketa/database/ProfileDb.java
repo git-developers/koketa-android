@@ -27,6 +27,7 @@ public class ProfileDb extends BaseDb {
         ContentValues values = new ContentValues();
         values.put(Profile.COLUMN_ID, object.getId());
         values.put(Profile.COLUMN_SLUG, object.getSlug());
+        values.put(Profile.COLUMN_NAME, object.getName());
 
         db.insert(Profile.TABLE_NAME, null, values);
     }
@@ -74,6 +75,7 @@ public class ProfileDb extends BaseDb {
                     result = new Profile(
                             cursor.getInt(cursor.getColumnIndex(Profile.COLUMN_ID)),
                             cursor.getString(cursor.getColumnIndex(Profile.COLUMN_SLUG)),
+                            cursor.getString(cursor.getColumnIndex(Profile.COLUMN_NAME)),
                             cursor.getString(cursor.getColumnIndex(Profile.COLUMN_USERNAME))
                     );
                 } while(cursor.moveToNext());

@@ -2,6 +2,7 @@ package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 import androidx.appcompat.widget.SearchView;
 
@@ -59,30 +60,15 @@ public class ClientActivity extends BaseActivity implements InterfaceKoketa2 {
     @Override
     public void initData() {
 
-
-
-        /*
-        List<User> lst = new ArrayList<User>();
-
-        User a = new User(1,"4EVER UNIFORMS S.A.C", "20270653929", "test-1@gmail.com");
-        lst.add(a);
-
-        User b = new User(2,"A TUS PIES E.I.R.L", "20536727524", "test-2@gmail.com");
-        lst.add(b);
-
-        User c = new User(3,"ABAD CRUZADO, ROSA", "20100014395", "test-3@gmail.com");
-        lst.add(c);
-
-        User d = new User(4,"A & E INVERSIONES QUIROZ", "20511615136", "test-4@gmail.com");
-        lst.add(d);
-
-        User e = new User(5,"ASCATE ALAYO, MERCADO PILAR", "20100017491", "test-5@gmail.com");
-        lst.add(e);
-        */
-
         UserDb userDb = new UserDb(ClientActivity.this);
+        List<User> lst = userDb.findAll();
 
-        bodyAdapter = new ClientAdapter(ClientActivity.this, userDb.findAll());
+        if (lst.size() == 0) {
+            layoutNoData.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        bodyAdapter = new ClientAdapter(ClientActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

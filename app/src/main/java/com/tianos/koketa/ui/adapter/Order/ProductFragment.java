@@ -57,6 +57,8 @@ public class ProductFragment extends BaseFragment implements InterfaceKoketaFrag
 
         List<Product> lst = new ArrayList<Product>();
 
+
+        /*
         Product a = new Product(1,"KOKETA B SILUET OI18 CHALECO LATEX L NEGRO", "Koketa", 45, 4.01);
         lst.add(a);
 
@@ -71,6 +73,7 @@ public class ProductFragment extends BaseFragment implements InterfaceKoketaFrag
 
         Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
         lst.add(e);
+        */
 
         TabProductAdapter bodyAdapter = new TabProductAdapter(context, lst);
         recyclerView.setAdapter(bodyAdapter);

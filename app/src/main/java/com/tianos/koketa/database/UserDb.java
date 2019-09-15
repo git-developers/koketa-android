@@ -27,6 +27,8 @@ public class UserDb extends BaseDb {
         values.put(User.COLUMN_RUC, object.getRuc());
         values.put(User.COLUMN_EMAIL, object.getEmail());
         values.put(User.COLUMN_NAME, object.getName());
+        values.put(User.COLUMN_LAST_NAME, object.getLastName());
+        values.put(User.COLUMN_PHONE, object.getPhone());
         values.put(User.COLUMN_USERNAME, object.getUsername());
         values.put(User.COLUMN_PROFILE_ID, object.getProfile().getId());
 

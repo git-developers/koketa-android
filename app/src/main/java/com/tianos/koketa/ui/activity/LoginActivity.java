@@ -159,6 +159,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                         new Profile(
                             responseWeb.getUser().getProfile().getId(),
                             responseWeb.getUser().getProfile().getSlug(),
+                            responseWeb.getUser().getProfile().getName(),
                             responseWeb.getUser().getUsername()
                     ));
 

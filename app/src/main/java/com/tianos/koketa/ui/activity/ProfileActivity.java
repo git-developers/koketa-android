@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianos.koketa.R;
+import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
+import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.dialog.DialogFragment;
 
 import butterknife.BindView;
@@ -50,7 +52,7 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-//    private User user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,6 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
         initSetup();
         initToolBar();
         navigationDrawer();
-
-
-
 
 //        initData();
 //        navigationDrawer();
@@ -80,14 +79,24 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     public void initSetup() {
         super.initSetup();
 
-//        user = PreferencesManager.getInstance(this).realmGetUser();
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment.dialogChangePassword(ProfileActivity.this);
             }
         });
+
+        user = PreferencesManager.getInstance(this).realmGetUser();
+
+        if (user == null) {
+            return;
+        }
+
+        userProfileName.setText(user.getName() + " " + user.getLastName());
+        row1.setText(user.getUsername());
+        row2.setText(user.getProfile().getName());
+        row3.setText(user.getEmail());
+        row4.setText(user.getPhone());
     }
 
     @Override
@@ -98,64 +107,15 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
 
-
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                onBackPressed();
 //            }
 //        });
-
-
-
     }
-
-    /*
-    @Override
-    public void initData() {
-
-        if (user == null) {
-
-            rlMain.setVisibility(View.GONE);
-
-            Util.showDialog(
-            ProfileActivity.this,
-                    getEtString(R.string.no_data_3),
-                    getEtString(R.string.close),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent i = new Intent(ProfileActivity.this, DashboardActivity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                            finish();
-                        }
-                    });
-            return;
-        }
-
-        userProfileName.setText(user.getName());
-        userProfileShortBio.setText(user.getMessage());
-
-        row1.setText(user.getCode());
-        row2.setText("(" + user.getNivel() + ") " + getNivel(user.getNivel()));
-        row3.setText("(" + user.getOrigen() + ") " + getOrigen(user.getOrigen()));
-        row4.setText(versionCode());
-        row5.setText(versionName());
-
-        headerCoverImage.animate()
-            .alpha(1f)
-            .scaleX(2.5f)
-            .scaleY(2.5f)
-            .rotation(360f)
-            .setDuration(7000)
-        ;
-    }
-    */
 
     protected void doAnimation() {
-
-
         /*
         new ParticleSystem(ProfileActivity.this, 80, R.mipmap.coin_2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 0)
@@ -182,12 +142,10 @@ public class ProfileActivity extends BaseActivity implements InterfaceKoketa {
     @Override
     protected void onStop() {
         super.onStop();
-//        finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        finish();
     }
 }

@@ -74,7 +74,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                     lstFiltered = lst;
                 } else {
 
-                    List<User> filteredList = new ArrayList<>();
+                    List<User> filteredList = new ArrayList<User>();
 
                     for (User row : lst) {
                         if (Util.charContains(row.getName(), charSequence)) {
