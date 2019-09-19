@@ -19,4 +19,5 @@ public class Constant {
 
     public static final String USER_ID = "id";
     public static final String PRODUCT_ID = "id";
+    public static final String CATEGORY_ID = "id";
 }

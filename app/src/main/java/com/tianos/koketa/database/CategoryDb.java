@@ -31,6 +31,37 @@ public class CategoryDb extends BaseDb {
         db.insert(Category.TABLE_NAME, null, values);
     }
 
+    public Category findOneById(String id) {
+
+        Cursor cursor = null;
+        Category category = new Category();
+
+        try {
+
+            cursor = db.rawQuery("SELECT t1.* " +
+                                    "FROM " + Category.TABLE_NAME + " AS t1 " +
+                                    "WHERE t1." + Category.COLUMN_ID + " = ?", new String[]{id});
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    category.setId(cursor.getInt(cursor.getColumnIndex(Category.COLUMN_ID)));
+                    category.setCode(cursor.getString(cursor.getColumnIndex(Category.COLUMN_CODE)));
+                    category.setName(cursor.getString(cursor.getColumnIndex(Category.COLUMN_NAME)));
+                    category.setStock(cursor.getInt(cursor.getColumnIndex(Category.COLUMN_STOCK)));
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return category;
+    }
+
     public List<Category> findAll() {
 
         Cursor cursor = null;
@@ -38,7 +69,7 @@ public class CategoryDb extends BaseDb {
 
         try {
 
-            cursor = db.rawQuery("SELECT t1.* FROM " + Category.TABLE_NAME + " AS t1 ", new String[]{Profile.SLUG_CLIENT});
+            cursor = db.rawQuery("SELECT t1.* FROM " + Category.TABLE_NAME + " AS t1", new String[]{});
 
             if (cursor.moveToFirst()) {
                 do {
@@ -59,7 +90,6 @@ public class CategoryDb extends BaseDb {
             Log.d(TAG, e.getMessage());
         } finally {
             cursor.close();
-//            db.close();
         }
 
         return lst;

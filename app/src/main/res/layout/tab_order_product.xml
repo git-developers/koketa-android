@@ -62,7 +62,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="center_vertical"
-                        android:text="SOL 146.30"
+                        android:text="SOL 0.0"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"
                         android:fontFamily="@font/livvic_bold"/>
@@ -101,7 +101,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="center_vertical"
-                        android:text="SOL 26.33"
+                        android:text="SOL 0.0"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"
                         android:fontFamily="@font/livvic_bold"/>
@@ -141,7 +141,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="center_vertical"
-                        android:text="SOL 172.63"
+                        android:text="SOL 0.0"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"
                         android:fontFamily="@font/livvic_bold"/>

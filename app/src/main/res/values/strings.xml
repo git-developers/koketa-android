@@ -35,6 +35,7 @@
     <string name="pending_status">Estado pedido</string>
     <string name="profile">Perfil</string>
     <string name="dashboard">Dashboard</string>
+    <string name="add_product">Agregar articulos</string>
     <string name="not_available">no disponible</string>
     <string name="dummy">dummy</string>
     <string name="search">Buscar</string>

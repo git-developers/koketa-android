@@ -3,6 +3,7 @@ package com.tianos.koketa.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.UserDb;
+import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.User;
-import com.tianos.koketa.ui.activity.ClientDetailActivity;
+import com.tianos.koketa.ui.activity.DashboardActivity;
+import com.tianos.koketa.ui.activity.LoginActivity;
 import com.tianos.koketa.ui.activity.OrderTabsActivity;
+import com.tianos.koketa.ui.activity.SplashActivity;
 import com.tianos.koketa.ui.adapter.ContactAdapter;
 import com.tianos.koketa.util.Constant;
+import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 
 import java.util.ArrayList;
@@ -59,6 +65,8 @@ public class ClientDetailFragment extends DialogFragment {
     @BindView(R.id.textview_24)
     TextView tvBalance;
 
+    private User client;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,16 +94,16 @@ public class ClientDetailFragment extends DialogFragment {
         ButterKnife.bind(this, view);
 
         UserDb userDb = new UserDb(getActivity());
-        User user = userDb.findOneById(getArguments().getString(Constant.PRODUCT_ID));
+        client = userDb.findOneById(getArguments().getString(Constant.PRODUCT_ID));
 
-        tvName.setText(user.getName());
-        tvRuc.setText(user.getRuc());
-        tvEmail.setText(user.getEmail());
-        tvPhone.setText(user.getPhone());
-        tvAddress.setText(user.getAddress());
-        tvAboutMe.setText(user.getAboutMe());
-        tvCreditLine.setText("SOL " + Util.money(user.getCreditLine()));
-        tvBalance.setText("SOL " + Util.money(user.getBalance()));
+        tvName.setText(client.getName());
+        tvRuc.setText(client.getRuc());
+        tvEmail.setText(client.getEmail());
+        tvPhone.setText(client.getPhone());
+        tvAddress.setText(client.getAddress());
+        tvAboutMe.setText(client.getAboutMe());
+        tvCreditLine.setText("SOL " + Util.money(client.getCreditLine()));
+        tvBalance.setText("SOL " + Util.money(client.getBalance()));
 
 
         /**
@@ -134,8 +142,25 @@ public class ClientDetailFragment extends DialogFragment {
 
         Util.progressDialogShow(getActivity(), getString(R.string.in_progress));
 
-        Intent i = new Intent(getActivity(), OrderTabsActivity.class);
-        startActivity(i);
+        User user = PreferencesManager.getInstance(getActivity()).realmGetUser();
+
+        BreadcrumbDb breadcrumbDb = new BreadcrumbDb(getActivity());
+        breadcrumbDb.insertClient(new Breadcrumb(user.getUsername(), client.getId()));
+
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    sleep(200);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+
+                Intent i = new Intent(getActivity(), OrderTabsActivity.class);
+                startActivity(i);
+                }
+            }
+        };
+        timer.start();
     }
 
 }

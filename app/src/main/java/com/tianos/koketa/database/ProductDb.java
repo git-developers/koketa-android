@@ -103,6 +103,43 @@ public class ProductDb extends BaseDb {
         return lst;
     }
 
+    public List<Product> findAllByCategory(String categoryId) {
+
+        Cursor cursor = null;
+        List<Product> lst = new ArrayList<Product>();
+
+        try {
+
+            cursor = db.rawQuery("SELECT t1.* " +
+                                    "FROM " + Product.TABLE_NAME + " AS t1 " +
+                                    "WHERE t1." + Product.COLUMN_CATEGORY_ID + " = ?", new String[]{categoryId});
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Product product = new Product(
+                        cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_CODE)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)),
+                        cursor.getInt(cursor.getColumnIndex(Product.COLUMN_STOCK)),
+                        cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE))
+                    );
+
+                    lst.add(product);
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+//            db.close();
+        }
+
+        return lst;
+    }
+
     public void delete() {
         db.delete(Product.TABLE_NAME,null, new String[]{});
     }

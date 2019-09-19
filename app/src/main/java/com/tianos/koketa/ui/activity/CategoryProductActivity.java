@@ -1,14 +1,20 @@
 package com.tianos.koketa.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.CategoryDb;
+import com.tianos.koketa.database.ProductDb;
+import com.tianos.koketa.entity.Category;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.adapter.CategoryProductAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
+import com.tianos.koketa.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +25,11 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.tv_category)
+    TextView tvCategory;
+
+    private String categoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +46,8 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
     public void initSetup() {
         super.initSetup();
 
+        categoryId = getIntent().getStringExtra(Constant.CATEGORY_ID);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(CategoryProductActivity.this, RecyclerView.VERTICAL,false));
     }
 
@@ -49,24 +62,21 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
     @Override
     public void initData() {
 
-        List<Product> lst = new ArrayList<Product>();
+        CategoryDb categoryDb = new CategoryDb(CategoryProductActivity.this);
+        Category category = categoryDb.findOneById(categoryId);
 
-        /*
-        Product a = new Product(1,"KOKETA B SILUET OI18 CHALECO LATEX L NEGRO", "Koketa", 45, 4.01);
-        lst.add(a);
+        tvCategory.setText(category.getName());
 
-        Product b = new Product(2,"KOKETA B SILUET BODY TRE LATEX M MTE BEIGE", "Koketa", 89, 24.66);
-        lst.add(b);
+        /**
+         * PRODUCTS
+         */
+        ProductDb productDb = new ProductDb(CategoryProductActivity.this);
+        List<Product> lst = productDb.findAllByCategory(categoryId);
 
-        Product c = new Product(3,"KOKETA B SILUET CAMISETA TA LATEX L MTE NEGRO", "Koketa", 150, 58.88);
-        lst.add(c);
-
-        Product d = new Product(4,"KOKETA B SILUET FAJA COMPLETA LATEX M BEIGE", "Koketa", 78, 5.19);
-        lst.add(d);
-
-        Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
-        lst.add(e);
-        */
+        if (lst.size() == 0) {
+            layoutNoData.setVisibility(View.VISIBLE);
+            return;
+        }
 
         CategoryProductAdapter bodyAdapter = new CategoryProductAdapter(CategoryProductActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);

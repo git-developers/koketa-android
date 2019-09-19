@@ -1,6 +1,7 @@
 package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.fragment.CategoryProductFragment;
 import com.tianos.koketa.ui.fragment.ProductDetailFragment;
+import com.tianos.koketa.util.Constant;
+import com.tianos.koketa.util.Util;
 
 import java.util.List;
 
@@ -50,7 +53,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
         holder.tvName.setText(o.getName());
         holder.tvFamily.setText(o.getFamily());
         holder.tvStock.setText(Integer.toString(o.getStock()) + " Unidades");
-        holder.tvPrice.setText("SOL " + Double.toString(o.getPrice()));
+        holder.tvPrice.setText("SOL " + Util.money(o.getPrice()));
     }
 
     @Override
@@ -91,7 +94,14 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
 
             if (v.getId() == llBody.getId()) {
 
+                int position = getAdapterPosition();
+                Product product = lst.get(position);
+
+                Bundle args = new Bundle();
+                args.putString(Constant.PRODUCT_ID, String.valueOf(product.getId()));
+
                 CategoryProductFragment fragment = new CategoryProductFragment();
+                fragment.setArguments(args);
                 FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
                 fragment.show(ft, "dialog");
             }

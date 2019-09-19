@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.Category;
+import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.User;
@@ -30,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Profile.CREATE_TABLE);
         db.execSQL(Category.CREATE_TABLE);
         db.execSQL(Product.CREATE_TABLE);
+        db.execSQL(Order.CREATE_TABLE);
     }
 
     /**
@@ -47,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Profile.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Category.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Product.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Order.TABLE_NAME);
 
         // Create tables again
         onCreate(db);

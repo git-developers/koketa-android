@@ -53,7 +53,7 @@ public class Product extends RealmObject implements Serializable {
     @SerializedName("stock")
     private Integer stock;
 
-    @SerializedName("money")
+    @SerializedName("price")
     private float price;
 
     @SerializedName("category")

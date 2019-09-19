@@ -9,11 +9,6 @@
     android:orientation="vertical"
     tools:context=".ui.activity.ClientActivity">
 
-    <include
-        android:visibility="gone"
-        layout="@layout/layout_no_data" />
-
-
     <LinearLayout
         android:layout_below="@+id/divider"
         android:layout_width="match_parent"
@@ -31,16 +26,20 @@
             android:src="@mipmap/category" />
 
         <TextView
-            android:id="@+id/tv_stock"
+            android:id="@+id/tv_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/livvic_bold"
             android:gravity="center_vertical"
-            android:text="Categoría: Fajas Lin Intel"
+            android:text="@string/dummy"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
     </LinearLayout>
+
+    <include
+        android:visibility="gone"
+        layout="@layout/layout_no_data" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

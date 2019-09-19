@@ -2,6 +2,7 @@ package com.tianos.koketa.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Category;
+import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.ui.activity.CategoryProductActivity;
+import com.tianos.koketa.ui.fragment.ProductDetailFragment;
+import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.Util;
 
 import java.util.ArrayList;
@@ -132,7 +138,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
             if (v.getId() == rlBody.getId()) {
 
+                int position = getAdapterPosition();
+                Category category = lst.get(position);
+
                 Intent i = new Intent(this.context, CategoryProductActivity.class);
+                i.putExtra(Constant.CATEGORY_ID, String.valueOf(category.getId()));
                 this.context.startActivity(i);
             }
 
