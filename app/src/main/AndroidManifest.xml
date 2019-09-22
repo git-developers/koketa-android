@@ -83,7 +83,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".ui.activity.CategoryProductActivity"
+            android:name=".ui.activity.OrderProductsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity

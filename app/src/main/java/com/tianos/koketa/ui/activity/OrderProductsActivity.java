@@ -8,20 +8,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.CategoryDb;
+import com.tianos.koketa.database.OrderDb;
 import com.tianos.koketa.database.ProductDb;
+import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.Category;
+import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.Product;
-import com.tianos.koketa.ui.adapter.CategoryProductAdapter;
+import com.tianos.koketa.ui.adapter.OrderProductsAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
 import com.tianos.koketa.util.Constant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class CategoryProductActivity extends BaseActivity implements InterfaceKoketa2 {
+public class OrderProductsActivity extends BaseActivity implements InterfaceKoketa2 {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -34,7 +37,7 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_product);
+        setContentView(R.layout.activity_order_products);
 
         initSetup();
         initToolBar();
@@ -48,7 +51,7 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
 
         categoryId = getIntent().getStringExtra(Constant.CATEGORY_ID);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(CategoryProductActivity.this, RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(OrderProductsActivity.this, RecyclerView.VERTICAL,false));
     }
 
     @Override
@@ -62,15 +65,14 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
     @Override
     public void initData() {
 
-        CategoryDb categoryDb = new CategoryDb(CategoryProductActivity.this);
+        CategoryDb categoryDb = new CategoryDb(OrderProductsActivity.this);
         Category category = categoryDb.findOneById(categoryId);
-
         tvCategory.setText(category.getName());
 
         /**
          * PRODUCTS
          */
-        ProductDb productDb = new ProductDb(CategoryProductActivity.this);
+        ProductDb productDb = new ProductDb(OrderProductsActivity.this);
         List<Product> lst = productDb.findAllByCategory(categoryId);
 
         if (lst.size() == 0) {
@@ -78,7 +80,7 @@ public class CategoryProductActivity extends BaseActivity implements InterfaceKo
             return;
         }
 
-        CategoryProductAdapter bodyAdapter = new CategoryProductAdapter(CategoryProductActivity.this, lst);
+        OrderProductsAdapter bodyAdapter = new OrderProductsAdapter(OrderProductsActivity.this, lst);
         recyclerView.setAdapter(bodyAdapter);
     }
 

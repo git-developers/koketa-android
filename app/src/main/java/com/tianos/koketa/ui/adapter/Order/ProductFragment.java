@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
+import com.tianos.koketa.database.BreadcrumbDb;
+import com.tianos.koketa.database.OrderDb;
+import com.tianos.koketa.entity.Breadcrumb;
+import com.tianos.koketa.entity.Order;
+import com.tianos.koketa.entity.OrderDetail;
 import com.tianos.koketa.entity.Product;
-import com.tianos.koketa.ui.activity.ProductActivity;
-import com.tianos.koketa.ui.adapter.ProductAdapter;
 import com.tianos.koketa.ui.adapter.TabProductAdapter;
 import com.tianos.koketa.ui.fragment.BaseFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketaFragment;
+import com.tianos.koketa.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,6 +32,12 @@ public class ProductFragment extends BaseFragment implements InterfaceKoketaFrag
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.tv_sub_total)
+    TextView tvSubTotal;
+
+    @BindView(R.id.tv_total)
+    TextView tvTotal;
 
     private View viewInflate;
     private Context context;
@@ -55,28 +64,51 @@ public class ProductFragment extends BaseFragment implements InterfaceKoketaFrag
     @Override
     public void initData() {
 
-        List<Product> lst = new ArrayList<Product>();
+        dataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        dataSetChanged();
+    }
+
+    private void dataSetChanged() {
+
+        /**
+         * BREADCRUMB
+         */
+        BreadcrumbDb breadcrumbDb = new BreadcrumbDb(getActivity());
+        Breadcrumb breadcrumb = breadcrumbDb.findLast();
 
 
-        /*
-        Product a = new Product(1,"KOKETA B SILUET OI18 CHALECO LATEX L NEGRO", "Koketa", 45, 4.01);
-        lst.add(a);
+        /**
+         * GET CLIENT CURRENT ORDER
+         */
+        OrderDb orderDb = new OrderDb(getActivity());
+        List<OrderDetail> lst = orderDb.findAllOrderDetailByClient(breadcrumb);
 
-        Product b = new Product(2,"KOKETA B SILUET BODY TRE LATEX M MTE BEIGE", "Koketa", 89, 24.66);
-        lst.add(b);
-
-        Product c = new Product(3,"KOKETA B SILUET CAMISETA TA LATEX L MTE NEGRO", "Koketa", 150, 58.88);
-        lst.add(c);
-
-        Product d = new Product(4,"KOKETA B SILUET FAJA COMPLETA LATEX M BEIGE", "Koketa", 78, 5.19);
-        lst.add(d);
-
-        Product e = new Product(5,"KOKETA CLASSIC M/PANTALON SPT TU PIEL", "Koketa", 564, 7.55);
-        lst.add(e);
-        */
+        if (lst == null || lst.size() == 0) {
+            layoutNoData.setVisibility(View.VISIBLE);
+            return;
+        }
 
         TabProductAdapter bodyAdapter = new TabProductAdapter(context, lst);
         recyclerView.setAdapter(bodyAdapter);
+
+
+        /**
+         * TOTAL - SUBTOTAL
+         */
+        float subTotal = 0;
+        for (OrderDetail orderDetail : lst) {
+            subTotal = subTotal + orderDetail.getProduct().getPrice();
+        }
+
+        tvSubTotal.setText("SOL " + Util.money(subTotal));
+        tvTotal.setText("SOL " + Util.money(subTotal));
     }
+
 
 }

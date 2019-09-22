@@ -2,7 +2,6 @@ package com.tianos.koketa.ui.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +15,23 @@ import androidx.fragment.app.DialogFragment;
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.OrderDb;
+import com.tianos.koketa.database.OrderDetailDb;
 import com.tianos.koketa.database.ProductDb;
 import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.Order;
+import com.tianos.koketa.entity.OrderDetail;
 import com.tianos.koketa.entity.Product;
-import com.tianos.koketa.entity.User;
-import com.tianos.koketa.ui.activity.LoginActivity;
 import com.tianos.koketa.util.Constant;
-import com.tianos.koketa.util.PreferencesManager;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CategoryProductFragment extends DialogFragment {
+public class OrderProductsSizeFragment extends DialogFragment {
 
-    private static final String TAG = CategoryProductFragment.class.getName();
+    private static final String TAG = OrderProductsSizeFragment.class.getName();
 
     @BindView(R.id.tv_product_name)
     TextView tvProductName;
@@ -130,19 +130,30 @@ public class CategoryProductFragment extends DialogFragment {
         String val24 = v24.getText().toString();
 
 
-//        User user = PreferencesManager.getInstance(getActivity()).realmGetUser();
-
+        /**
+         * BREADCRUMB
+         */
         BreadcrumbDb breadcrumbDb = new BreadcrumbDb(getActivity());
         Breadcrumb breadcrumb = breadcrumbDb.findLast();
 
-        Order order = new Order();
-        order.setUsername(breadcrumb.getUsername());
-        order.setClientId(breadcrumb.getClientId());
-        order.setProductId(product.getId());
-        order.setStatus(Order.STATUS_PENDING);
-        order.setProductStock(5);
 
+        /**
+         * CREATE ORDER IF NOT EXIST - OR - GET ORDER IF EXIST
+         */
         OrderDb orderDb = new OrderDb(getActivity());
-        orderDb.insert(order);
+        Order currentOrder = orderDb.currentOrder(breadcrumb);
+
+
+        /**
+         * SAVE ORDER DETAIL
+         */
+        OrderDetailDb orderDetailDb = new OrderDetailDb(getActivity());
+
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOrderId(currentOrder.getId());
+        orderDetail.setProductId(product.getId());
+        orderDetail.setProductStock(5);
+
+        orderDetailDb.insert(orderDetail);
     }
 }

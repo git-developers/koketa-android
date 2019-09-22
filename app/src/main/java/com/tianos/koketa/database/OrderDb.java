@@ -5,12 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.Order;
+import com.tianos.koketa.entity.OrderDetail;
+import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.User;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmList;
 
 
 public class OrderDb extends BaseDb {
@@ -21,40 +28,96 @@ public class OrderDb extends BaseDb {
         super.databaseHelper(context);
     }
 
-    public void insert(Order object) {
+    public Order currentOrder(Breadcrumb breadcrumb) {
 
-        ContentValues values = new ContentValues();
-        values.put(Order.COLUMN_STATUS, object.getStatus());
-        values.put(Order.COLUMN_USERNAME, object.getUsername());
-        values.put(Order.COLUMN_CLIENT_ID, object.getClientId());
-        values.put(Order.COLUMN_CATEGORY_ID, object.getCategoryId());
-        values.put(Order.COLUMN_PRODUCT_ID, object.getProductId());
-        values.put(Order.COLUMN_PRODUCT_STOCK, object.getProductStock());
+        Order currentOrder = findOneByClientId(breadcrumb);
 
-        db.insert(Order.TABLE_NAME, null, values);
+        if (currentOrder != null) {
+            return currentOrder;
+        }
+
+        Order newOrder = new Order();
+        newOrder.setUsername(breadcrumb.getUsername());
+        newOrder.setClientId(breadcrumb.getClientId());
+        newOrder.setStatus(Order.STATUS_PENDING);
+
+        insert(newOrder);
+
+        return newOrder;
     }
 
-    public List<Order> findAllPending() {
+    public Order findOneByClientId(@NotNull Breadcrumb breadcrumb) {
 
         Cursor cursor = null;
-        List<Order> lst = new ArrayList<Order>();
+        Order order = null;
 
         try {
 
-            cursor = db.rawQuery("SELECT t1.* FROM " + Order.TABLE_NAME + " AS t1 " +
-                    " WHERE t2." + Order.COLUMN_STATUS + " = ?", new String[]{Order.STATUS_PENDING});
+            cursor = db.rawQuery(
+                "SELECT t1.* " +
+                        " FROM " + Order.TABLE_NAME + " AS t1 " +
+                        " WHERE t1." + Order.COLUMN_CLIENT_ID + " = ? " +
+                        " AND t1." + Order.COLUMN_STATUS + " = ? " +
+                        " LIMIT 1", new String[]{
+                        String.valueOf(breadcrumb.getClientId()),
+                        Order.STATUS_PENDING
+                }
+            );
+
+            if (cursor.moveToFirst()) {
+
+                do {
+                    order = new Order();
+                    order.setId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_ID_INCR)));
+                    order.setUsername(cursor.getString(cursor.getColumnIndex(Order.COLUMN_USERNAME)));
+                    order.setClientId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CLIENT_ID)));
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return order;
+    }
+
+    public List<OrderDetail> findAllOrderDetailByClient(@NotNull Breadcrumb breadcrumb) {
+
+        Cursor cursor = null;
+        List<OrderDetail> lst = new ArrayList<OrderDetail>();
+
+        try {
+
+            cursor = db.rawQuery(
+            "SELECT t1.*, t3." + Product.COLUMN_PRICE + ", t3." + Product.COLUMN_NAME + ", t3." + Product.COLUMN_FAMILY +
+                " FROM " + OrderDetail.TABLE_NAME + " AS t1 " +
+                " INNER JOIN " + Order.TABLE_NAME + " AS t2 ON t2." + Order.COLUMN_ID_INCR + " = t1." + OrderDetail.COLUMN_ORDER_ID +
+                " LEFT JOIN " + Product.TABLE_NAME + " AS t3 ON t3." + Product.COLUMN_ID + " = t1." + OrderDetail.COLUMN_PRODUCT_ID +
+                " WHERE t2." + Order.COLUMN_CLIENT_ID + " = ? " +
+                " ORDER BY t1." + OrderDetail.COLUMN_ID_INCR + " DESC",
+                new String[]{String.valueOf(breadcrumb.getClientId())}
+            );
 
             if (cursor.moveToFirst()) {
                 do {
 
-                    Order order = new Order();
-                    order.setId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_ID)));
-                    order.setUsername(cursor.getString(cursor.getColumnIndex(Order.COLUMN_USERNAME)));
-                    order.setClientId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CLIENT_ID)));
-                    order.setClientId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CATEGORY_ID)));
-                    order.setCategoryId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CATEGORY_ID)));
-                    order.setProductId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_ID)));
-                    lst.add(order);
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ID_INCR)));
+                    orderDetail.setOrderId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ORDER_ID)));
+                    orderDetail.setCategoryId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_CATEGORY_ID)));
+                    orderDetail.setProductId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_ID)));
+                    orderDetail.setProductStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_STOCK)));
+
+                    Product product = new Product();
+                    product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
+                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+                    product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
+                    product.setStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_STOCK)));
+                    orderDetail.setProduct(product);
+
+                    lst.add(orderDetail);
 
                 } while(cursor.moveToNext());
             }
@@ -68,9 +131,106 @@ public class OrderDb extends BaseDb {
         return lst;
     }
 
-    public void delete() {
-        db.delete(User.TABLE_NAME,null, new String[]{});
-//        db.close();
+    public void insert(Order object) {
+
+        ContentValues values = new ContentValues();
+        values.put(Order.COLUMN_STATUS, object.getStatus());
+        values.put(Order.COLUMN_USERNAME, object.getUsername());
+        values.put(Order.COLUMN_CLIENT_ID, object.getClientId());
+
+        db.insert(Order.TABLE_NAME, null, values);
     }
 
+    public List<Order> findAllPending() {
+
+        Cursor cursor = null;
+        List<Order> lst = new ArrayList<Order>();
+
+        try {
+
+            /*
+            cursor = db.rawQuery("SELECT t1.*, t2.* FROM " + Order.TABLE_NAME + " AS t1 " +
+                    "INNER JOIN " + Product.TABLE_NAME + " AS t2 ON t2." + Product.COLUMN_ID + " = t1." + Order.COLUMN_PRODUCT_ID +
+                    " WHERE t1." + Order.COLUMN_STATUS + " = ?", new String[]{Order.STATUS_PENDING});
+            */
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    Order order = new Order();
+                    order.setId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_ID_INCR)));
+                    order.setUsername(cursor.getString(cursor.getColumnIndex(Order.COLUMN_USERNAME)));
+                    order.setClientId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CLIENT_ID)));
+
+                    /*
+                    order.setCategoryId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CATEGORY_ID)));
+                    order.setProductId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_ID)));
+
+                    Product product = new Product();
+                    product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
+                    product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
+                    product.setStock(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_STOCK)));
+                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+
+                    order.setProduct(product);
+                    lst.add(order);
+                    *
+                     */
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return lst;
+    }
+
+    /*
+    public List<Product> findPendingProducts() {
+
+        Cursor cursor = null;
+        List<Product> lst = new ArrayList<Product>();
+
+        try {
+
+            cursor = db.rawQuery("SELECT t2.*, t1." + Order.COLUMN_PRODUCT_STOCK + " FROM " + Order.TABLE_NAME + " AS t1 " +
+                            "INNER JOIN " + Product.TABLE_NAME + " AS t2 ON t2." + Product.COLUMN_ID + " = t1." + Order.COLUMN_PRODUCT_ID +
+                            " WHERE t1." + Order.COLUMN_STATUS + " = ?", new String[]{Order.STATUS_PENDING});
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Product product = new Product();
+                    product.setId(cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)));
+                    product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
+                    product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
+                    product.setStock(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_STOCK)));
+                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+
+                    lst.add(product);
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return lst;
+    }
+
+     */
+
+    public void delete() {
+        db.delete(Order.TABLE_NAME,null, new String[]{});
+    }
+
+    public void deleteById(String id) {
+        db.delete(Order.TABLE_NAME,Order.COLUMN_ID_INCR + " = ?", new String[]{id});
+    }
 }

@@ -1,5 +1,6 @@
 package com.tianos.koketa.retrofit;
 
+import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
 
@@ -25,5 +26,8 @@ public interface APIInterface {
 
     @POST("product/list")
     Call<ResponseWeb> product(@Body User user);
+
+    @POST("ticket/create")
+    Call<ResponseWeb> ticketCreate(@Body Order order);
 
 }

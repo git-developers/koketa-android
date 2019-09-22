@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianos.koketa.R;
 import com.tianos.koketa.entity.Product;
-import com.tianos.koketa.ui.fragment.CategoryProductFragment;
-import com.tianos.koketa.ui.fragment.ProductDetailFragment;
+import com.tianos.koketa.ui.fragment.OrderProductsSizeFragment;
 import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.Util;
 
@@ -26,13 +25,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ProductViewHolder> {
+public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdapter.ProductViewHolder> {
 
     private Context context;
     private LayoutInflater inflater;
     private List<Product> lst;
 
-    public CategoryProductAdapter(Context context, List<Product> lst) {
+    public OrderProductsAdapter(Context context, List<Product> lst) {
         this.context = context;
         this.lst = lst;
         this.inflater = LayoutInflater.from(context);
@@ -100,7 +99,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
                 Bundle args = new Bundle();
                 args.putString(Constant.PRODUCT_ID, String.valueOf(product.getId()));
 
-                CategoryProductFragment fragment = new CategoryProductFragment();
+                OrderProductsSizeFragment fragment = new OrderProductsSizeFragment();
                 fragment.setArguments(args);
                 FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
                 fragment.show(ft, "dialog");
