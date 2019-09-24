@@ -1,4 +1,4 @@
-package com.tianos.koketa.ui.adapter.Order;
+package com.tianos.koketa.ui.adapter.OrderTabs;
 
 
 import androidx.fragment.app.Fragment;

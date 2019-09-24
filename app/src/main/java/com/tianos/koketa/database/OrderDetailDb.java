@@ -26,7 +26,7 @@ public class OrderDetailDb extends BaseDb {
         values.put(OrderDetail.COLUMN_ORDER_ID, object.getOrderId());
         values.put(OrderDetail.COLUMN_CATEGORY_ID, object.getCategoryId());
         values.put(OrderDetail.COLUMN_PRODUCT_ID, object.getProductId());
-        values.put(OrderDetail.COLUMN_PRODUCT_STOCK, object.getProductStock());
+        values.put(OrderDetail.COLUMN_PRODUCT_QUANTITY, object.getProductQuantity());
 
         db.insert(OrderDetail.TABLE_NAME, null, values);
     }
@@ -50,7 +50,7 @@ public class OrderDetailDb extends BaseDb {
                     orderDetail.setOrderId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ORDER_ID)));
                     orderDetail.setCategoryId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_CATEGORY_ID)));
                     orderDetail.setProductId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_ID)));
-                    orderDetail.setProductStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_STOCK)));
+                    orderDetail.setProductQuantity(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
 
                     Product product = new Product();
                     product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));

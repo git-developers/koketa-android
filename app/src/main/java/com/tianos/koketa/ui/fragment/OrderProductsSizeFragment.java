@@ -23,8 +23,6 @@ import com.tianos.koketa.entity.OrderDetail;
 import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.util.Constant;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -88,10 +86,6 @@ public class OrderProductsSizeFragment extends DialogFragment {
         super.onDestroyView();
     }
 
-    public interface DialogListener {
-        void onFinishEditDialog(String inputText);
-    }
-
     @OnClick(R.id.btn_add)
     public void btnAdd() {
 
@@ -152,7 +146,7 @@ public class OrderProductsSizeFragment extends DialogFragment {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrderId(currentOrder.getId());
         orderDetail.setProductId(product.getId());
-        orderDetail.setProductStock(5);
+        orderDetail.setProductQuantity(5);
 
         orderDetailDb.insert(orderDetail);
     }

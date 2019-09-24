@@ -95,9 +95,9 @@ public class OrderDb extends BaseDb {
                 " FROM " + OrderDetail.TABLE_NAME + " AS t1 " +
                 " INNER JOIN " + Order.TABLE_NAME + " AS t2 ON t2." + Order.COLUMN_ID_INCR + " = t1." + OrderDetail.COLUMN_ORDER_ID +
                 " LEFT JOIN " + Product.TABLE_NAME + " AS t3 ON t3." + Product.COLUMN_ID + " = t1." + OrderDetail.COLUMN_PRODUCT_ID +
-                " WHERE t2." + Order.COLUMN_CLIENT_ID + " = ? " +
+                " WHERE t2." + Order.COLUMN_CLIENT_ID + " =? AND t2." + Order.COLUMN_STATUS + " =? " +
                 " ORDER BY t1." + OrderDetail.COLUMN_ID_INCR + " DESC",
-                new String[]{String.valueOf(breadcrumb.getClientId())}
+                new String[]{String.valueOf(breadcrumb.getClientId()), Order.STATUS_PENDING}
             );
 
             if (cursor.moveToFirst()) {
@@ -108,14 +108,102 @@ public class OrderDb extends BaseDb {
                     orderDetail.setOrderId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ORDER_ID)));
                     orderDetail.setCategoryId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_CATEGORY_ID)));
                     orderDetail.setProductId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_ID)));
-                    orderDetail.setProductStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_STOCK)));
+                    orderDetail.setProductQuantity(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
 
                     Product product = new Product();
                     product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
                     product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
                     product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
-                    product.setStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_STOCK)));
+                    product.setStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
                     orderDetail.setProduct(product);
+
+                    lst.add(orderDetail);
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return lst;
+    }
+
+    public RealmList<OrderDetail> findAllOrderDetailByOrderId(String orderId) {
+
+        Cursor cursor = null;
+        RealmList<OrderDetail> lst = new RealmList<OrderDetail>();
+
+        try {
+
+            cursor = db.rawQuery(
+            "SELECT t1.*, t3." + Product.COLUMN_PRICE + ", t3." + Product.COLUMN_NAME + ", t3." + Product.COLUMN_FAMILY +
+                " FROM " + OrderDetail.TABLE_NAME + " AS t1 " +
+                " INNER JOIN " + Order.TABLE_NAME + " AS t2 ON t2." + Order.COLUMN_ID_INCR + " = t1." + OrderDetail.COLUMN_ORDER_ID +
+                " LEFT JOIN " + Product.TABLE_NAME + " AS t3 ON t3." + Product.COLUMN_ID + " = t1." + OrderDetail.COLUMN_PRODUCT_ID +
+                " WHERE t1." + OrderDetail.COLUMN_ORDER_ID + " = ? " +
+                " ORDER BY t1." + OrderDetail.COLUMN_ID_INCR + " DESC",
+                new String[]{orderId}
+            );
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ID_INCR)));
+                    orderDetail.setOrderId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ORDER_ID)));
+                    orderDetail.setCategoryId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_CATEGORY_ID)));
+                    orderDetail.setProductId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_ID)));
+                    orderDetail.setProductQuantity(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
+
+                    Product product = new Product();
+                    product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
+                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+                    product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
+                    product.setStock(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
+                    orderDetail.setProduct(product);
+
+                    lst.add(orderDetail);
+
+                } while(cursor.moveToNext());
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        } finally {
+            cursor.close();
+        }
+
+        return lst;
+    }
+
+    public RealmList<OrderDetail> findAllOrderDetailByOrderId2(String orderId) {
+
+        Cursor cursor = null;
+        RealmList<OrderDetail> lst = new RealmList<OrderDetail>();
+
+        try {
+
+            cursor = db.rawQuery(
+            "SELECT t1.* " +
+                " FROM " + OrderDetail.TABLE_NAME + " AS t1 " +
+                " INNER JOIN " + Order.TABLE_NAME + " AS t2 ON t2." + Order.COLUMN_ID_INCR + " = t1." + OrderDetail.COLUMN_ORDER_ID +
+                " WHERE t1." + OrderDetail.COLUMN_ORDER_ID + " = ? " +
+                " ORDER BY t1." + OrderDetail.COLUMN_ID_INCR + " DESC",
+                new String[]{orderId}
+            );
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ID_INCR)));
+                    orderDetail.setOrderId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_ORDER_ID)));
+                    orderDetail.setCategoryId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_CATEGORY_ID)));
+                    orderDetail.setProductId(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_ID)));
+                    orderDetail.setProductQuantity(cursor.getInt(cursor.getColumnIndex(OrderDetail.COLUMN_PRODUCT_QUANTITY)));
 
                     lst.add(orderDetail);
 
@@ -141,18 +229,25 @@ public class OrderDb extends BaseDb {
         db.insert(Order.TABLE_NAME, null, values);
     }
 
-    public List<Order> findAllPending() {
+    public void updateStatus(String id, String status) {
+
+        ContentValues values = new ContentValues();
+        values.put(Order.COLUMN_STATUS, status);
+
+        db.update(Order.TABLE_NAME, values, Order.COLUMN_ID_INCR + "=?", new String[]{id});
+    }
+
+    public RealmList<Order> findAllPending() {
 
         Cursor cursor = null;
-        List<Order> lst = new ArrayList<Order>();
+        RealmList<Order> lst = new RealmList<Order>();
 
         try {
 
-            /*
-            cursor = db.rawQuery("SELECT t1.*, t2.* FROM " + Order.TABLE_NAME + " AS t1 " +
-                    "INNER JOIN " + Product.TABLE_NAME + " AS t2 ON t2." + Product.COLUMN_ID + " = t1." + Order.COLUMN_PRODUCT_ID +
-                    " WHERE t1." + Order.COLUMN_STATUS + " = ?", new String[]{Order.STATUS_PENDING});
-            */
+            cursor = db.rawQuery(
+                "SELECT t1.* " +
+                " FROM " + Order.TABLE_NAME + " AS t1 " +
+                " WHERE t1." + Order.COLUMN_STATUS + " = ?", new String[]{Order.STATUS_PENDING});
 
             if (cursor.moveToFirst()) {
                 do {
@@ -162,20 +257,7 @@ public class OrderDb extends BaseDb {
                     order.setUsername(cursor.getString(cursor.getColumnIndex(Order.COLUMN_USERNAME)));
                     order.setClientId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CLIENT_ID)));
 
-                    /*
-                    order.setCategoryId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_CATEGORY_ID)));
-                    order.setProductId(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_ID)));
-
-                    Product product = new Product();
-                    product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
-                    product.setFamily(cursor.getString(cursor.getColumnIndex(Product.COLUMN_FAMILY)));
-                    product.setStock(cursor.getInt(cursor.getColumnIndex(Order.COLUMN_PRODUCT_STOCK)));
-                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(Product.COLUMN_PRICE)));
-
-                    order.setProduct(product);
                     lst.add(order);
-                    *
-                     */
 
                 } while(cursor.moveToNext());
             }
@@ -190,6 +272,7 @@ public class OrderDb extends BaseDb {
     }
 
     /*
+
     public List<Product> findPendingProducts() {
 
         Cursor cursor = null;

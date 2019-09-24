@@ -4,6 +4,9 @@ import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
 
+import java.util.List;
+
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -27,7 +30,7 @@ public interface APIInterface {
     @POST("product/list")
     Call<ResponseWeb> product(@Body User user);
 
-    @POST("ticket/create")
-    Call<ResponseWeb> ticketCreate(@Body Order order);
+    @POST("sales/create")
+    Call<ResponseWeb> salesCreate(@Body RealmList<Order> lstOrder);
 
 }

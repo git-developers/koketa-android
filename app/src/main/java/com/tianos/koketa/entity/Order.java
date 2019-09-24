@@ -3,7 +3,8 @@ package com.tianos.koketa.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -56,6 +57,7 @@ public class Order extends RealmObject implements Serializable {
     @SerializedName("delivery_date")
     private Date deliveryDate;
 
+    @SerializedName("order_detail")
     private RealmList<OrderDetail> orderDetail;
 
     public Order() {

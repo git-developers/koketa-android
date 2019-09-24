@@ -1,4 +1,4 @@
-package com.tianos.koketa.ui.adapter.Order;
+package com.tianos.koketa.ui.adapter.OrderTabs;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,10 +18,8 @@ import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.User;
-import com.tianos.koketa.ui.activity.LoginActivity;
 import com.tianos.koketa.ui.fragment.BaseFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketaFragment;
-import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.Util;
 
 import butterknife.BindView;

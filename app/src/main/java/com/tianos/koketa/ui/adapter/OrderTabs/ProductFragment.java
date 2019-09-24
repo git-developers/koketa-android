@@ -1,4 +1,4 @@
-package com.tianos.koketa.ui.adapter.Order;
+package com.tianos.koketa.ui.adapter.OrderTabs;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,9 +14,7 @@ import com.tianos.koketa.R;
 import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.OrderDb;
 import com.tianos.koketa.entity.Breadcrumb;
-import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.OrderDetail;
-import com.tianos.koketa.entity.Product;
 import com.tianos.koketa.ui.adapter.TabProductAdapter;
 import com.tianos.koketa.ui.fragment.BaseFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketaFragment;
@@ -88,6 +86,8 @@ public class ProductFragment extends BaseFragment implements InterfaceKoketaFrag
          */
         OrderDb orderDb = new OrderDb(getActivity());
         List<OrderDetail> lst = orderDb.findAllOrderDetailByClient(breadcrumb);
+
+        layoutNoData.setVisibility(View.GONE);
 
         if (lst == null || lst.size() == 0) {
             layoutNoData.setVisibility(View.VISIBLE);

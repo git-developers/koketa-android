@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import com.tianos.koketa.R;
@@ -28,11 +29,17 @@ import com.tianos.koketa.entity.ResponseWeb;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
 import com.tianos.koketa.retrofit.APIInterface;
+import com.tianos.koketa.ui.fragment.ImeiFragment;
+import com.tianos.koketa.ui.fragment.LicenseFragment;
+import com.tianos.koketa.ui.fragment.OrderProductsSizeFragment;
+import com.tianos.koketa.ui.fragment.PermissionFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.Constant;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 import com.tianos.koketa.util.dialog.DialogFragment;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,7 +98,10 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
         int permission = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            DialogFragment.dialogPermission(LoginActivity.this);
+
+            PermissionFragment fragment = new PermissionFragment();
+            FragmentTransaction ft = ((AppCompatActivity) LoginActivity.this).getSupportFragmentManager().beginTransaction();
+            fragment.show(ft, "dialog");
             return;
         }
 
@@ -100,12 +110,18 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
 
     @OnClick(R.id.ib_imei)
     public void btnImei() {
-        DialogFragment.dialogImei(LoginActivity.this);
+
+        ImeiFragment fragment = new ImeiFragment();
+        FragmentTransaction ft = ((AppCompatActivity) LoginActivity.this).getSupportFragmentManager().beginTransaction();
+        fragment.show(ft, "dialog");
     }
 
     @OnClick(R.id.ib_license)
     public void btnLicense() {
-        DialogFragment.dialogLicense(LoginActivity.this);
+
+        LicenseFragment fragment = new LicenseFragment();
+        FragmentTransaction ft = ((AppCompatActivity) LoginActivity.this).getSupportFragmentManager().beginTransaction();
+        fragment.show(ft, "dialog");
     }
 
     public void login() {
@@ -138,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                     btnLogin.setEnabled(true);
 
                     if (response.code() != 200) {
-                        throw new Exception(getString(R.string.error));
+                        throw new Exception(getString(R.string.error)  + " -- 1111");
                     }
 
                     if (responseWeb.getStatus() != ResponseWeb.STATUS_SUCCESS) {
@@ -192,7 +208,27 @@ public class LoginActivity extends AppCompatActivity implements InterfaceKoketa 
                 call.cancel();
                 btnLogin.setEnabled(true);
                 Util.progressDialogHide();
-                Util.showSnackbar(LoginActivity.this, getString(R.string.error));
+
+                String errorType = "";
+                String errorDesc = "";
+
+                if (t instanceof IOException) {
+                    errorType = "Timeout";
+                    errorDesc = String.valueOf(t.getCause());
+                }
+                else if (t instanceof IllegalStateException) {
+                    errorType = "ConversionError";
+                    errorDesc = String.valueOf(t.getCause());
+                } else {
+                    errorType = "Other Error";
+                    errorDesc = String.valueOf(t.getLocalizedMessage());
+                }
+
+
+                Util.showToast(LoginActivity.this, "POLLO:: " + errorType + " --- " + errorDesc);
+
+
+                Util.showSnackbar(LoginActivity.this, getString(R.string.error)  + " -- 2222");
             }
         });
     }

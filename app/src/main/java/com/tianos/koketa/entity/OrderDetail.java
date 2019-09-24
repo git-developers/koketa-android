@@ -14,7 +14,7 @@ public class OrderDetail extends RealmObject implements Serializable {
     public static final String COLUMN_ORDER_ID = "ORDER_ID";
     public static final String COLUMN_CATEGORY_ID = "CATEGORY_ID";
     public static final String COLUMN_PRODUCT_ID = "PRODUCT_ID";
-    public static final String COLUMN_PRODUCT_STOCK = "PRODUCT_STOCK";
+    public static final String COLUMN_PRODUCT_QUANTITY = "PRODUCT_QUANTITY";
     public static final String COLUMN_TIMESTAMP = "TIMESTAMP";
 
     public static final String CREATE_TABLE =
@@ -23,7 +23,7 @@ public class OrderDetail extends RealmObject implements Serializable {
         + COLUMN_ORDER_ID + " INTEGER(11) NOT NULL,"
         + COLUMN_CATEGORY_ID + " INTEGER(11) DEFAULT NULL,"
         + COLUMN_PRODUCT_ID + " INTEGER(11) DEFAULT NULL,"
-        + COLUMN_PRODUCT_STOCK + " INTEGER(11) DEFAULT NULL,"
+        + COLUMN_PRODUCT_QUANTITY + " INTEGER(11) DEFAULT NULL,"
         + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
         + ")";
 
@@ -39,11 +39,12 @@ public class OrderDetail extends RealmObject implements Serializable {
     @SerializedName("product_id")
     private Integer productId;
 
-    @SerializedName("product_stock")
-    private Integer productStock;
+    @SerializedName("product_quantity")
+    private Integer productQuantity;
 
     private User client;
 
+    @SerializedName("product")
     private Product product;
 
     public OrderDetail() {
@@ -82,12 +83,12 @@ public class OrderDetail extends RealmObject implements Serializable {
         this.productId = productId;
     }
 
-    public Integer getProductStock() {
-        return productStock;
+    public Integer getProductQuantity() {
+        return productQuantity;
     }
 
-    public void setProductStock(Integer productStock) {
-        this.productStock = productStock;
+    public void setProductQuantity(Integer productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public User getClient() {

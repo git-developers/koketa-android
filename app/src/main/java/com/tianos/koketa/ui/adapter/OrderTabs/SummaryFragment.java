@@ -1,4 +1,4 @@
-package com.tianos.koketa.ui.adapter.Order;
+package com.tianos.koketa.ui.adapter.OrderTabs;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,22 +17,17 @@ import android.widget.TextView;
 import com.tianos.koketa.R;
 import com.tianos.koketa.database.BreadcrumbDb;
 import com.tianos.koketa.database.OrderDb;
-import com.tianos.koketa.database.ProfileDb;
-import com.tianos.koketa.database.UserDb;
 import com.tianos.koketa.entity.Breadcrumb;
 import com.tianos.koketa.entity.Order;
 import com.tianos.koketa.entity.OrderDetail;
-import com.tianos.koketa.entity.Profile;
 import com.tianos.koketa.entity.ResponseWeb;
-import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
 import com.tianos.koketa.retrofit.APIInterface;
-import com.tianos.koketa.ui.activity.LoginActivity;
-import com.tianos.koketa.ui.activity.SynchronizeActivity;
+import com.tianos.koketa.ui.activity.ClientActivity;
+import com.tianos.koketa.ui.activity.ClientDetailActivity;
 import com.tianos.koketa.ui.fragment.BaseFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketaFragment;
 import com.tianos.koketa.util.DatePickerUtil;
-import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
 
 import java.util.List;
@@ -40,6 +35,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -113,10 +109,18 @@ public class SummaryFragment extends BaseFragment implements InterfaceKoketaFrag
         btnRegister.setEnabled(false);
         Util.progressDialogShow(getActivity(), getString(R.string.in_progress));
 
-        Order order = new Order();
+        OrderDb orderDb = new OrderDb(getActivity());
+        RealmList<Order> lstOrder = orderDb.findAllPending();
+
+        int i = 0;
+        for (Order order : lstOrder) {
+            order.setOrderDetail(orderDb.findAllOrderDetailByOrderId2(String.valueOf(order.getId())));
+            lstOrder.set(i, order);
+            i++;
+        }
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        apiInterface.ticketCreate(order).enqueue(new Callback<ResponseWeb>() {
+        apiInterface.salesCreate(lstOrder).enqueue(new Callback<ResponseWeb>() {
             @Override
             public void onResponse(Call<ResponseWeb> call, Response<ResponseWeb> response) {
 
@@ -136,6 +140,17 @@ public class SummaryFragment extends BaseFragment implements InterfaceKoketaFrag
                     }
 
                     Log.d(TAG, "***** CREATE *****");
+
+                    Util.showToast(getActivity(), "Venta creada con exito.");
+
+
+                    for (Order order : lstOrder) {
+                        orderDb.updateStatus(String.valueOf(order.getId()), Order.STATUS_DONE);
+                    }
+
+                    Intent i = new Intent(getActivity(), ClientActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
 
 
                 } catch (Exception e) {

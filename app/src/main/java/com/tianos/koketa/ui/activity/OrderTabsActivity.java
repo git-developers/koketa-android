@@ -11,13 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.tianos.koketa.R;
-import com.tianos.koketa.database.BreadcrumbDb;
-import com.tianos.koketa.database.OrderDb;
-import com.tianos.koketa.entity.Breadcrumb;
-import com.tianos.koketa.ui.adapter.Order.MainAdapter;
+import com.tianos.koketa.ui.adapter.OrderTabs.MainAdapter;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa2;
-import com.tianos.koketa.util.Util;
-import com.tianos.koketa.util.dialog.DialogFragment;
 
 import butterknife.BindView;
 

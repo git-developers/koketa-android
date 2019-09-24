@@ -28,6 +28,8 @@ import com.tianos.koketa.entity.Dashboard;
 import com.tianos.koketa.entity.User;
 import com.tianos.koketa.retrofit.APIClient;
 import com.tianos.koketa.retrofit.APIInterface;
+import com.tianos.koketa.ui.fragment.AboutFragment;
+import com.tianos.koketa.ui.fragment.ImeiFragment;
 import com.tianos.koketa.ui.interfaceKoketa.InterfaceKoketa;
 import com.tianos.koketa.util.PreferencesManager;
 import com.tianos.koketa.util.Util;
@@ -37,6 +39,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
@@ -229,7 +232,9 @@ public class BaseActivity extends AppCompatActivity implements InterfaceKoketa, 
                 Util.showToast(BaseActivity.this, "Help Center");
                 return true;
             case R.id.nav_about:
-                DialogFragment.dialogAbout(BaseActivity.this);
+                AboutFragment fragment = new AboutFragment();
+                FragmentTransaction ft = ((AppCompatActivity) BaseActivity.this).getSupportFragmentManager().beginTransaction();
+                fragment.show(ft, "dialog");
                 return true;
             case R.id.nav_logout:
                 Util.progressDialogShow(BaseActivity.this, getString(R.string.in_progress));
